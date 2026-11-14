@@ -11,13 +11,28 @@ Browser-based isometric arena fighting prototype, built with Phaser 3, TypeScrip
 
 ## Development workflow
 
-Once the project scaffold lands:
+Use Node.js **22.22.0**, pinned in `.nvmrc` and `package.json`, with its
+bundled npm **10.9.4**. CI reads the same `.nvmrc`. With nvm, run `nvm install`
+and `nvm use`; with nvm-windows, use `nvm install 22.22.0` and
+`nvm use 22.22.0`.
 
 ```sh
-npm install
+npm ci
 npm run dev
-npm run build
-npm test
 ```
+
+Before pushing, run the same checks as CI:
+
+```sh
+npm audit
+npm test
+npm run typecheck
+npm run build
+```
+
+Commit `package-lock.json` whenever dependencies change; `npm ci` installs
+the locked versions and fails if the manifest and lockfile disagree.
+Vitest 5.1.0 replaces the vulnerable Vitest 3 dependency tree (including
+Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before adding combat.
