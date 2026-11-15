@@ -39,18 +39,29 @@ export class ArenaScene extends Phaser.Scene {
     this.jumpQueued = false;
     this.views = [new FighterView(this, 0x55dced, "P1"), new FighterView(this, 0xffbf69, "P2")];
     this.keys = this.input.keyboard!.addKeys("W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE") as typeof this.keys;
+    // DOM capture preserves taps even when both edges precede the next render.
+    // Coalesce pending presses; consume once on the next simulation tick.
+    const queueJump = (event: KeyboardEvent) => {
+      if (event.code === "Space" && !event.repeat) this.jumpQueued = true;
+    };
     const clearInput = () => {
       this.input.keyboard?.resetKeys();
       this.jumpQueued = false;
       this.accumulator = 0;
     };
     this.game.events.on(Phaser.Core.Events.BLUR, clearInput);
-    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.game.events.off(Phaser.Core.Events.BLUR, clearInput));
+    window.addEventListener("keydown", queueJump);
+    window.addEventListener("blur", clearInput);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      window.removeEventListener("keydown", queueJump);
+      window.removeEventListener("blur", clearInput);
+      this.game.events.off(Phaser.Core.Events.BLUR, clearInput);
+      clearInput();
+    });
   }
 
   update(time: number, delta: number): void {
     const k = this.keys;
-    this.jumpQueued ||= Phaser.Input.Keyboard.JustDown(k.SPACE);
     const x = Number(k.D.isDown || k.RIGHT.isDown) - Number(k.A.isDown || k.LEFT.isDown);
     const y = Number(k.S.isDown || k.DOWN.isDown) - Number(k.W.isDown || k.UP.isDown);
     // Bound catch-up after stalls; never simulate a tab's entire absence.
