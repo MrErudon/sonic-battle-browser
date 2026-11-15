@@ -35,7 +35,25 @@ the locked versions and fails if the manifest and lockfile disagree.
 Vitest 5.1.0 replaces the vulnerable Vitest 3 dependency tree (including
 Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
-Implement in small feature branches and verify each stage before adding combat.
+Implement in small feature branches and verify each stage before merging.
+
+## M01.3 — Combat foundation
+
+Move with **WASD / arrows**, jump with **Space**, attack with **J** (light) or
+**K** (heavy), and press **R** to reset training. Face the amber target and move
+into range. Ground/aerial attacks damage health and cause hitstun/knockback;
+heavy attacks launch. P2 has no CPU controller yet.
+
+Combat uses a separate action state and a Phaser-independent 60 Hz simulation.
+Original procedural indicators and health bars show attack phases and damage.
+See [M01.3 architecture, tuning and validation](docs/M01.3-combat-foundation.md).
+
+Browser regression checks (also run by CI):
+
+```sh
+npx playwright install chromium
+npm run test:browser
+```
 
 ## M01.2 — Fighter movement
 

@@ -1,15 +1,20 @@
 import Phaser from "phaser";
 import { ARENA, projectArena } from "../core/arena";
-import { createFighter, NO_INPUT, STEP, stepFighter } from "../core/movement";
+import { NO_INPUT, STEP } from "../core/movement";
+import { createCombatFighter, stepCombat, type AttackKind } from "../core/combat";
 import { FighterView } from "../rendering/FighterView";
+import { CombatView } from "../rendering/CombatView";
 
 export class ArenaScene extends Phaser.Scene {
-  private player = createFighter(-100, 0, "e");
-  private opponent = createFighter(100, 0, "w");
+  private player = createCombatFighter("P1", -100, 0, "e");
+  private opponent = createCombatFighter("P2", 100, 0, "w");
+  private combatView!: CombatView;
   private views!: [FighterView, FighterView];
   private keys!: Record<string, Phaser.Input.Keyboard.Key>;
   private accumulator = 0;
   private jumpQueued = false;
+  private attackQueued?: AttackKind;
+  private resetQueued = false;
   constructor() { super("Arena"); }
 
   create(): void {
@@ -30,23 +35,33 @@ export class ArenaScene extends Phaser.Scene {
       const a = projectArena(-w, y), b = projectArena(w, y);
       g.lineBetween(a.x, a.y, b.x, b.y);
     }
-    this.add.text(24, 24, "FIGHTER MOVEMENT · M01.2", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
-    this.add.text(24, 56, "WASD / Arrow keys: move   ·   Space: jump", { color: "#9fb3c8", fontSize: "16px" }).setDepth(1000);
-    this.add.text(24, 574, "P1  CYAN: keyboard controlled     P2  AMBER: stationary\nOriginal training robots · Movement prototype · Combat follows in M01.3", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
-    this.player = createFighter(-100, 0, "e");
-    this.opponent = createFighter(100, 0, "w");
+    this.add.text(24, 24, "COMBAT FOUNDATION · M01.3", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
+    this.add.text(24, 56, "WASD / Arrows: move   Space: jump   J: light   K: heavy   R: reset", { color: "#9fb3c8", fontSize: "16px" }).setDepth(1000);
+    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: training target · Face the target to hit\nWhite: hitstun · Gray: recovery · Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
+    this.player = createCombatFighter("P1", -100, 0, "e");
+    this.opponent = createCombatFighter("P2", 100, 0, "w");
     this.accumulator = 0;
     this.jumpQueued = false;
+    this.attackQueued = undefined;
+    this.resetQueued = false;
+    this.combatView = new CombatView(this);
     this.views = [new FighterView(this, 0x55dced, "P1"), new FighterView(this, 0xffbf69, "P2")];
-    this.keys = this.input.keyboard!.addKeys("W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE") as typeof this.keys;
+    this.keys = this.input.keyboard!.addKeys("W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,J,K,R") as typeof this.keys;
     // DOM capture preserves taps even when both edges precede the next render.
     // Coalesce pending presses; consume once on the next simulation tick.
     const queueJump = (event: KeyboardEvent) => {
-      if (event.code === "Space" && !event.repeat) this.jumpQueued = true;
+      if (event.repeat) return;
+      if (event.code === "Space") this.jumpQueued = true;
+      // First attack wins if several edges arrive before a simulation tick.
+      if (event.code === "KeyJ") this.attackQueued ??= "light";
+      if (event.code === "KeyK") this.attackQueued ??= "heavy";
+      if (event.code === "KeyR") this.resetQueued = true;
     };
     const clearInput = () => {
       this.input.keyboard?.resetKeys();
       this.jumpQueued = false;
+      this.attackQueued = undefined;
+      this.resetQueued = false;
       this.accumulator = 0;
     };
     this.game.events.on(Phaser.Core.Events.BLUR, clearInput);
@@ -57,6 +72,7 @@ export class ArenaScene extends Phaser.Scene {
       window.removeEventListener("blur", clearInput);
       this.game.events.off(Phaser.Core.Events.BLUR, clearInput);
       clearInput();
+      this.combatView.clear();
     });
   }
 
@@ -67,12 +83,21 @@ export class ArenaScene extends Phaser.Scene {
     // Bound catch-up after stalls; never simulate a tab's entire absence.
     this.accumulator += Math.min(delta / 1000, 0.1);
     while (this.accumulator + 1e-10 >= STEP) {
-      stepFighter(this.player, { x, y, jump: this.jumpQueued });
-      stepFighter(this.opponent, NO_INPUT);
+      if (this.resetQueued) {
+        this.player = createCombatFighter("P1", -100, 0, "e");
+        this.opponent = createCombatFighter("P2", 100, 0, "w");
+        this.combatView.clear();
+        this.jumpQueued = false;
+        this.attackQueued = undefined;
+        this.resetQueued = false;
+      }
+      this.combatView.hit(stepCombat([this.player, this.opponent], [{ x, y, jump: this.jumpQueued, attack: this.attackQueued }, NO_INPUT]));
       this.jumpQueued = false;
+      this.attackQueued = undefined;
       this.accumulator -= STEP;
     }
     this.views[0].sync(this.player, time);
     this.views[1].sync(this.opponent, time);
+    this.combatView.sync([this.player, this.opponent], delta);
   }
 }
