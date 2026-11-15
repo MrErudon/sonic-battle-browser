@@ -36,3 +36,18 @@ Vitest 5.1.0 replaces the vulnerable Vitest 3 dependency tree (including
 Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before adding combat.
+
+## M01.2 — Fighter movement
+
+Move the cyan training robot with **WASD / arrow keys**; press **Space** to jump.
+The amber robot remains stationary. Movement is screen-relative, with normalized
+arena speed, reduced aerial control, footprint boundaries, and landing recovery.
+The labels display idle/walk/jump/landing state and eight-direction facing.
+
+- `src/core/movement.ts`: framework-independent 60 Hz simulation and tuning.
+- `src/rendering/FighterView.ts`: replaceable original placeholder graphics.
+- `src/scenes/ArenaScene.ts`: arena, keyboard input, fixed-step scheduling.
+- `tests/`: arena, movement, jumping, boundaries, state, and depth tests.
+
+See [M01.2 implementation and validation](docs/M01.2-fighter-movement.md)
+for spec alignment, provisional values, scope limits, and manual review steps.
