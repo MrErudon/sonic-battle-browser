@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import { DIRECTIONS, projectFighter, type Fighter } from "../core/movement";
+import { DIRECTIONS, projectFighter } from "../core/movement";
+import { attackPhase, type CombatFighter } from "../core/combat";
 
 /** Original geometric training robots. Replace this view without changing physics. */
 export class FighterView {
@@ -13,7 +14,7 @@ export class FighterView {
     this.label = scene.add.text(0, 0, name, { fontSize: "12px", color: "#e9f5ff" }).setOrigin(0.5, 1);
   }
 
-  sync(f: Fighter, time: number): void {
+  sync(f: CombatFighter, time: number): void {
     const p = projectFighter(f);
     this.shadow.setPosition(p.x, p.groundY).setScale(Math.max(0.55, 1 - f.z / 250));
     const g = this.body;
@@ -21,7 +22,9 @@ export class FighterView {
     const stride = f.state === "walk" ? Math.sin(time / 75) * 4 : 0;
     const squash = f.state === "landing" ? 7 : 0;
     g.fillStyle(0x10151e).fillRoundedRect(-15, -43 + squash, 30, 39 - squash, 7);
-    g.fillStyle(this.color).fillRoundedRect(-12, -40 + squash, 24, 33 - squash, 6);
+    const action = f.action.type === "attack" ? attackPhase(f.action) : f.action.type;
+    const color = action === "hitstun" ? 0xffffff : action === "ko" ? 0x647080 : action === "recovery" ? 0x8398ab : this.color;
+    g.fillStyle(color).fillRoundedRect(-12, -40 + squash, 24, 33 - squash, 6);
     g.fillStyle(0xe9f5ff).fillRoundedRect(-16, -8 + stride, 13, 7, 2);
     g.fillRoundedRect(3, -8 - stride, 13, 7, 2);
     g.fillStyle(0x172333).fillRoundedRect(-9, -34 + squash, 18, 11, 3);
@@ -29,6 +32,6 @@ export class FighterView {
     g.fillStyle(0xffffff).fillCircle(Math.cos(angle) * 6, -29 + squash + Math.sin(angle) * 3, 3);
     g.lineStyle(3, 0xffffff).lineBetween(0, -18 + squash, Math.cos(angle) * 17, -18 + squash + Math.sin(angle) * 9);
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
-    this.label.setText(`${this.name} · ${f.state} · ${f.facing.toUpperCase()}`);
+    this.label.setText(`${this.name} · ${f.state} · ${action}`);
   }
 }
