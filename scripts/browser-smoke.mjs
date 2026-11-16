@@ -90,6 +90,40 @@ try {
       check(scene.player.health === 100 && scene.opponent.health === 100, `${difficulty} selection resets health`);
       check(scene.cpu.config.reactionFrames === CPU_PRESETS[difficulty].reactionFrames, `${difficulty} controller configured`);
     }
+    // Selection is pending until a simulation boundary; blur cancels it.
+    const consistent = difficulty => scene.difficulty === difficulty &&
+      scene.difficultyLabel.text.includes(`CPU: ${difficulty}`) &&
+      JSON.stringify(scene.cpu.config) === JSON.stringify(CPU_PRESETS[difficulty]);
+    tap("Digit2"); frame(1000 / 60);
+    const originalCpu = scene.cpu;
+    tap("Digit3"); frame(0);
+    check(consistent("Normal") && scene.cpu === originalCpu, "zero-tick selection keeps active label and controller");
+    window.dispatchEvent(new Event("blur")); frame(1000 / 60);
+    check(consistent("Normal") && scene.cpu === originalCpu, "DOM blur cancels pending difficulty atomically");
+    tap("Digit3"); game.events.emit("blur"); frame(1000 / 60);
+    check(consistent("Normal"), "Phaser blur cancels pending difficulty atomically");
+    tap("Digit1"); tap("Digit3"); tap("Digit2"); tap("Digit3"); tap("KeyR");
+    frame(0); check(consistent("Normal"), "rapid selections wait for tick");
+    frame(1000 / 60); check(consistent("Hard"), "last selection and reset commit together");
+    const committedCpu = scene.cpu;
+    tap("KeyR"); frame(0); check(scene.cpu === committedCpu, "reset waits for tick");
+    frame(1000 / 60); check(consistent("Hard") && scene.cpu !== committedCpu, "reset recreates active preset");
+    for (const [code, difficulty] of [["Digit1", "Easy"], ["Digit2", "Normal"], ["Digit3", "Hard"]]) {
+      window.dispatchEvent(new Event("blur")); tap(code); frame(1000 / 60);
+      for (let tick = 0; tick < 300; tick++) {
+        if (scene.player.z === 0) tap("Space");
+        frame(1000 / 60);
+      }
+      let attack = -1, damage = -1;
+      const health = scene.player.health;
+      for (let tick = 0; tick < 1800; tick++) {
+        frame(1000 / 60);
+        if (scene.opponent.action.type === "attack" && attack < 0) attack = tick;
+        if (scene.player.health < health && damage < 0) damage = tick;
+      }
+      check(attack >= 0 && attack <= 600, `${difficulty} jump reproduction: attack by tick ${attack}`);
+      check(damage >= 0 && damage <= 720, `${difficulty} jump reproduction: damage by tick ${damage}`);
+    }
     // A real P1 heavy interrupts CPU, then CPU resumes through normal physics.
     scene.player = createCombatFighter("P1", 0, 0, "e");
     const direction = facingVector("e");

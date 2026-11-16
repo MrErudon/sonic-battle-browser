@@ -50,13 +50,13 @@ export function pursuitInput(self: CombatFighter, target: Pick<CombatFighter, "x
   return { ...best };
 }
 
-function inRange(self: CombatFighter, target: CombatFighter, kind: AttackKind): boolean {
+function inRange(self: CombatFighter, target: CombatFighter, kind: AttackKind, horizontalOnly = false): boolean {
   const direction = facingVector(self.facing);
   if ((target.x - self.x) * direction.x + (target.y - self.y) * direction.y < 0) return false;
   const airborne = self.state === "jump";
   const attack: AttackAction = { type: "attack", kind, airborne, frame: 1,
     facing: self.facing, stats: self.stats.attacks[airborne ? "air" : "ground"][kind], hitTargets: new Set() };
-  return attackOverlaps(self, target, attack);
+  return attackOverlaps(self, horizontalOnly ? { ...target, z: self.z } : target, attack);
 }
 
 /** Call once BEFORE each stepCombat, never once per render. Only emits inputs;
@@ -97,24 +97,25 @@ export class CpuController {
     const distance = Math.hypot(target.x - self.x, target.y - self.y);
     if (distance > this.config.spacing + this.config.spacingSlack) this.approaching = true;
     if (distance <= this.config.spacing) this.approaching = false;
-    const light = inRange(self, target, "light"), heavy = inRange(self, target, "heavy");
-    // Move to face/align before attacking, even inside the spacing dead band.
-    if (this.approaching || (!light && !heavy)) {
-      this.reaction = 0;
-      const pursuit = pursuitInput(self, target);
-      // At almost coincident positions a full movement step can overshoot.
-      // Still turn with a legal direction press instead of attacking backwards.
-      if (!pursuit.x && !pursuit.y && distance > 0.001) {
-        let best = 0, alignment = -Infinity;
-        for (let i = 0; i < DIRECTIONS.length; i++) {
-          const d = facingVector(DIRECTIONS[i]);
-          const dot = (target.x - self.x) * d.x + (target.y - self.y) * d.y;
-          if (dot > alignment) { alignment = dot; best = i; }
-        }
-        return { ...inputs[best] };
+    const horizontal = inRange(self, target, "light", true) || inRange(self, target, "heavy", true);
+    if (this.approaching) return pursuitInput(self, target);
+    if (!horizontal) {
+      // Only turn when the resulting legal step still faces the target. This
+      // excludes overshooting presses that reverse again on the following tick.
+      for (const input of inputs) {
+        const next = { ...self };
+        stepFighter(next, input, self.stats.movement);
+        if (inRange(next, target, "light", true) || inRange(next, target, "heavy", true)) return { ...input };
       }
-      return pursuit;
+      // At sub-step overlap, make room for one legal turn. This is a bounded
+      // facing correction, not tactical retreat or direct position control.
+      const scale = this.config.spacing / distance;
+      return pursuitInput(self, { x: self.x + (self.x - target.x) * scale, y: self.y + (self.y - target.y) * scale });
     }
+    const light = inRange(self, target, "light"), heavy = inRange(self, target, "heavy");
+    // Height cannot be fixed by horizontal pursuit. Hold spacing and preserve
+    // accumulated reaction time until an attack becomes vertically reachable.
+    if (!light && !heavy) return idle;
     if (++this.reaction <= this.config.reactionFrames || this.interval > 0) return idle;
     this.reaction = 0;
     if (this.random() < this.config.pauseChance) { this.wait = this.config.pauseFrames; return idle; }

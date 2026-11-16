@@ -157,3 +157,72 @@ describe("CPU decisions", () => {
     expect(result.attacks).toBeGreaterThan(result.heavy);
   });
 });
+
+// Every regression advances the real combat simulation; no frozen fighter mocks.
+describe("CPU starvation full simulation regressions", () => {
+  const seeds = [0, 1, 5, 42, 255];
+  const cases = Object.entries(CPU_PRESETS).flatMap(([name, preset]) => seeds.map(seed => ({ name, preset, seed })));
+  it.each(cases)("$name seed $seed resumes after five seconds jumping", ({ preset, seed }) => {
+    const simulate = () => {
+      const self = createCombatFighter("P2", 100, 0, "w");
+      const target = createCombatFighter("P1", -100, 0, "e");
+      const cpu = new CpuController(preset, seed);
+      const trace = [];
+      let firstAttack = -1, firstHit = -1;
+      for (let tick = 0; tick < 2100; tick++) {
+        const input = cpu.tick(self, target);
+        if (tick >= 300 && input.attack && firstAttack < 0) firstAttack = tick - 300;
+        const hits = stepCombat([target, self], [{ ...NO_INPUT, jump: tick < 300 && target.z === 0 }, input]);
+        if (tick >= 300 && hits.some(hit => hit.attackerId === "P2") && firstHit < 0) firstHit = tick - 300;
+        trace.push([input, structuredClone(self), structuredClone(target)]);
+      }
+      expect(firstAttack).toBeGreaterThanOrEqual(0);
+      expect(firstAttack).toBeLessThanOrEqual(600);
+      expect(firstHit).toBeGreaterThanOrEqual(0);
+      expect(firstHit).toBeLessThanOrEqual(720);
+      return trace;
+    };
+    expect(simulate()).toEqual(simulate());
+  });
+  it.each(cases)("$name seed $seed resolves overlap and vertical separation", ({ preset, seed }) => {
+    for (const distance of [0, 0.01, 1, 3, 10, 44]) {
+      for (const facing of DIRECTIONS) {
+        const [self, target] = pair(distance); self.facing = facing;
+        target.z = 200; target.state = "jump";
+        const cpu = new CpuController(preset, seed);
+        let attack = -1, hit = -1, corrections = 0;
+        for (let tick = 0; tick < 720; tick++) {
+          const before = structuredClone([self, target]);
+          const input = cpu.tick(self, target);
+          expect([self, target]).toEqual(before);
+          if (tick < 30 && (input.x || input.y)) corrections++;
+          if (input.attack && attack < 0) attack = tick;
+          const hits = stepCombat([self, target], [input, NO_INPUT]);
+          if (hits.length && hit < 0) hit = tick;
+        }
+        expect(corrections, `stable facing ${distance}/${facing}`).toBeLessThanOrEqual(2);
+        expect(attack, `${distance}/${facing}`).toBeGreaterThanOrEqual(0);
+        expect(attack).toBeLessThanOrEqual(600);
+        expect(hit).toBeGreaterThanOrEqual(0);
+        expect(hit).toBeLessThanOrEqual(720);
+      }
+    }
+  });
+  it.each(cases)("$name seed $seed resumes after real heavy hitstun and knockback", ({ preset, seed }) => {
+    const [self, target] = pair(); self.facing = "e";
+    const cpu = new CpuController(preset, seed);
+    let stunned = false, knocked = false, resumed = -1;
+    for (let tick = 0; tick < 720; tick++) {
+      const locked = self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing";
+      // Start CPU in ordinary heavy recovery; P1's heavy interrupts it.
+      const input = tick === 0 ? { ...NO_INPUT, attack: "heavy" as const } : cpu.tick(self, target);
+      if (tick > 0 && locked) expect(input).toEqual(NO_INPUT);
+      if (stunned && input.attack && resumed < 0) resumed = tick;
+      stepCombat([self, target], [input, { ...NO_INPUT, attack: tick === 0 ? "heavy" : undefined }]);
+      stunned ||= self.action.type === "hitstun";
+      knocked ||= Math.hypot(self.knockbackX, self.knockbackY) > 0;
+    }
+    expect(stunned).toBe(true); expect(knocked).toBe(true);
+    expect(resumed).toBeGreaterThan(0); expect(resumed).toBeLessThanOrEqual(600);
+  });
+});

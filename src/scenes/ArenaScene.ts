@@ -19,6 +19,7 @@ export class ArenaScene extends Phaser.Scene {
   private jumpQueued = false;
   private attackQueued?: AttackKind;
   private resetQueued = false;
+  private pendingDifficulty?: Difficulty;
   constructor() { super("Arena"); }
 
   create(): void {
@@ -39,11 +40,11 @@ export class ArenaScene extends Phaser.Scene {
       const a = projectArena(-w, y), b = projectArena(w, y);
       g.lineBetween(a.x, a.y, b.x, b.y);
     }
-    this.add.text(24, 24, "CPU OPPONENT · M01.4", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
+    this.add.text(24, 24, "CPU OPPONENT Â· M01.4", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
     this.add.text(24, 56, "WASD / Arrows: move   Space: jump   J: light   K: heavy   R: reset", { color: "#9fb3c8", fontSize: "16px" }).setDepth(1000);
     this.difficultyLabel = this.add.text(24, 550, `CPU: ${this.difficulty} | 1 Easy / 2 Normal / 3 Hard (resets round)`, { color: "#ffbf69", fontSize: "14px" });
     this.difficultyLabel.setDepth(1000);
-    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: CPU opponent · Face the opponent to hit\nWhite: hitstun · Gray: recovery · Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
+    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: CPU opponent Â· Face the opponent to hit\nWhite: hitstun Â· Gray: recovery Â· Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
     this.player = createCombatFighter("P1", -100, 0, "e");
     this.opponent = createCombatFighter("P2", 100, 0, "w");
     this.cpu = new CpuController(CPU_PRESETS[this.difficulty], 1);
@@ -64,8 +65,7 @@ export class ArenaScene extends Phaser.Scene {
       if (event.code === "KeyK") this.attackQueued ??= "heavy";
       const selected = ({ Digit1: "Easy", Digit2: "Normal", Digit3: "Hard" } as const)[event.code as "Digit1" | "Digit2" | "Digit3"];
       if (selected) {
-        this.difficulty = selected;
-        this.difficultyLabel.setText(`CPU: ${selected} | 1 Easy / 2 Normal / 3 Hard (resets round)`);
+        this.pendingDifficulty = selected;
         this.resetQueued = true;
       }
       if (event.code === "KeyR") this.resetQueued = true;
@@ -75,6 +75,7 @@ export class ArenaScene extends Phaser.Scene {
       this.jumpQueued = false;
       this.attackQueued = undefined;
       this.resetQueued = false;
+      this.pendingDifficulty = undefined;
       this.accumulator = 0;
     };
     this.game.events.on(Phaser.Core.Events.BLUR, clearInput);
@@ -97,9 +98,12 @@ export class ArenaScene extends Phaser.Scene {
     this.accumulator += Math.min(delta / 1000, 0.1);
     while (this.accumulator + 1e-10 >= STEP) {
       if (this.resetQueued) {
+        this.difficulty = this.pendingDifficulty ?? this.difficulty;
+        this.pendingDifficulty = undefined;
         this.player = createCombatFighter("P1", -100, 0, "e");
         this.opponent = createCombatFighter("P2", 100, 0, "w");
         this.cpu = new CpuController(CPU_PRESETS[this.difficulty], 1);
+        this.difficultyLabel.setText(`CPU: ${this.difficulty} | 1 Easy / 2 Normal / 3 Hard (resets round)`);
         this.combatView.clear();
         this.jumpQueued = false;
         this.attackQueued = undefined;
