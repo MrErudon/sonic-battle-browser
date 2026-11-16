@@ -46,6 +46,7 @@ try {
     };
     const reset = () => {
       window.dispatchEvent(new Event("blur")); tap("KeyR"); frame(1000 / 60);
+      scene.cpu = { tick: () => ({ x: 0, y: 0, jump: false }) };
       scene.player.x = 0; scene.player.y = 0;
       const d = facingVector("e"); scene.opponent.x = d.x * 45; scene.opponent.y = d.y * 45;
     };
@@ -73,6 +74,35 @@ try {
     reset(); tap("KeyK"); for (let i = 0; i < 13; i++) frame(1000 / 60);
     check(scene.opponent.health === 85 && scene.opponent.action.type === "hitstun", "heavy impact and hitstun visible");
     check(scene.combatView.sparks.length === 1, "impact spark created");
+    const { CpuController, CPU_PRESETS } = await import("/src/core/cpu.ts");
+    const { createCombatFighter } = await import("/src/core/combat.ts");
+    const snapshots = [];
+    for (const hz of [10, 30, 60, 144, 240]) {
+      window.dispatchEvent(new Event("blur")); tap("Digit2"); frame(1000 / 60);
+      for (let i = 0; i < hz * 8; i++) frame(1000 / hz);
+      check(scene.player.health < 100, `${hz} Hz CPU independently damages P1`);
+      snapshots.push(JSON.stringify([scene.player, scene.opponent]));
+    }
+    check(snapshots.every(value => value === snapshots[0]), "CPU simulation identical across render rates");
+    for (const [code, difficulty] of [["Digit1", "Easy"], ["Digit2", "Normal"], ["Digit3", "Hard"]]) {
+      tap(code); frame(1000 / 60);
+      check(scene.difficultyLabel.text.includes(`CPU: ${difficulty}`), `${difficulty} selection displayed`);
+      check(scene.player.health === 100 && scene.opponent.health === 100, `${difficulty} selection resets health`);
+      check(scene.cpu.config.reactionFrames === CPU_PRESETS[difficulty].reactionFrames, `${difficulty} controller configured`);
+    }
+    // A real P1 heavy interrupts CPU, then CPU resumes through normal physics.
+    scene.player = createCombatFighter("P1", 0, 0, "e");
+    const direction = facingVector("e");
+    scene.opponent = createCombatFighter("P2", direction.x * 44, direction.y * 44, "w");
+    scene.cpu = new CpuController(CPU_PRESETS.Easy, 8);
+    tap("KeyK");
+    for (let i = 0; i < 13; i++) frame(1000 / 60);
+    check(scene.opponent.action.type === "hitstun", "CPU receives P1 hitstun and launch");
+    for (let i = 0; i < 900; i++) frame(1000 / 60);
+    check(scene.player.health < 100, "CPU resumes after interruption and damages P1");
+    check(scene.combatView.labels[0].text.includes(`${scene.player.health} / 100`), "P1 health HUD follows CPU damage");
+    tap("Digit2"); frame(1000 / 60);
+    for (let i = 0; i < 150; i++) frame(1000 / 60);
     // Render the inspected state; manual update calls alone do not redraw WebGL.
     scene.update = () => {};
     game.loop.start(game.step.bind(game));
@@ -80,7 +110,7 @@ try {
   });
   await mkdir("artifacts", { recursive: true });
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-  await page.screenshot({ path: "artifacts/m01-3-combat.png" });
+  await page.screenshot({ path: "artifacts/m01-4-cpu.png" });
   assert.deepEqual(errors, [], "no browser runtime exceptions");
   console.log(`Browser checks passed: ${results.length + 3} (keyboard movement/jump, ${results.length} scene checks, no runtime errors)`);
   results.forEach(result => console.log(`PASS ${result}`));
