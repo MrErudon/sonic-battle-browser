@@ -40,11 +40,11 @@ export class ArenaScene extends Phaser.Scene {
       const a = projectArena(-w, y), b = projectArena(w, y);
       g.lineBetween(a.x, a.y, b.x, b.y);
     }
-    this.add.text(24, 24, "CPU OPPONENT Â· M01.4", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
+    this.add.text(24, 24, "CPU OPPONENT · M01.4", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
     this.add.text(24, 56, "WASD / Arrows: move   Space: jump   J: light   K: heavy   R: reset", { color: "#9fb3c8", fontSize: "16px" }).setDepth(1000);
     this.difficultyLabel = this.add.text(24, 550, `CPU: ${this.difficulty} | 1 Easy / 2 Normal / 3 Hard (resets round)`, { color: "#ffbf69", fontSize: "14px" });
     this.difficultyLabel.setDepth(1000);
-    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: CPU opponent Â· Face the opponent to hit\nWhite: hitstun Â· Gray: recovery Â· Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
+    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: CPU opponent · Face the opponent to hit\nWhite: hitstun · Gray: recovery · Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
     this.player = createCombatFighter("P1", -100, 0, "e");
     this.opponent = createCombatFighter("P2", 100, 0, "w");
     this.cpu = new CpuController(CPU_PRESETS[this.difficulty], 1);
