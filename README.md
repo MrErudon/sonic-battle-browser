@@ -37,12 +37,22 @@ Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before merging.
 
+## M01.4 - CPU opponent
+
+P2 pursues and attacks P1 using the same movement and combat rules. Default
+**Normal** difficulty; press **1 / 2 / 3** for **Easy / Normal / Hard**.
+Changing difficulty resets the round. **R** resets with the selected difficulty
+and the same deterministic seed. Both fighters retain the same statistics.
+
+The CPU runs once per 60 Hz combat tick, independently of Phaser and render rate.
+See [CPU architecture, parameters, limitations and validation](docs/M01.4-cpu-opponent.md).
+
 ## M01.3 — Combat foundation
 
 Move with **WASD / arrows**, jump with **Space**, attack with **J** (light) or
 **K** (heavy), and press **R** to reset training. Face the amber target and move
 into range. Ground/aerial attacks damage health and cause hitstun/knockback;
-heavy attacks launch. P2 has no CPU controller yet.
+heavy attacks launch. P2 is now controlled by the M01.4 CPU.
 
 Combat uses a separate action state and a Phaser-independent 60 Hz simulation.
 Original procedural indicators and health bars show attack phases and damage.

@@ -29,7 +29,7 @@ describe("scene jump input across render frames", () => {
     const graphics = { fillStyle() {}, lineStyle() {}, fillPoints() {}, strokePoints() {}, lineBetween() {} };
     scene = new ArenaScene();
     Object.assign(scene, {
-      add: { graphics: () => graphics, text: () => ({ setDepth() {} }) },
+      add: { graphics: () => graphics, text: () => ({ setDepth() {}, setText() {} }) },
       input: { keyboard: {
         addKeys: () => keys,
         resetKeys: () => Object.values(keys).forEach(k => { k.isDown = false; }),
@@ -37,6 +37,8 @@ describe("scene jump input across render frames", () => {
       game: { events: new EventEmitter() }, events: new EventEmitter(),
     });
     scene.create();
+    // Isolate keyboard regressions from the independently tested opponent.
+    Object.assign(scene, { cpu: { tick: () => ({ x: 0, y: 0, jump: false }) } });
   });
   afterEach(() => { scene.events.emit("shutdown"); vi.unstubAllGlobals(); });
 
