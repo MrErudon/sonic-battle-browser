@@ -8,6 +8,7 @@ Browser-based isometric arena fighting prototype, built with Phaser 3, TypeScrip
 2. Add two placeholder fighters, eight-direction movement, jumping, and arena bounds.
 3. Add light/heavy attacks, hitboxes, damage, knockback, and health bars.
 4. Add a basic CPU opponent and automated tests.
+5. Complete single-player matches, scoring, menus, rematches and input gating.
 
 ## Development workflow
 
@@ -37,20 +38,39 @@ Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before merging.
 
-## M01.4 - CPU opponent
+## M01.5 — Playable single-player match
 
-P2 pursues and attacks P1 using the same movement and combat rules. Default
-**Normal** difficulty; press **1 / 2 / 3** for **Easy / Normal / Hard**.
-Changing difficulty resets the round. **R** resets with the selected difficulty
-and the same deterministic seed. Both fighters retain the same statistics.
+Choose **Easy / Normal / Hard**, then **Start Game**. Control the cyan fighter
+with **WASD / arrows**, **Space** to jump, **J** for light and **K** for heavy.
+First to two round wins takes the match. Double KO replays the round.
+Health, positions, CPU/RNG, inputs and effects reset each round.
 
-The CPU runs once per 60 Hz combat tick, independently of Phaser and render rate.
-See [CPU architecture, parameters, limitations and validation](docs/M01.4-cpu-opponent.md).
+Use **Controls / Help** or **Escape** to pause and learn the controls.
+Switching away pauses too. **Rematch** starts over with the same difficulty;
+**Menu** returns to difficulty selection. Release and press movement/attack
+keys again after a transition. **Debug** toggles diagnostics. The former
+training shortcuts R and 1/2/3 are no longer used.
+
+See [M01.5 architecture, rules, validation and limitations](docs/M01.5-playable-match.md).
+This is a desktop keyboard prototype with original replaceable graphics.
+
+**Audit status (2026-11-18):** production dependencies have zero reported
+vulnerabilities. Full audit reports five high development-dependency findings
+from a picomatch advisory withdrawn on GitHub but still returned by npm;
+see the milestone document. The full CI audit remains blocking.
+
+## M01.4 — CPU opponent (preserved)
+
+P2 pursues and attacks using the same movement and combat rules. CPU decisions
+run once per 60 Hz combat tick with deterministic seeded randomness. Difficulty
+now changes only through the match menu. The anti-oscillation correction and
+all CPU regression tests are preserved unchanged.
+See [CPU architecture, parameters and validation](docs/M01.4-cpu-opponent.md).
 
 ## M01.3 — Combat foundation
 
 Move with **WASD / arrows**, jump with **Space**, attack with **J** (light) or
-**K** (heavy), and press **R** to reset training. Face the amber target and move
+**K** (heavy), and use **Menu** to start a new match. Face the amber target and move
 into range. Ground/aerial attacks damage health and cause hitstun/knockback;
 heavy attacks launch. P2 is now controlled by the M01.4 CPU.
 
