@@ -135,3 +135,6 @@ dialog button { width: 100%; margin-top: 12px; }
   .menu-panel { bottom: 102px; padding: 24px; }
   h1 { font-size: 52px; }
 }
+
+/* Contain the previous canvas size while Phaser handles a resize event. */
+#game { overflow: hidden; }

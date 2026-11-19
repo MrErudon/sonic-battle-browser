@@ -45,8 +45,16 @@ try {
   check((await readFile("dist/robots.txt", "utf8")).includes("Disallow"), "no-index manifest copied to dist (not authentication)");
   current = "responsive menus";
   for (const [width, height] of [[1920,1080], [1366,768], [1280,800], [1024,768], [800,600], [390,844], [844,390]]) {
-    await page.setViewportSize({ width, height }); await step(100);
-    check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), width + "x" + height + " no horizontal overflow");
+    await page.setViewportSize({ width, height }); await step(600);
+    const layout = await page.evaluate(() => ({
+      fits: document.documentElement.scrollWidth <= innerWidth,
+      width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
+      overflow: [...document.querySelectorAll("body *")].filter(e => {
+        const r = e.getBoundingClientRect(); return r.width && (r.left < -1 || r.right > innerWidth + 1);
+      }).map(e => ({ tag: e.tagName, class: e.className, width: e.getBoundingClientRect().width })),
+    }));
+    if (!layout.fits) console.error("Layout diagnostics", JSON.stringify(layout));
+    check(layout.fits, width + "x" + height + " no horizontal overflow");
     await page.getByRole("button", { name: /Start Game/ }).scrollIntoViewIfNeeded();
     const button = await page.locator("#start-game").boundingBox();
     check(button && button.width > 100 && button.height >= 40, width + "x" + height + " usable Start button");
@@ -84,7 +92,7 @@ try {
   check(!(await page.locator(".pause-message").isVisible()), "focus resumes gameplay");
   current = "HUD layouts";
   for (const [width, height] of [[1920,1080], [1366,768], [1024,768], [800,600], [390,844], [844,390]]) {
-    await page.setViewportSize({ width, height }); await step(100);
+    await page.setViewportSize({ width, height }); await step(600);
     check(await page.evaluate(() => {
       const [a,b] = [...document.querySelectorAll(".fighter-health")].map(e => e.getBoundingClientRect());
       return a.left >= 0 && b.right <= innerWidth && a.right <= b.left && document.documentElement.scrollWidth <= innerWidth;
