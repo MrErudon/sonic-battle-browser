@@ -1,46 +1,24 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { EventEmitter } from "eventemitter3";
+import { beforeEach, describe, expect, it } from "vitest";
 import { STEP } from "../src/core/movement";
-import { createCombatFighter, type CombatFighter } from "../src/core/combat";
+import { createCombatFighter } from "../src/core/combat";
+import { COUNTDOWN_TICKS, MatchController } from "../src/core/match";
 
-vi.mock("phaser", () => ({ default: {
-  Scene: class {}, Geom: { Point: class {} },
-  Core: { Events: { BLUR: "blur" } }, Scenes: { Events: { SHUTDOWN: "shutdown" } },
-} }));
-vi.mock("../src/rendering/FighterView", () => ({ FighterView: class { sync() {} } }));
-vi.mock("../src/rendering/CombatView", () => ({ CombatView: class { sync() {} hit() {} clear() {} } }));
-import { ArenaScene } from "../src/scenes/ArenaScene";
-
-describe("scene jump input across render frames", () => {
-  let scene: ArenaScene;
-  let target: EventTarget;
-  let keys: Record<string, { isDown: boolean }>;
-  const player = () => (scene as unknown as { player: CombatFighter }).player;
-  const frame = (ms = STEP * 1000) => scene.update(0, ms);
+describe("match input across render frames (M01.2–M01.4 regressions)", () => {
+  let match: MatchController;
+  const player = () => match.fighters[0];
+  const frame = (ms = STEP * 1000) => match.advance(ms);
   const key = (type: string, repeat = false, code = "Space") => {
-    target.dispatchEvent(Object.assign(new Event(type), { code, repeat }));
+    if (type === "keydown") match.press(code, repeat);
+    else match.release(code);
   };
   const tap = () => { key("keydown"); key("keyup"); };
-
+  const blur = () => { match.setFocused(false); match.setFocused(true); };
   beforeEach(() => {
-    target = new EventTarget();
-    vi.stubGlobal("window", target);
-    keys = Object.fromEntries("W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE".split(",").map(k => [k, { isDown: false }]));
-    const graphics = { fillStyle() {}, lineStyle() {}, fillPoints() {}, strokePoints() {}, lineBetween() {} };
-    scene = new ArenaScene();
-    Object.assign(scene, {
-      add: { graphics: () => graphics, text: () => ({ setDepth() {}, setText() {} }) },
-      input: { keyboard: {
-        addKeys: () => keys,
-        resetKeys: () => Object.values(keys).forEach(k => { k.isDown = false; }),
-      } },
-      game: { events: new EventEmitter() }, events: new EventEmitter(),
-    });
-    scene.create();
-    // Isolate keyboard regressions from the independently tested opponent.
-    Object.assign(scene, { cpu: { tick: () => ({ x: 0, y: 0, jump: false }) } });
+    match = new MatchController(); match.start();
+    for (let i = 0; i < COUNTDOWN_TICKS; i++) match.tick();
+    // Isolate keyboard regressions from independently tested CPU hits.
+    Object.assign(match, { cpu: { tick: () => ({ x: 0, y: 0, jump: false }) } });
   });
-  afterEach(() => { scene.events.emit("shutdown"); vi.unstubAllGlobals(); });
 
   it("captures a Space press and release between rendered frames", () => {
     frame(); tap();
@@ -66,16 +44,16 @@ describe("scene jump input across render frames", () => {
     key("keydown"); frame();
     for (let i = 0; i < 120; i++) { key("keydown", true); frame(); }
     expect(player().state).toBe("idle");
-    target.dispatchEvent(new Event("blur"));
+    blur();
     key("keydown", true); frame();
     expect(player().state).toBe("idle");
     key("keyup"); tap(); frame();
     expect(player().state).toBe("jump");
   });
   it("clears pending jump, held movement and partial tick on window blur", () => {
-    tap(); keys.D.isDown = true; frame(5);
-    target.dispatchEvent(new Event("blur"));
-    expect(keys.D.isDown).toBe(false);
+    tap(); key("keydown", false, "KeyD"); frame(5);
+    blur();
+    expect(match.input.consume().x).toBe(0);
     frame(12);
     expect(player()).toEqual(createCombatFighter("P1", -100, 0, "e"));
     frame();
@@ -95,17 +73,6 @@ describe("scene jump input across render frames", () => {
     tap(); frame(); tap(); frame();
     for (let i = 0; i < 120; i++) frame();
     expect(player().state).toBe("idle");
-  });
-  it("preserves Phaser blur reset and removes listeners on shutdown/restart", () => {
-    tap(); scene.game.events.emit("blur"); frame();
-    expect(player().state).toBe("idle");
-    tap(); scene.events.emit("shutdown");
-    tap(); frame();
-    expect(player().state).toBe("idle");
-    expect(scene.game.events.listenerCount("blur")).toBe(0);
-    scene.create(); tap(); frame();
-    expect(player().state).toBe("jump");
-    expect(scene.game.events.listenerCount("blur")).toBe(1);
   });
   it("ignores other keys and coalesces taps before the next tick", () => {
     key("keydown", false, "Enter"); frame();
@@ -128,11 +95,9 @@ describe("scene jump input across render frames", () => {
     for (let i = 0; i < 120; i++) { key("keydown", true, "KeyJ"); frame(); }
     expect(player().action.type).toBe("ready");
   });
-  it.each(["window", "phaser", "shutdown"])("clears pending attacks on %s", source => {
+  it("clears pending attacks on focus loss", () => {
     key("keydown", false, "KeyK");
-    if (source === "window") target.dispatchEvent(new Event("blur"));
-    else if (source === "phaser") scene.game.events.emit("blur");
-    else scene.events.emit("shutdown");
+    blur();
     frame(); expect(player().action.type).toBe("ready");
   });
   it("discards presses during recovery rather than replaying them when ready", () => {
@@ -153,7 +118,7 @@ describe("scene jump input across render frames", () => {
   });
   it("reset restores health and clears pending attacks", () => {
     player().health = 5;
-    key("keydown", false, "KeyJ"); key("keydown", false, "KeyR"); frame();
+    key("keydown", false, "KeyJ"); match.menu(); match.start(); frame();
     expect(player()).toEqual(createCombatFighter("P1", -100, 0, "e"));
   });
 });

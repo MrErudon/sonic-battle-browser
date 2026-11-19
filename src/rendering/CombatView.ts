@@ -1,28 +1,19 @@
 import Phaser from "phaser";
 import { projectArena } from "../core/arena";
 import { attackPhase, facingVector, type CombatFighter, type HitEvent } from "../core/combat";
-
-/** Original procedural trails, impact spokes and HUD; never drives simulation. */
+/** Original procedural trails and impact spokes; never drives simulation. */
 export class CombatView {
-  private hud: Phaser.GameObjects.Graphics;
-  private labels: Phaser.GameObjects.Text[];
   private trails: Phaser.GameObjects.Graphics[];
   private sparks: { hit: HitEvent; age: number; graphic: Phaser.GameObjects.Graphics }[] = [];
   constructor(private scene: Phaser.Scene) {
-    this.hud = scene.add.graphics().setDepth(1000);
-    this.labels = [24, 616].map(x => scene.add.text(x, 88, "", { fontSize: "14px", color: "#e9f5ff" }).setDepth(1001));
     this.trails = [scene.add.graphics(), scene.add.graphics()];
   }
   hit(events: HitEvent[]): void {
     for (const hit of events) this.sparks.push({ hit, age: 0, graphic: this.scene.add.graphics() });
   }
   sync(fighters: readonly CombatFighter[], delta: number): void {
-    this.hud.clear();
     fighters.forEach((f, i) => {
-      const x = i === 0 ? 24 : 616, color = i === 0 ? 0x55dced : 0xffbf69;
-      this.hud.fillStyle(0x10151e).fillRect(x, 110, 320, 16);
-      this.hud.fillStyle(color).fillRect(x, 110, 320 * f.health / f.stats.maxHealth, 16);
-      this.labels[i].setText(`${f.id}   ${f.health} / ${f.stats.maxHealth} HP${f.health === 0 ? "   KO" : ""}`);
+      const color = i === 0 ? 0x55dced : 0xffbf69;
       const g = this.trails[i]; g.clear();
       if (f.action.type !== "attack") return;
       const a = f.action, phase = attackPhase(a), d = facingVector(a.facing);
@@ -51,5 +42,6 @@ export class CombatView {
   clear(): void {
     this.sparks.forEach(s => s.graphic.destroy());
     this.sparks = [];
+    this.trails.forEach(trail => trail.clear());
   }
 }

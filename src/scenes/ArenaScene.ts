@@ -1,25 +1,17 @@
 import Phaser from "phaser";
 import { ARENA, projectArena } from "../core/arena";
-import { STEP } from "../core/movement";
-import { createCombatFighter, stepCombat, type AttackKind } from "../core/combat";
+import { COMBAT_KEYS, MatchController } from "../core/match";
 import { FighterView } from "../rendering/FighterView";
 import { CombatView } from "../rendering/CombatView";
-import { CpuController, CPU_PRESETS, type Difficulty } from "../core/cpu";
+import { MatchView } from "../rendering/MatchView";
 
 export class ArenaScene extends Phaser.Scene {
-  private player = createCombatFighter("P1", -100, 0, "e");
-  private opponent = createCombatFighter("P2", 100, 0, "w");
+  readonly match = new MatchController();
   private combatView!: CombatView;
   private views!: [FighterView, FighterView];
-  private keys!: Record<string, Phaser.Input.Keyboard.Key>;
-  private difficulty: Difficulty = "Normal";
-  private cpu = new CpuController(CPU_PRESETS.Normal, 1);
-  private difficultyLabel!: Phaser.GameObjects.Text;
-  private accumulator = 0;
-  private jumpQueued = false;
-  private attackQueued?: AttackKind;
-  private resetQueued = false;
-  private pendingDifficulty?: Difficulty;
+  private ui!: MatchView;
+  private resetVersion = -1;
+  private visualTime = 0;
   constructor() { super("Arena"); }
 
   create(): void {
@@ -40,82 +32,55 @@ export class ArenaScene extends Phaser.Scene {
       const a = projectArena(-w, y), b = projectArena(w, y);
       g.lineBetween(a.x, a.y, b.x, b.y);
     }
-    this.add.text(24, 24, "CPU OPPONENT · M01.4", { color: "#e9f5ff", fontSize: "22px" }).setDepth(1000);
-    this.add.text(24, 56, "WASD / Arrows: move   Space: jump   J: light   K: heavy   R: reset", { color: "#9fb3c8", fontSize: "16px" }).setDepth(1000);
-    this.difficultyLabel = this.add.text(24, 550, `CPU: ${this.difficulty} | 1 Easy / 2 Normal / 3 Hard (resets round)`, { color: "#ffbf69", fontSize: "14px" });
-    this.difficultyLabel.setDepth(1000);
-    this.add.text(24, 574, "P1 CYAN: player    P2 AMBER: CPU opponent · Face the opponent to hit\nWhite: hitstun · Gray: recovery · Original training robots / provisional tuning", { color: "#9fb3c8", fontSize: "14px", lineSpacing: 8 }).setDepth(1000);
-    this.player = createCombatFighter("P1", -100, 0, "e");
-    this.opponent = createCombatFighter("P2", 100, 0, "w");
-    this.cpu = new CpuController(CPU_PRESETS[this.difficulty], 1);
-    this.accumulator = 0;
-    this.jumpQueued = false;
-    this.attackQueued = undefined;
-    this.resetQueued = false;
+    this.match.menu();
+    this.match.setFocused(!document.hidden);
     this.combatView = new CombatView(this);
-    this.views = [new FighterView(this, 0x55dced, "P1"), new FighterView(this, 0xffbf69, "P2")];
-    this.keys = this.input.keyboard!.addKeys("W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,J,K,R") as typeof this.keys;
-    // DOM capture preserves taps even when both edges precede the next render.
-    // Coalesce pending presses; consume once on the next simulation tick.
-    const queueJump = (event: KeyboardEvent) => {
-      if (event.repeat) return;
-      if (event.code === "Space") this.jumpQueued = true;
-      // First attack wins if several edges arrive before a simulation tick.
-      if (event.code === "KeyJ") this.attackQueued ??= "light";
-      if (event.code === "KeyK") this.attackQueued ??= "heavy";
-      const selected = ({ Digit1: "Easy", Digit2: "Normal", Digit3: "Hard" } as const)[event.code as "Digit1" | "Digit2" | "Digit3"];
-      if (selected) {
-        this.pendingDifficulty = selected;
-        this.resetQueued = true;
+    this.views = [new FighterView(this, 0x55dced, "YOU"), new FighterView(this, 0xffbf69, "CPU")];
+    this.ui = new MatchView(this.match);
+    const keydown = (event: KeyboardEvent) => {
+      if (event.code === "Escape" && !event.repeat && !this.match.helpOpen) {
+        this.ui.openHelp(); return;
       }
-      if (event.code === "KeyR") this.resetQueued = true;
+      // Let native buttons and the help dialog retain Space/Enter activation.
+      const interactive = event.target instanceof HTMLElement && !!event.target.closest("button, input, select, textarea, dialog");
+      if (interactive && (this.match.helpOpen || event.code === "Space" || event.code === "Enter")) return;
+      if (COMBAT_KEYS.has(event.code)) event.preventDefault();
+      this.match.press(event.code, event.repeat);
     };
-    const clearInput = () => {
-      this.input.keyboard?.resetKeys();
-      this.jumpQueued = false;
-      this.attackQueued = undefined;
-      this.resetQueued = false;
-      this.pendingDifficulty = undefined;
-      this.accumulator = 0;
-    };
-    this.game.events.on(Phaser.Core.Events.BLUR, clearInput);
-    window.addEventListener("keydown", queueJump);
-    window.addEventListener("blur", clearInput);
+    const keyup = (event: KeyboardEvent) => this.match.release(event.code);
+    const blur = () => this.match.setFocused(false);
+    const focus = () => this.match.setFocused(!document.hidden);
+    const visibility = () => this.match.setFocused(!document.hidden && document.hasFocus());
+    this.game.events.on(Phaser.Core.Events.BLUR, blur);
+    this.game.events.on(Phaser.Core.Events.FOCUS, focus);
+    window.addEventListener("keydown", keydown);
+    window.addEventListener("keyup", keyup);
+    window.addEventListener("blur", blur);
+    window.addEventListener("focus", focus);
+    document.addEventListener("visibilitychange", visibility);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-      window.removeEventListener("keydown", queueJump);
-      window.removeEventListener("blur", clearInput);
-      this.game.events.off(Phaser.Core.Events.BLUR, clearInput);
-      clearInput();
-      this.combatView.clear();
+      window.removeEventListener("keydown", keydown);
+      window.removeEventListener("keyup", keyup);
+      window.removeEventListener("blur", blur);
+      window.removeEventListener("focus", focus);
+      document.removeEventListener("visibilitychange", visibility);
+      this.game.events.off(Phaser.Core.Events.BLUR, blur);
+      this.game.events.off(Phaser.Core.Events.FOCUS, focus);
+      this.match.setFocused(false);
+      this.combatView.clear(); this.ui.destroy();
     });
   }
 
-  update(time: number, delta: number): void {
-    const k = this.keys;
-    const x = Number(k.D.isDown || k.RIGHT.isDown) - Number(k.A.isDown || k.LEFT.isDown);
-    const y = Number(k.S.isDown || k.DOWN.isDown) - Number(k.W.isDown || k.UP.isDown);
-    // Bound catch-up after stalls; never simulate a tab's entire absence.
-    this.accumulator += Math.min(delta / 1000, 0.1);
-    while (this.accumulator + 1e-10 >= STEP) {
-      if (this.resetQueued) {
-        this.difficulty = this.pendingDifficulty ?? this.difficulty;
-        this.pendingDifficulty = undefined;
-        this.player = createCombatFighter("P1", -100, 0, "e");
-        this.opponent = createCombatFighter("P2", 100, 0, "w");
-        this.cpu = new CpuController(CPU_PRESETS[this.difficulty], 1);
-        this.difficultyLabel.setText(`CPU: ${this.difficulty} | 1 Easy / 2 Normal / 3 Hard (resets round)`);
-        this.combatView.clear();
-        this.jumpQueued = false;
-        this.attackQueued = undefined;
-        this.resetQueued = false;
-      }
-      this.combatView.hit(stepCombat([this.player, this.opponent], [{ x, y, jump: this.jumpQueued, attack: this.attackQueued }, this.cpu.tick(this.opponent, this.player)]));
-      this.jumpQueued = false;
-      this.attackQueued = undefined;
-      this.accumulator -= STEP;
+  update(_time: number, delta: number): void {
+    const hits = this.match.advance(delta);
+    if (this.resetVersion !== this.match.resetVersion) {
+      this.combatView.clear(); this.resetVersion = this.match.resetVersion; this.visualTime = 0;
     }
-    this.views[0].sync(this.player, time);
-    this.views[1].sync(this.opponent, time);
-    this.combatView.sync([this.player, this.opponent], delta);
+    if (this.match.acceptsInput) this.visualTime += Math.min(delta, 100);
+    this.combatView.hit(hits);
+    this.views[0].sync(this.match.fighters[0], this.visualTime, this.ui.debug);
+    this.views[1].sync(this.match.fighters[1], this.visualTime, this.ui.debug);
+    this.combatView.sync(this.match.fighters, this.match.paused ? 0 : delta);
+    this.ui.sync();
   }
 }

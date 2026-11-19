@@ -1,20 +1,17 @@
 import Phaser from "phaser";
 import { DIRECTIONS, projectFighter } from "../core/movement";
 import { attackPhase, type CombatFighter } from "../core/combat";
-
 /** Original geometric training robots. Replace this view without changing physics. */
 export class FighterView {
   private body: Phaser.GameObjects.Graphics;
   private shadow: Phaser.GameObjects.Ellipse;
   private label: Phaser.GameObjects.Text;
-
   constructor(scene: Phaser.Scene, private color: number, private name: string) {
     this.shadow = scene.add.ellipse(0, 0, 30, 12, 0x000000, 0.35).setDepth(1);
     this.body = scene.add.graphics();
     this.label = scene.add.text(0, 0, name, { fontSize: "12px", color: "#e9f5ff" }).setOrigin(0.5, 1);
   }
-
-  sync(f: CombatFighter, time: number): void {
+  sync(f: CombatFighter, time: number, debug = false): void {
     const p = projectFighter(f);
     this.shadow.setPosition(p.x, p.groundY).setScale(Math.max(0.55, 1 - f.z / 250));
     const g = this.body;
@@ -32,6 +29,6 @@ export class FighterView {
     g.fillStyle(0xffffff).fillCircle(Math.cos(angle) * 6, -29 + squash + Math.sin(angle) * 3, 3);
     g.lineStyle(3, 0xffffff).lineBetween(0, -18 + squash, Math.cos(angle) * 17, -18 + squash + Math.sin(angle) * 9);
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
-    this.label.setText(`${this.name} · ${f.state} · ${action}`);
+    this.label.setText(debug ? `${this.name} · ${f.state} · ${action}` : this.name);
   }
 }
