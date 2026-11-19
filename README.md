@@ -38,6 +38,19 @@ Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before merging.
 
+## M01.6 — Alpha deployment preparation
+
+See [Cloudflare setup, authorization, private-access gates, validation and rollback](docs/M01.6-alpha-deployment.md).
+Pages configuration is prepared for `main`, `npm run build`, and `dist`.
+No site has been published. GitHub-connected PR previews require Cloudflare authorization
+and verified Access protection for both production and preview URLs.
+
+The HUD has stronger contrast and normal gameplay hides fighter diagnostics.
+Use Debug to inspect state. Keyboard is required; mobile touch play is not implemented.
+CI retains the original Chromium regressions and adds built-asset checks in
+Chromium, Firefox and WebKit, plus desktop/mobile-sized layout checks.
+Run `npm run report:bundle` after building for raw/gzip asset sizes.
+
 ## M01.5 — Playable single-player match
 
 Choose **Easy / Normal / Hard**, then **Start Game**. Control the cyan fighter
@@ -54,10 +67,7 @@ training shortcuts R and 1/2/3 are no longer used.
 See [M01.5 architecture, rules, validation and limitations](docs/M01.5-playable-match.md).
 This is a desktop keyboard prototype with original replaceable graphics.
 
-**Audit status (2026-11-18):** production dependencies have zero reported
-vulnerabilities. Full audit reports five high development-dependency findings
-from a picomatch advisory withdrawn on GitHub but still returned by npm;
-see the milestone document. The full CI audit remains blocking.
+**Audit status (2026-11-19):** the fresh main CI run reports zero vulnerabilities; the earlier picomatch advisory findings have cleared. Full audit remains a required CI check.
 
 ## M01.4 — CPU opponent (preserved)
 

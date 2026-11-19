@@ -2,6 +2,8 @@ name: CI
 on:
   push:
   pull_request:
+permissions:
+  contents: read
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -15,13 +17,39 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build
+      - run: npm run report:bundle
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: browser-results
+          name: regression-and-bundle-results
           path: artifacts/
-      # Keep the audit blocking, but run gameplay validation even when the
-      # registry reports an advisory for an unchanged development dependency.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alpha-dist
+          path: dist/
       - run: npm audit
+  production-browsers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run test:browser:production
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-${{ matrix.browser }}
+          path: artifacts/

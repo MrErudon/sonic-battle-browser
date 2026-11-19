@@ -29,6 +29,7 @@ export class FighterView {
     g.fillStyle(0xffffff).fillCircle(Math.cos(angle) * 6, -29 + squash + Math.sin(angle) * 3, 3);
     g.lineStyle(3, 0xffffff).lineBetween(0, -18 + squash, Math.cos(angle) * 17, -18 + squash + Math.sin(angle) * 9);
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
+    this.label.setVisible(debug);
     this.label.setText(debug ? `${this.name} · ${f.state} · ${action}` : this.name);
   }
 }
