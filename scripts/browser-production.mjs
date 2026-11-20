@@ -69,10 +69,10 @@ try {
   let completed = false;
   for (let attempt = 0; attempt < 1800 && !completed; attempt++) {
     const text = await page.locator(".debug-readout").textContent();
-    const positions = [...text.matchAll(/P[12]: (-?[\\d.]+), (-?[\\d.]+), z (-?[\\d.]+)/g)].map(m => m.slice(1).map(Number));
+    const positions = [...text.matchAll(/P[12]: (-?[\d.]+), (-?[\d.]+), z (-?[\d.]+)/g)].map(m => m.slice(1).map(Number));
     if (positions.length !== 2) throw Error("Missing public diagnostic positions");
     const [p,q] = positions, dx=q[0]-p[0], dy=q[1]-p[1];
-    const action = text.split("\\n")[1];
+    const action = text.split("\n")[1];
     const next = new Set();
     if (await state() === "Fighting" && action.includes("| ready") && Math.hypot(dx,dy)>28) {
       const sx=.65*(dx-dy),sy=.32*(dx+dy);
@@ -82,10 +82,10 @@ try {
     }
     for(const code of held)if(!next.has(code)){await page.keyboard.up(code);held.delete(code);}
     for(const code of next)if(!held.has(code)){await page.keyboard.down(code);held.add(code);}
-    const frame=Number(action.match(/frame=(\\d+)/)?.[1]);
+    const frame=Number(action.match(/frame=(\d+)/)?.[1]);
     if (action.includes("| ready") && Math.hypot(dx,dy)<=28 ||
-        /light_[12] frame=8(?:$| )/.test(action) ||
-        /light_3 frame=10(?:$| )/.test(action)) await page.keyboard.press("KeyJ");
+        /light_[12] frame=/.test(action) && frame >= 6 && frame <= 10 ||
+        /light_3 frame=/.test(action) && frame >= 8 && frame <= 12) await page.keyboard.press("KeyJ");
     await step(17);
     const combo=await page.locator("#p1-combo").textContent();
     if(combo.includes("4 HITS")){
