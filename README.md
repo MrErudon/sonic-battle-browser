@@ -38,6 +38,15 @@ Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before merging.
 
+## M02.1 — Ground combos
+Tap **J → J → J → J/K** after connected hits to perform the four-stage
+ground combo. A full chain deals 34 damage. Missed or late continuations
+finish recovery normally; K from neutral and aerial attacks remain separate.
+Only fresh presses chain, with a six-tick continuation buffer. Debug shows
+stage/frame information; the HUD counts consecutive connected hits.
+See [timing, tuning, CPU rules, validation and limits](docs/M02.1-combo-system.md).
+This milestone remains on an unmerged feature branch until approved.
+
 ## M01.6 — Alpha deployment preparation
 
 See [Cloudflare setup, authorization, private-access gates, validation and rollback](docs/M01.6-alpha-deployment.md).

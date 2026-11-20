@@ -81,6 +81,14 @@ describe("full combo, aerial preservation and feedback",()=>{
     expect(damage).toEqual([5,6,8,15]);expect(stages).toEqual(["light_1","light_2","light_3","finisher"]);
     expect(f[1].health).toBe(66);expect(f[0].action.type).toBe("ready");expect(f[0].comboHits.count).toBe(0);
   });
+  it("incoming damage on the cancel tick interrupts the successor",()=>{
+    const f=activeStage();ticks(f,7);
+    const q=f[1];
+    q.action={type:"attack",kind:"light",airborne:false,frame:5,facing:"w",stats:q.stats.attacks.ground.light,hitTargets:new Set()};
+    stepCombat(f,[input("light")]);
+    expect(f[0].action.type).toBe("hitstun");expect(f[0].comboHits.count).toBe(0);
+    ticks(f,120);expect(f[0].action.type).toBe("ready");
+  });
   it("counter counts only hits before defender unlocks",()=>{
     const f=activeStage();ticks(f,5);expect(f[0].comboHits.count).toBe(1);
     ticks(f,2);stepCombat(f,[input("light")]);ticks(f,5);
