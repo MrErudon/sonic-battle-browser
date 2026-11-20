@@ -18,6 +18,7 @@ export function validateCombo(config: ComboConfig, attacks: Record<AttackKind, R
   if (!Number.isInteger(config.bufferTicks) || config.bufferTicks < 1 || config.bufferTicks > 60 || !config.stages.length || config.stages.length > 4) throw Error("Invalid combo length/buffer");
   const ids = new Set(config.stages.map(s => s.id));
   if (ids.size !== config.stages.length || config.stages[0].kind !== "light") throw Error("Invalid combo IDs/entry");
+  const entryStartup = { ...attacks.light, ...config.stages[0].overrides }.startup;
   config.stages.forEach((s, index) => {
     if (!s.id || !["light", "heavy"].includes(s.kind)) throw Error("Invalid stage");
     const stats = { ...attacks[s.kind], ...s.overrides };
@@ -27,6 +28,7 @@ export function validateCombo(config: ComboConfig, attacks: Record<AttackKind, R
     for (const key of ["startup", "active", "recovery", "hitstun"] as const)
       if (!Number.isInteger(stats[key]) || stats[key] < 1) throw Error("Invalid attack duration");
     if (!Number.isInteger(stats.cooldown) || stats.cooldown < 0 || stats.reach <= 0 || stats.width <= 0 || stats.height <= 0) throw Error("Invalid attack dimensions/cooldown");
+    if (stats.recovery + stats.cooldown + entryStartup + 1 <= stats.hitstun) throw Error("No neutral escape gap");
     if (s.next) {
       const nextIndex = config.stages.findIndex(n => n.id === s.next);
       if (nextIndex !== index + 1 || !s.cancel || !s.inputs?.length || s.inputs.some(i => i !== "light" && i !== "heavy")) throw Error("Invalid combo transition");

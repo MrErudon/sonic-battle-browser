@@ -140,12 +140,21 @@ describe("match boundaries and render scheduling",()=>{
     if(m.fighters[0].action.type==="attack")expect(m.fighters[0].action.buffered).toBeUndefined();
     else expect(m.state).toBe("Menu");
   });
-  it.each([10,30,60,144,240])("%i Hz determinism with tick scheduled combo inputs",hz=>{
-    // Compare equal-duration host schedules. Keyboard edge boundary regressions
-    // are separately exercised by the existing MatchInput and browser suites.
-    const a=new MatchController(),b=new MatchController();a.start();b.start();
-    for(let t=0;t<hz*10;t++)a.advance(1000/hz);
-    for(let t=0;t<600;t++)b.advance(1000/60);
-    expect(a.fighters).toEqual(b.fighters);expect(a.score).toEqual(b.score);
+  it.each([10,30,60,144,240])("%i Hz produces identical full combo traces",hz=>{
+    function run(rate:number){
+      const m=new MatchController();m.start();for(let t=0;t<180;t++)m.tick();
+      m.fighters=pair();
+      Object.assign(m,{cpu:{tick:()=>NO_INPUT}});
+      const tick=m.tick.bind(m),trace:unknown[]=[],damage:number[]=[];
+      let index=0;
+      m.tick=()=>{
+        if([0,8,16,26].includes(index)){m.press("KeyJ");m.release("KeyJ");}
+        const hits=tick();damage.push(...hits.map(e=>e.damage));
+        trace.push(structuredClone(m.fighters));index++;return hits;
+      };
+      for(let t=0;t<rate*3;t++)m.advance(1000/rate);
+      expect(damage).toEqual([5,6,8,15]);return trace;
+    }
+    expect(run(hz)).toEqual(run(60));
   });
 });
