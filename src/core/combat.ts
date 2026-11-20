@@ -1,3 +1,4 @@
+import { DEFAULT_COMBO, validateCombo, type ComboConfig } from "./combos";
 import { ARENA } from "./arena";
 import { createFighter, DEFAULT_MOVEMENT, DIRECTIONS, NO_INPUT, STEP, stepFighter, type Facing, type Fighter, type MovementConfig, type MovementInput } from "./movement";
 
@@ -8,6 +9,7 @@ export interface AttackStats {
   reach: number; width: number; bottom: number; height: number;
 }
 export interface FighterStats {
+  combo?: ComboConfig;
   maxHealth: number; hurtRadius: number; hurtHeight: number; knockbackDrag: number;
   movement: Readonly<MovementConfig>;
   attacks: Record<"ground" | "air", Record<AttackKind, Readonly<AttackStats>>>;
@@ -26,16 +28,20 @@ export const DEFAULT_FIGHTER_STATS: Readonly<FighterStats> = {
 export interface AttackAction {
   type: "attack"; kind: AttackKind; airborne: boolean; frame: number;
   facing: Facing; stats: Readonly<AttackStats>; hitTargets: Set<string>;
+  comboStage?: string;
+  buffered?: { kind: AttackKind; remaining: number };
 }
 export type Action = { type: "ready" } | AttackAction | { type: "hitstun"; remaining: number } | { type: "ko" };
 export interface CombatFighter extends Fighter {
   id: string; health: number; stats: Readonly<FighterStats>; action: Action;
+  comboHits: { count: number; damage: number; targetId?: string; remaining: number; active: boolean };
   cooldown: number; knockbackX: number; knockbackY: number;
 }
 export interface CombatInput extends MovementInput { attack?: AttackKind }
-export interface HitEvent { attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number }
+export interface HitEvent { attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number; comboStage?: string; comboCount?: number }
 export function createCombatFighter(id: string, x: number, y: number, facing: Facing = "s", stats = DEFAULT_FIGHTER_STATS): CombatFighter {
-  return { ...createFighter(x, y, facing), id, stats, health: stats.maxHealth, action: { type: "ready" }, cooldown: 0, knockbackX: 0, knockbackY: 0 };
+  validateCombo(stats.combo ?? DEFAULT_COMBO, stats.attacks.ground);
+  return { ...createFighter(x, y, facing), id, stats, comboHits: { count: 0, damage: 0, remaining: 0, active: false }, health: stats.maxHealth, action: { type: "ready" }, cooldown: 0, knockbackX: 0, knockbackY: 0 };
 }
 export function attackPhase(a: AttackAction): "startup" | "active" | "recovery" {
   return a.frame <= a.stats.startup ? "startup" : a.frame <= a.stats.startup + a.stats.active ? "active" : "recovery";
@@ -77,14 +83,37 @@ function move(f: CombatFighter, input: CombatInput): void {
   f.knockbackY = scale ? f.knockbackY * scale : 0;
 }
 
+export function clearComboInput(f: CombatFighter): void {
+  if (f.action.type === "attack") f.action.buffered = undefined;
+}
+export function clearComboFeedback(f: CombatFighter): void {
+  f.comboHits = { count: 0, damage: 0, remaining: 0, active: false };
+}
+export function comboStage(f: CombatFighter) {
+  return f.action.type === "attack" && !f.action.airborne
+    ? (f.stats.combo ?? DEFAULT_COMBO).stages.find(s => s.id === (f.action as AttackAction).comboStage)
+    : undefined;
+}
+function stageAction(f: CombatFighter, id: string, facing: Facing): AttackAction {
+  const stage = (f.stats.combo ?? DEFAULT_COMBO).stages.find(s => s.id === id)!;
+  return { type: "attack", kind: stage.kind, airborne: false, frame: 1, facing,
+    stats: { ...f.stats.attacks.ground[stage.kind], ...stage.overrides }, hitTargets: new Set(), comboStage: id };
+}
+
 /** One fixed 60 Hz tick. Inputs are press edges consumed by the caller once.
  * Resolve all contacts before applying hits: simultaneous active attacks trade. */
 export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[]): HitEvent[] {
+  const lockedAtStart = new Set(fighters.filter(f => f.action.type === "hitstun").map(f => f.id));
+  for (const f of fighters) {
+    if (f.comboHits.remaining > 0 && --f.comboHits.remaining === 0) clearComboFeedback(f);
+    if (f.comboHits.active && !lockedAtStart.has(f.comboHits.targetId!)) f.comboHits.active = false;
+  }
   for (let i = 0; i < fighters.length; i++) {
     const f = fighters[i], input = inputs[i] ?? NO_INPUT;
     const cooling = f.cooldown > 0;
     if (cooling) f.cooldown--;
     const stunned = f.action.type === "hitstun";
+    const wasAirborne = f.state === "jump";
     if (f.action.type === "attack") {
       f.action.frame++;
       const a = f.action;
@@ -95,11 +124,23 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     }
     // The final hitstun tick still locks controls and discards attack/jump presses.
     move(f, input);
+    if (wasAirborne && f.state !== "jump") clearComboInput(f);
+    if (f.action.type === "attack") {
+      const a = f.action, stage = comboStage(f);
+      if (stage?.next && stage.cancel && f.state !== "landing") {
+        if (input.attack && stage.inputs!.includes(input.attack) && !a.buffered)
+          a.buffered = { kind: input.attack, remaining: (f.stats.combo ?? DEFAULT_COMBO).bufferTicks };
+        if (a.buffered && a.frame >= stage.cancel[0] && a.frame <= stage.cancel[1] && a.hitTargets.size > 0) {
+          f.action = stageAction(f, stage.next, a.facing);
+        } else if (a.buffered && --a.buffered.remaining === 0) a.buffered = undefined;
+      } else a.buffered = undefined;
+    }
     if (f.action.type === "hitstun" && --f.action.remaining <= 0) f.action = { type: "ready" };
     if (input.attack && f.action.type === "ready" && !stunned && !cooling && f.cooldown === 0 && f.state !== "landing") {
       const airborne = f.state === "jump";
       f.action = { type: "attack", kind: input.attack, airborne, frame: 1, facing: f.facing,
         stats: f.stats.attacks[airborne ? "air" : "ground"][input.attack], hitTargets: new Set() };
+      if (!airborne && input.attack === "light") f.action = stageAction(f, (f.stats.combo ?? DEFAULT_COMBO).stages[0].id, f.facing);
     }
   }
   const contacts: { attacker: CombatFighter; target: CombatFighter; attack: AttackAction }[] = [];
@@ -112,8 +153,14 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
       contacts.push({ attacker, target, attack: a });
     }
   }
-  return contacts.map(({ attacker, target, attack }) => {
+  const events = contacts.map(({ attacker, target, attack }) => {
     const damage = Math.min(target.health, attack.stats.damage);
+    const counter = attacker.comboHits;
+    const consecutive = counter.active && counter.targetId === target.id && lockedAtStart.has(target.id);
+    counter.count = consecutive ? counter.count + 1 : 1;
+    counter.damage = consecutive ? counter.damage + damage : damage;
+    counter.targetId = target.id; counter.remaining = 45; counter.active = true;
+    clearComboFeedback(target);
     target.health -= damage;
     target.action = target.health === 0 ? { type: "ko" } : { type: "hitstun", remaining: attack.stats.hitstun };
     target.cooldown = Math.max(target.cooldown, attack.stats.hitstun);
@@ -125,6 +172,6 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
       target.state = "jump";
       target.landingRemaining = 0;
     }
-    return { attackerId: attacker.id, defenderId: target.id, damage, x: target.x, y: target.y, z: target.z + target.stats.hurtHeight / 2 };
+    return { attackerId: attacker.id, defenderId: target.id, damage, x: target.x, y: target.y, z: target.z + target.stats.hurtHeight / 2, comboStage: attack.comboStage, comboCount: attacker.comboHits.count };
   });
 }

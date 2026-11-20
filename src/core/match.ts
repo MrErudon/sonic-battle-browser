@@ -1,4 +1,4 @@
-import { createCombatFighter, stepCombat, type CombatInput, type HitEvent } from "./combat";
+import { clearComboInput, clearComboFeedback, createCombatFighter, stepCombat, type CombatInput, type HitEvent } from "./combat";
 import { CPU_PRESETS, CpuController, type Difficulty } from "./cpu";
 import { STEP } from "./movement";
 
@@ -74,6 +74,7 @@ export class MatchController {
   }
   private enter(state: MatchState, ticks = 0): void {
     this.currentState = state; this.remaining = ticks; this.input.clear();
+    this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); });
   }
   private resetRound(): void {
     this.fighters = this.newFighters();
@@ -101,9 +102,11 @@ export class MatchController {
   }
   setFocused(focused: boolean): void {
     this.focused = focused; this.accumulator = 0; this.input.blur();
+    this.fighters.forEach(clearComboInput);
   }
   setHelp(open: boolean): void {
     this.help = open; this.accumulator = 0; this.input.clear();
+    this.fighters.forEach(clearComboInput);
   }
   press(code: string, repeat = false): void { this.input.press(code, repeat, this.acceptsInput); }
   release(code: string): void { this.input.release(code); }

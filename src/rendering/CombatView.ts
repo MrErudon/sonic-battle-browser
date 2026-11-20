@@ -29,8 +29,9 @@ export class CombatView {
     this.sparks = this.sparks.filter(s => {
       s.age += Math.min(delta, 100);
       if (s.age >= 180) { s.graphic.destroy(); return false; }
-      const p = projectArena(s.hit.x, s.hit.y), radius = 5 + s.age / 9;
-      const g = s.graphic; g.clear().setDepth(p.y + 0.1).lineStyle(3, 0xffffff, 1 - s.age / 180);
+      const finisher = s.hit.comboStage === "finisher";
+      const p = projectArena(s.hit.x, s.hit.y), radius = (finisher ? 10 : 5) + s.age / (finisher ? 6 : 9);
+      const g = s.graphic; g.clear().setDepth(p.y + 0.1).lineStyle(finisher ? 5 : 3, finisher ? 0xffbf69 : s.hit.comboStage === "light_3" ? 0x55dced : 0xffffff, 1 - s.age / 180);
       for (let i = 0; i < 8; i++) {
         const a = i * Math.PI / 4;
         g.lineBetween(p.x + Math.cos(a) * radius * 0.4, p.y - s.hit.z + Math.sin(a) * radius * 0.4,

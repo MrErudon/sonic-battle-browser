@@ -1,4 +1,4 @@
-import { attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
+import { comboStage, attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
 import { DIRECTIONS, NO_INPUT, stepFighter } from "./movement";
 
 export interface CpuConfig {
@@ -67,6 +67,7 @@ export class CpuController {
   private interval = 0;
   private reaction = 0;
   private approaching = true;
+  private continued = new WeakSet<AttackAction>();
   readonly config: Readonly<CpuConfig>;
 
   constructor(config: Readonly<CpuConfig> = CPU_PRESETS.Normal, seed = 1) {
@@ -88,6 +89,15 @@ export class CpuController {
     const idle = { ...NO_INPUT };
     if (this.interval > 0) this.interval--;
     if (self.health <= 0 || target.health <= 0) return idle;
+    if (self.action.type === "attack") {
+      const a = self.action, stage = comboStage(self);
+      if (stage?.next && stage.cancel && a.hitTargets.has(target.id) &&
+          a.frame + 1 >= stage.cancel[0] && a.frame + 1 <= stage.cancel[1] && !this.continued.has(a)) {
+        this.continued.add(a);
+        const chance = this.config.reactionFrames >= 24 ? .25 : this.config.reactionFrames >= 12 ? .60 : .85;
+        if (this.random() < chance) return { ...idle, attack: "light" };
+      }
+    }
     if (self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing") {
       this.reaction = 0;
       this.wait = this.config.reactionFrames;

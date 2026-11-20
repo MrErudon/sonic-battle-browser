@@ -28,6 +28,7 @@ export class MatchView {
         <button class="primary" id="start-game">Start Game <span aria-hidden="true">→</span></button>
         <p class="quick-controls">WASD / arrows to move · J / K to attack<br>Space to jump · Move toward your rival to face them</p>
       </section>
+      <div class="combo-feedback" aria-live="polite"><span id="p1-combo"></span><span id="p2-combo"></span></div>
       <div class="fight-cue" aria-hidden="true" hidden>FIGHT</div>
       <div class="round-message" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-detail"></p></div>
       <section class="result-panel" aria-labelledby="result-title" hidden><h2 id="result-title"></h2><p id="result-detail"></p><button class="primary" id="rematch">Rematch</button><button id="result-menu">Return to menu</button></section>
@@ -35,7 +36,7 @@ export class MatchView {
       <p class="keyboard-notice">Keyboard required · Touch controls are not available in this alpha.</p>
       <footer><span class="play-hint">WASD / arrows · Space jump · J light · K heavy</span><div><button id="help">Controls / Help</button><button id="menu">Menu</button><button id="debug" aria-pressed="false">Debug</button></div></footer>
       <pre class="debug-readout" hidden></pre>
-      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — quick, short reach</dd><dt>Heavy attack</dt><dd>K — slower, more damage</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
+      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — light; tap again after a hit to chain</dd><dt>Heavy attack</dt><dd>K — heavy; J or K after Light 3 finishes the combo</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
     document.querySelector("#shell")!.append(this.root);
     this.dialog = this.root.querySelector("dialog")!;
     this.on("start-game", () => match.start());
@@ -84,6 +85,8 @@ export class MatchView {
     this.text("#difficulty-description", { Easy: "Slower reactions. More time to find your rhythm.", Normal: "Balanced pursuit and varied attacks.", Hard: "Faster reactions. Keep moving and pick your moment." }[m.difficulty]);
     m.fighters.forEach((fighter, index) => {
       const id = index + 1;
+      const combo = fighter.comboHits;
+      this.text(`#p${id}-combo`, combo.count >= 2 && combo.remaining > 0 ? `${combo.count} HITS · ${combo.damage} DAMAGE` : "");
       this.text(`#p${id}-hp`, `${fighter.health} / ${fighter.stats.maxHealth}`);
       const bar = this.root.querySelector(`#p${id}-bar`) as HTMLProgressElement;
       bar.max = fighter.stats.maxHealth; bar.value = fighter.health;

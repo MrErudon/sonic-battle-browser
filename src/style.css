@@ -138,3 +138,6 @@ dialog button { width: 100%; margin-top: 12px; }
 
 /* Contain the previous canvas size while Phaser handles a resize event. */
 #game { overflow: hidden; }
+
+.combo-feedback { position: absolute; top: 145px; left: 28px; right: 28px; display: flex; justify-content: space-between; color: var(--amber); font-weight: bold; font-size: 16px; text-shadow: 0 2px 6px #000; }
+@media (max-width: 480px) { .combo-feedback { top: 160px; left: 12px; right: 12px; font-size: 12px; } }
