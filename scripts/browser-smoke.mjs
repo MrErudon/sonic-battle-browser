@@ -89,7 +89,7 @@ try {
     document.querySelector("#debug").click(); frame(0);
     if (document.querySelector(".debug-readout").hidden || !scene.views[0].label.text.includes("ready")) throw Error("debug toggle");
     document.querySelector("#debug").click(); document.querySelector("#menu").click(); frame(0);
-    if (scene.views[0].label.text !== "YOU") throw Error("normal play hides diagnostic labels");
+    if (scene.views[0].label.visible || scene.views[1].label.visible) throw Error("normal play hides fighter labels");
     if (scene.combatView.sparks.length || scene.match.state !== "Menu") throw Error("menu reset clears effects");
     return ["Escape closes help and resumes", "debug toggle works and normal play hides fighter diagnostics", "menu reset clears effects"];
   });

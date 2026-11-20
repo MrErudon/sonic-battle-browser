@@ -81,3 +81,60 @@ dialog button { width: 100%; margin-top: 12px; }
   .round-info span, .fighter-health p { font-size: 10px; }
   footer { padding: 12px; }
 }
+
+/* M01.6: opaque backing keeps the HUD readable over every arena position. */
+.hud { align-items: start; }
+.fighter-health, .round-info { background: #10151ef2; border: 1px solid #61778b; border-radius: 8px; padding: 12px 14px; box-shadow: 0 6px 20px #0005; min-width: 0; }
+.fighter-health > div { flex-wrap: wrap; gap: 4px 10px; }
+.fighter-health progress { display: block; height: 18px; border-radius: 3px; overflow: hidden; }
+.fighter-health p { color: #d2e2ef; }
+.round-info { padding: 12px; white-space: nowrap; }
+.alpha-badge { color: var(--amber); font-size: 11px; font-weight: 700; letter-spacing: .1em; margin: 0 0 16px; }
+.round-message { left: 50%; right: auto; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); padding: 14px 26px; border: 1px solid #61778b; border-radius: 10px; background: #10151ef5; box-shadow: 0 8px 32px #0006; }
+.round-message h2 { color: var(--amber); font-size: 52px; font-variant-numeric: tabular-nums; }
+.round-message p { color: var(--ink); line-height: 1.4; }
+.result-panel { box-shadow: 0 0 0 100vmax #050a1280, 0 12px 48px #0009; border-top: 4px solid var(--amber); }
+.match-ui[data-winner="P1"] .result-panel { border-top-color: var(--cyan); }
+.match-ui[data-winner="P1"] #result-title { color: var(--cyan); }
+.match-ui[data-winner="P2"] #result-title { color: var(--amber); }
+.fight-cue { position: absolute; top: 42%; width: 100%; text-align: center; font-size: clamp(32px, 7vw, 64px); font-weight: 700; color: var(--cyan); text-shadow: 0 3px 14px #000; animation: fight-cue .75s both; }
+@keyframes fight-cue { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+.keyboard-notice { display: none; position: absolute; bottom: 58px; margin: 0; padding: 8px 16px; width: 100%; text-align: center; background: #10151ef5; color: var(--amber); font-size: 12px; line-height: 1.4; }
+.debug-readout { max-width: calc(100% - 48px); overflow: auto; }
+@media (max-width: 760px), (max-height: 550px) {
+  .fighter-health { padding: 9px; }
+  .round-info { padding: 10px 8px; }
+  .alpha-badge { margin-bottom: 12px; font-size: 10px; }
+}
+@media (max-width: 480px) {
+  .hud { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 6px; }
+  .fighter-health { padding: 8px 6px; }
+  .fighter-health strong { font-size: 12px; }
+  .round-info { padding: 8px 4px; }
+  .fighter-health > div { gap: 3px; }
+  .round-message { bottom: 110px; }
+  .alpha-badge { font-size: 10px; }
+  h1 { font-size: 56px; }
+}
+@media (pointer: coarse), (max-width: 480px) {
+  .keyboard-notice { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fight-cue { animation-duration: .1s; }
+}
+
+.menu-panel { overflow-y: auto; scrollbar-width: thin; }
+@media (max-width: 1000px) {
+  .menu-panel { padding: 24px 28px; }
+  h1 { font-size: 52px; }
+  .intro { margin: 14px 0 18px; }
+  .quick-controls { margin-top: 12px; }
+}
+@media (max-width: 480px) {
+  #shell { min-height: 700px; }
+  .menu-panel { bottom: 102px; padding: 24px; }
+  h1 { font-size: 52px; }
+}
+
+/* Contain the previous canvas size while Phaser handles a resize event. */
+#game { overflow: hidden; }

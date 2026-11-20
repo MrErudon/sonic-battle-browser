@@ -1,0 +1,5 @@
+# Pages Git integration: dashboard controls repository, branch and build command.
+# This file prepares configuration only; no project or deployment is created.
+name = "sonic-battle-browser-alpha"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-19"

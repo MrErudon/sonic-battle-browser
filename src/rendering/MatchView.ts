@@ -18,6 +18,7 @@ export class MatchView {
         <section class="fighter-health opponent"><div><strong>CPU <span>AMBER</span></strong><output id="p2-hp"></output></div><progress id="p2-bar" max="100" value="100" aria-label="CPU health"></progress><p id="p2-rounds"></p></section>
       </div>
       <section class="menu-panel" aria-labelledby="game-title">
+        <p class="alpha-badge">PRIVATE ALPHA · KEYBOARD PLAY</p>
         <h1 id="game-title">Arena<br>Clash</h1>
         <p class="intro">You. One rival. First to two wins.</p>
         <fieldset><legend>Choose your CPU opponent</legend><div class="difficulty-options">
@@ -27,9 +28,11 @@ export class MatchView {
         <button class="primary" id="start-game">Start Game <span aria-hidden="true">→</span></button>
         <p class="quick-controls">WASD / arrows to move · J / K to attack<br>Space to jump · Move toward your rival to face them</p>
       </section>
+      <div class="fight-cue" aria-hidden="true" hidden>FIGHT</div>
       <div class="round-message" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-detail"></p></div>
       <section class="result-panel" aria-labelledby="result-title" hidden><h2 id="result-title"></h2><p id="result-detail"></p><button class="primary" id="rematch">Rematch</button><button id="result-menu">Return to menu</button></section>
       <div class="pause-message" role="status" hidden>Paused <span>Return to the game to continue</span></div>
+      <p class="keyboard-notice">Keyboard required · Touch controls are not available in this alpha.</p>
       <footer><span class="play-hint">WASD / arrows · Space jump · J light · K heavy</span><div><button id="help">Controls / Help</button><button id="menu">Menu</button><button id="debug" aria-pressed="false">Debug</button></div></footer>
       <pre class="debug-readout" hidden></pre>
       <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — quick, short reach</dd><dt>Heavy attack</dt><dd>K — slower, more damage</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
@@ -75,6 +78,8 @@ export class MatchView {
     this.visible(".menu-panel", menu); this.visible(".hud", !menu);
     this.visible(".result-panel", over); this.visible("#menu", !menu && !over);
     this.visible(".play-hint", !menu);
+    this.visible(".fight-cue", m.state === "Fighting" && !m.paused);
+    this.root.dataset.winner = m.winner ?? "";
     this.root.querySelectorAll<HTMLButtonElement>("[data-difficulty]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.difficulty === m.difficulty)));
     this.text("#difficulty-description", { Easy: "Slower reactions. More time to find your rhythm.", Normal: "Balanced pursuit and varied attacks.", Hard: "Faster reactions. Keep moving and pick your moment." }[m.difficulty]);
     m.fighters.forEach((fighter, index) => {
