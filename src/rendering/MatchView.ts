@@ -107,7 +107,7 @@ export class MatchView {
     this.visible(".pause-message", m.paused && !m.helpOpen && !menu && !over);
     this.visible(".debug-readout", this.debug);
     this.root.querySelector("#debug")!.setAttribute("aria-pressed", String(this.debug));
-    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type}`).join("\n"));
+    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type}${f.action.type === "attack" ? ` ${f.action.comboStage ?? (f.action.airborne ? "air" : "standalone")} frame=${f.action.frame}` : ""}`).join("\n"));
     if (this.previousState !== m.state) {
       if (menu || over) (this.root.querySelector(menu ? "#start-game" : "#rematch") as HTMLElement).focus({ preventScroll: true });
       else if (document.activeElement instanceof HTMLElement) document.activeElement.blur();

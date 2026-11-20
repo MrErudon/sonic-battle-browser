@@ -60,7 +60,7 @@ describe("cancel and buffer timing",()=>{
     expect(f[0].action).toMatchObject({kind:"heavy",comboStage:"finisher",frame:1});
   });
   it("terminal finisher cannot chain and clears to neutral",()=>{
-    const f=activeStage(3);for(let i=0;i<45;i++)stepCombat(f,[input("light")]);
+    const f=activeStage(3);for(let i=0;i<44;i++)stepCombat(f,[input("light")]);
     expect(f[0].action.type).toBe("ready");
   });
   it("damage interrupts an attack and destroys queued continuation",()=>{

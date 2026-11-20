@@ -174,4 +174,6 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     }
     return { attackerId: attacker.id, defenderId: target.id, damage, x: target.x, y: target.y, z: target.z + target.stats.hurtHeight / 2, comboStage: attack.comboStage, comboCount: attacker.comboHits.count };
   });
+  for (const { target } of contacts) clearComboFeedback(target);
+  return events;
 }
