@@ -141,3 +141,10 @@ dialog button { width: 100%; margin-top: 12px; }
 
 .combo-feedback { position: absolute; top: 145px; left: 28px; right: 28px; display: flex; justify-content: space-between; color: var(--amber); font-weight: bold; font-size: 16px; text-shadow: 0 2px 6px #000; }
 @media (max-width: 480px) { .combo-feedback { top: 160px; left: 12px; right: 12px; font-size: 12px; } }
+
+/* Original guard UI: compact, labeled and separate from HP. */
+.guard-row { display: flex; align-items: center; gap: .35rem; margin-top: .25rem; font-size: .7rem; }
+.guard-row progress { flex: 1; min-width: 0; height: .35rem; accent-color: #9aafff; }
+.guard-row output { min-width: 3.8rem; text-align: right; font-size: .7rem; }
+.guard-row progress::-webkit-progress-value { background: #9aafff; }
+.guard-row progress::-moz-progress-bar { background: #9aafff; }

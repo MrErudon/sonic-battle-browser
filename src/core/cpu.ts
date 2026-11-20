@@ -1,8 +1,10 @@
+import { canStartBlock } from "./defense";
 import { comboStage, attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
 import { DIRECTIONS, NO_INPUT, stepFighter } from "./movement";
 
 export interface CpuConfig {
   comboChance?: number;
+  blockChance?: number; defenseReactionFrames?: number; maxBlockFrames?: number;
   reactionFrames: number;
   attackInterval: number;
   pauseChance: number;
@@ -15,9 +17,9 @@ export interface CpuConfig {
 export type Difficulty = "Easy" | "Normal" | "Hard";
 /** Provisional tuning; difficulty changes decisions, never fighter statistics. */
 export const CPU_PRESETS: Readonly<Record<Difficulty, Readonly<CpuConfig>>> = {
-  Easy: { comboChance: .25, reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
-  Normal: { comboChance: .60, reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
-  Hard: { comboChance: .85, reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
+  Easy: { blockChance: .20, defenseReactionFrames: 24, maxBlockFrames: 24, comboChance: .25, reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
+  Normal: { blockChance: .45, defenseReactionFrames: 12, maxBlockFrames: 36, comboChance: .60, reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
+  Hard: { blockChance: .70, defenseReactionFrames: 8, maxBlockFrames: 48, comboChance: .85, reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
 };
 
 /** Mulberry32: local state, including a valid zero seed; no global randomness. */
@@ -64,6 +66,11 @@ function inRange(self: CombatFighter, target: CombatFighter, kind: AttackKind, h
  * neither fighter is mutated. No future inputs, health buffs or physics bypass. */
 export class CpuController {
   private random: () => number;
+  private defenseRandom: () => number;
+  private observed?: AttackAction;
+  private defenseAge = 0;
+  private defenseDecided = false;
+  private blockHeld = 0;
   private wait: number;
   private interval = 0;
   private reaction = 0;
@@ -78,9 +85,12 @@ export class CpuController {
     for (const key of ["reactionFrames", "attackInterval", "pauseFrames"] as const) {
       if (!Number.isInteger(config[key]) || config[key] < 1) throw new Error(`Invalid CPU frame count: ${key}`);
     }
-    for (const key of ["pauseChance", "heavyChance", "aerialChance", "comboChance"] as const) {
+    for (const key of ["pauseChance", "heavyChance", "aerialChance", "comboChance", "blockChance"] as const) {
       if ((config[key] ?? 0) > 1) throw new Error(`Invalid CPU probability: ${key}`);
     }
+    for (const key of ["defenseReactionFrames", "maxBlockFrames"] as const)
+      if (config[key] !== undefined && (!Number.isInteger(config[key]) || config[key]! < 1)) throw Error("Invalid defensive CPU duration");
+    this.defenseRandom = seededRandom(seed ^ 0x6a09e667);
     this.config = Object.freeze({ ...config });
     this.random = seededRandom(seed);
     this.wait = config.reactionFrames;
@@ -92,11 +102,38 @@ export class CpuController {
     if (self.health <= 0 || target.health <= 0) return idle;
     if (self.action.type === "attack") {
       const a = self.action, stage = comboStage(self);
-      if (stage?.next && stage.cancel && a.hitTargets.has(target.id) &&
+      if (stage?.next && stage.cancel && (a.confirmedTargets ?? a.hitTargets).has(target.id) &&
           a.frame + 1 >= stage.cancel[0] && a.frame + 1 <= stage.cancel[1] && !this.continued.has(a)) {
         this.continued.add(a);
         const chance = this.config.comboChance ?? .60;
         if (this.random() < chance) return { ...idle, attack: "light" };
+      }
+    }
+    // Observe only the present, published action and geometry. A new attack must
+    // age through the configured reaction delay before a single seeded roll.
+    if (target.action.type !== "attack") {
+      // Remember an observed threat briefly while recovering from its hit. This
+      // permits a delayed legal guard; it never buffers guard through hitstun.
+      if (++this.defenseAge > (this.config.defenseReactionFrames ?? this.config.reactionFrames) + (this.config.maxBlockFrames ?? 36)) this.observed = undefined;
+    } else if (this.observed !== target.action) {
+      this.observed = target.action; this.defenseAge = 0; this.defenseDecided = false;
+    } else this.defenseAge++;
+    if (this.blockHeld > 0) {
+      if (["block_startup", "blocking", "blockstun"].includes(self.action.type)) {
+        this.blockHeld--; return { ...idle, block: true };
+      }
+      this.blockHeld = 0;
+    }
+    if (this.observed && !this.defenseDecided && canStartBlock(self) &&
+        this.defenseAge >= (this.config.defenseReactionFrames ?? this.config.reactionFrames)) {
+      this.defenseDecided = true;
+      const attempt = this.defenseRandom() < (this.config.blockChance ?? 0);
+      const facing = facingVector(self.facing);
+      const dx = target.x - self.x, dy = target.y - self.y;
+      if (attempt && canStartBlock(self) && dx * facing.x + dy * facing.y >= 0 &&
+          attackOverlaps(target, self, this.observed)) {
+        this.blockHeld = (this.config.maxBlockFrames ?? 36) - 1;
+        return { ...idle, block: true };
       }
     }
     if (self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing") {

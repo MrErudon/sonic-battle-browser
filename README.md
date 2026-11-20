@@ -118,3 +118,9 @@ The labels display idle/walk/jump/landing state and eight-direction facing.
 
 See [M01.2 implementation and validation](docs/M01.2-fighter-movement.md)
 for spec alignment, provisional values, scope limits, and manual review steps.
+
+## M02.2 — Defensive combat
+
+Hold **L** for stationary frontal ground defense. Blocks take chip damage and
+consume guard; an empty guard breaks. See [timing, tuning, CPU and validation](docs/M02.2-defensive-combat.md).
+Human gameplay/balance testing remains pending.

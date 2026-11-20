@@ -13,9 +13,9 @@ export class MatchView {
     this.root.className = "match-ui";
     this.root.innerHTML = `
       <div class="hud" hidden>
-        <section class="fighter-health player"><div><strong>YOU <span>CYAN</span></strong><output id="p1-hp"></output></div><progress id="p1-bar" max="100" value="100" aria-label="Your health"></progress><p id="p1-rounds"></p></section>
+        <section class="fighter-health player"><div><strong>YOU <span>CYAN</span></strong><output id="p1-hp"></output></div><progress id="p1-bar" max="100" value="100" aria-label="Your health"></progress><div class="guard-row"><span>GUARD</span><progress id="p1-guard" max="100" value="100" aria-label="Your guard"></progress><output id="p1-guard-status"></output></div><p id="p1-rounds"></p></section>
         <div class="round-info"><strong id="round-label"></strong><span id="cpu-label"></span></div>
-        <section class="fighter-health opponent"><div><strong>CPU <span>AMBER</span></strong><output id="p2-hp"></output></div><progress id="p2-bar" max="100" value="100" aria-label="CPU health"></progress><p id="p2-rounds"></p></section>
+        <section class="fighter-health opponent"><div><strong>CPU <span>AMBER</span></strong><output id="p2-hp"></output></div><progress id="p2-bar" max="100" value="100" aria-label="CPU health"></progress><div class="guard-row"><span>GUARD</span><progress id="p2-guard" max="100" value="100" aria-label="CPU guard"></progress><output id="p2-guard-status"></output></div><p id="p2-rounds"></p></section>
       </div>
       <section class="menu-panel" aria-labelledby="game-title">
         <p class="alpha-badge">PRIVATE ALPHA · KEYBOARD PLAY</p>
@@ -26,7 +26,7 @@ export class MatchView {
         </div></fieldset>
         <p id="difficulty-description">Balanced pursuit and varied attacks.</p>
         <button class="primary" id="start-game">Start Game <span aria-hidden="true">→</span></button>
-        <p class="quick-controls">WASD / arrows to move · J / K to attack<br>Space to jump · Move toward your rival to face them</p>
+        <p class="quick-controls">WASD / arrows to move · J / K to attack<br>Space to jump · Hold L to block<br>Move toward your rival to face them</p>
       </section>
       <div class="combo-feedback" aria-live="polite"><span id="p1-combo"></span><span id="p2-combo"></span></div>
       <div class="fight-cue" aria-hidden="true" hidden>FIGHT</div>
@@ -34,9 +34,9 @@ export class MatchView {
       <section class="result-panel" aria-labelledby="result-title" hidden><h2 id="result-title"></h2><p id="result-detail"></p><button class="primary" id="rematch">Rematch</button><button id="result-menu">Return to menu</button></section>
       <div class="pause-message" role="status" hidden>Paused <span>Return to the game to continue</span></div>
       <p class="keyboard-notice">Keyboard required · Touch controls are not available in this alpha.</p>
-      <footer><span class="play-hint">WASD / arrows · Space jump · J light · K heavy</span><div><button id="help">Controls / Help</button><button id="menu">Menu</button><button id="debug" aria-pressed="false">Debug</button></div></footer>
+      <footer><span class="play-hint">WASD / arrows · Space jump · J light · K heavy · L block</span><div><button id="help">Controls / Help</button><button id="menu">Menu</button><button id="debug" aria-pressed="false">Debug</button></div></footer>
       <pre class="debug-readout" hidden></pre>
-      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — light; tap again after a hit to chain</dd><dt>Heavy attack</dt><dd>K — heavy; J or K after Light 3 finishes the combo</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
+      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — light; tap again after a hit to chain</dd><dt>Heavy attack</dt><dd>K — heavy; J or K after Light 3 finishes the combo</dd><dt>Ground block</dt><dd>Hold L — face your rival first; release to recover. Blocks take chip damage and consume guard. An empty guard breaks.</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
     document.querySelector("#shell")!.append(this.root);
     this.dialog = this.root.querySelector("dialog")!;
     this.on("start-game", () => match.start());
@@ -90,6 +90,11 @@ export class MatchView {
       this.text(`#p${id}-hp`, `${fighter.health} / ${fighter.stats.maxHealth}`);
       const bar = this.root.querySelector(`#p${id}-bar`) as HTMLProgressElement;
       bar.max = fighter.stats.maxHealth; bar.value = fighter.health;
+      const guardBar = this.root.querySelector(`#p${id}-guard`) as HTMLProgressElement;
+      guardBar.max = fighter.stats.defense?.maxGuard ?? 100; guardBar.value = fighter.guard.value;
+      this.text(`#p${id}-guard-status`, fighter.guard.breakRemaining > 0 ? "BROKEN" :
+        fighter.action.type === "blocking" || fighter.action.type === "blockstun" ? "BLOCK" :
+        fighter.action.type === "block_startup" ? "RAISING" : fighter.action.type === "block_recovery" ? "RECOVER" : String(Math.ceil(fighter.guard.value)));
       this.text(`#p${id}-rounds`, `${m.score[index]} / 2 rounds won`);
     });
     this.text("#round-label", `ROUND ${m.round}`); this.text("#cpu-label", `${m.difficulty} CPU`);
@@ -107,7 +112,7 @@ export class MatchView {
     this.visible(".pause-message", m.paused && !m.helpOpen && !menu && !over);
     this.visible(".debug-readout", this.debug);
     this.root.querySelector("#debug")!.setAttribute("aria-pressed", String(this.debug));
-    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type}${f.action.type === "attack" ? ` ${f.action.comboStage ?? (f.action.airborne ? "air" : "standalone")} frame=${f.action.frame}` : ""}`).join("\n"));
+    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type} | guard=${f.guard.value} break=${f.guard.breakRemaining}${f.action.type === "attack" ? ` ${f.action.comboStage ?? (f.action.airborne ? "air" : "standalone")} frame=${f.action.frame}` : ""}`).join("\n"));
     if (this.previousState !== m.state) {
       if (menu || over) (this.root.querySelector(menu ? "#start-game" : "#rematch") as HTMLElement).focus({ preventScroll: true });
       else if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
