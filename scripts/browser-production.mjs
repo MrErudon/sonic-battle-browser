@@ -61,6 +61,44 @@ try {
     await snapshot("menu-" + width + "x" + height);
   }
   await page.setViewportSize({ width: 1280, height: 800 });
+  current = "legal player combo";
+  await page.getByRole("button", { name: "Easy", exact: true }).click();
+  await start();
+  await page.getByRole("button", { name: "Debug", exact: true }).click();
+  const held = new Set();
+  let completed = false;
+  for (let attempt = 0; attempt < 1800 && !completed; attempt++) {
+    const text = await page.locator(".debug-readout").textContent();
+    const positions = [...text.matchAll(/P[12]: (-?[\d.]+), (-?[\d.]+), z (-?[\d.]+)/g)].map(m => m.slice(1).map(Number));
+    if (positions.length !== 2) throw Error("Missing public diagnostic positions");
+    const [p,q] = positions, dx=q[0]-p[0], dy=q[1]-p[1];
+    const action = text.split("\n")[1];
+    const next = new Set();
+    if (await state() === "Fighting" && action.includes("| ready") && Math.hypot(dx,dy)>28) {
+      const sx=.65*(dx-dy),sy=.32*(dx+dy);
+      const angle=Math.round(Math.atan2(sy,sx)/(Math.PI/4))*Math.PI/4;
+      const x=Math.round(Math.cos(angle)),y=Math.round(Math.sin(angle));
+      if(x)next.add(x>0?"ArrowRight":"ArrowLeft");if(y)next.add(y>0?"ArrowDown":"ArrowUp");
+    }
+    for(const code of held)if(!next.has(code)){await page.keyboard.up(code);held.delete(code);}
+    for(const code of next)if(!held.has(code)){await page.keyboard.down(code);held.add(code);}
+    const frame=Number(action.match(/frame=(\d+)/)?.[1]);
+    if (action.includes("| ready") && Math.hypot(dx,dy)<=28 ||
+        /light_[12] frame=/.test(action) && frame >= 6 && frame <= 10 ||
+        /light_3 frame=/.test(action) && frame >= 8 && frame <= 12) await page.keyboard.press("KeyJ");
+    await step(17);
+    const combo=await page.locator("#p1-combo").textContent();
+    if(combo.includes("4 HITS")){
+      check(combo.includes("34 DAMAGE"), "production full combo deals 34 damage");
+      completed=true;
+    }
+    if(await state()==="Match Over")break;
+  }
+  for(const code of held)await page.keyboard.up(code);
+  check(completed, "production legal keyboard four-stage combo connects");
+  await snapshot("four-hit-combo");
+  await page.getByRole("button", { name: "Debug", exact: true }).click();
+  await page.getByRole("button", { name: "Menu", exact: true }).click();
   current = "difficulty and input";
   for (const difficulty of ["Easy", "Normal", "Hard"]) {
     await page.getByRole("button", { name: difficulty, exact: true }).click();

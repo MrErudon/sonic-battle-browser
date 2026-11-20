@@ -1,3 +1,4 @@
+import type { AttackAction } from "../src/core/combat";
 import { describe, expect, it } from "vitest";
 import { CpuController, CPU_PRESETS, pursuitInput, seededRandom } from "../src/core/cpu";
 import { createCombatFighter, facingVector, stepCombat } from "../src/core/combat";
@@ -216,7 +217,17 @@ describe("CPU starvation full simulation regressions", () => {
       const locked = self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing";
       // Start CPU in ordinary heavy recovery; P1's heavy interrupts it.
       const input = tick === 0 ? { ...NO_INPUT, attack: "heavy" as const } : cpu.tick(self, target);
-      if (tick > 0 && locked) expect(input).toEqual(NO_INPUT);
+      if (tick > 0 && locked) {
+        if (input.attack) {
+          expect(self.action.type).toBe("attack");
+          const a=self.action as AttackAction;
+          expect(a.hitTargets.has(target.id)).toBe(true);
+          expect(a.comboStage).toMatch(/^light_[123]$/);
+          expect(input).toEqual({ ...NO_INPUT, attack: "light" });
+          expect(a.frame+1).toBeGreaterThanOrEqual(a.comboStage==="light_3"?11:9);
+          expect(a.frame+1).toBeLessThanOrEqual(a.comboStage==="light_3"?13:11);
+        } else expect(input).toEqual(NO_INPUT);
+      }
       if (stunned && input.attack && resumed < 0) resumed = tick;
       stepCombat([self, target], [input, { ...NO_INPUT, attack: tick === 0 ? "heavy" : undefined }]);
       stunned ||= self.action.type === "hitstun";

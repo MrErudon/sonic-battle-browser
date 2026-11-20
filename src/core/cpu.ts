@@ -1,7 +1,8 @@
-import { attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
+import { comboStage, attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
 import { DIRECTIONS, NO_INPUT, stepFighter } from "./movement";
 
 export interface CpuConfig {
+  comboChance?: number;
   reactionFrames: number;
   attackInterval: number;
   pauseChance: number;
@@ -14,9 +15,9 @@ export interface CpuConfig {
 export type Difficulty = "Easy" | "Normal" | "Hard";
 /** Provisional tuning; difficulty changes decisions, never fighter statistics. */
 export const CPU_PRESETS: Readonly<Record<Difficulty, Readonly<CpuConfig>>> = {
-  Easy: { reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
-  Normal: { reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
-  Hard: { reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
+  Easy: { comboChance: .25, reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
+  Normal: { comboChance: .60, reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
+  Hard: { comboChance: .85, reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
 };
 
 /** Mulberry32: local state, including a valid zero seed; no global randomness. */
@@ -67,6 +68,7 @@ export class CpuController {
   private interval = 0;
   private reaction = 0;
   private approaching = true;
+  private continued = new WeakSet<AttackAction>();
   readonly config: Readonly<CpuConfig>;
 
   constructor(config: Readonly<CpuConfig> = CPU_PRESETS.Normal, seed = 1) {
@@ -76,8 +78,8 @@ export class CpuController {
     for (const key of ["reactionFrames", "attackInterval", "pauseFrames"] as const) {
       if (!Number.isInteger(config[key]) || config[key] < 1) throw new Error(`Invalid CPU frame count: ${key}`);
     }
-    for (const key of ["pauseChance", "heavyChance", "aerialChance"] as const) {
-      if (config[key] > 1) throw new Error(`Invalid CPU probability: ${key}`);
+    for (const key of ["pauseChance", "heavyChance", "aerialChance", "comboChance"] as const) {
+      if ((config[key] ?? 0) > 1) throw new Error(`Invalid CPU probability: ${key}`);
     }
     this.config = Object.freeze({ ...config });
     this.random = seededRandom(seed);
@@ -88,6 +90,15 @@ export class CpuController {
     const idle = { ...NO_INPUT };
     if (this.interval > 0) this.interval--;
     if (self.health <= 0 || target.health <= 0) return idle;
+    if (self.action.type === "attack") {
+      const a = self.action, stage = comboStage(self);
+      if (stage?.next && stage.cancel && a.hitTargets.has(target.id) &&
+          a.frame + 1 >= stage.cancel[0] && a.frame + 1 <= stage.cancel[1] && !this.continued.has(a)) {
+        this.continued.add(a);
+        const chance = this.config.comboChance ?? .60;
+        if (this.random() < chance) return { ...idle, attack: "light" };
+      }
+    }
     if (self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing") {
       this.reaction = 0;
       this.wait = this.config.reactionFrames;
