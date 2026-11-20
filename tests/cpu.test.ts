@@ -226,6 +226,10 @@ describe("CPU starvation full simulation regressions", () => {
           expect(input).toEqual({ ...NO_INPUT, attack: "light" });
           expect(a.frame+1).toBeGreaterThanOrEqual(a.comboStage==="light_3"?11:9);
           expect(a.frame+1).toBeLessThanOrEqual(a.comboStage==="light_3"?13:11);
+        } else if (input.block) {
+          expect(["block_startup", "blocking", "blockstun"]).toContain(self.action.type);
+          expect(input).toEqual({ ...NO_INPUT, block: true });
+          expect(self.z).toBe(0); expect(self.guard.breakRemaining).toBe(0);
         } else expect(input).toEqual(NO_INPUT);
       }
       if (stunned && input.attack && resumed < 0) resumed = tick;

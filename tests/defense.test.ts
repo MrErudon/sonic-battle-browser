@@ -219,23 +219,51 @@ describe("CPU defense uses delayed observed actions and legal inputs",()=>{
     };
     expect(run(1)).toEqual(run(1));
   });
-  it.each(["Easy","Normal","Hard"] as const)("%s can successfully defend a real visible heavy with ordinary inputs",difficulty=>{
+  it.each(["Easy","Normal","Hard"] as const)("%s can defend default and slow real heavy attacks with ordinary inputs",difficulty=>{
+    for (const startup of [12,40]) {
     let blocked=0;
     // Start facing and ready. Slow repeated attacks allow the configured reaction window.
     for(const seed of Array.from({length:32},(_,i)=>i)){
-      const [original,b]=pair();
-      const stats={...DEFAULT_FIGHTER_STATS,attacks:{...DEFAULT_FIGHTER_STATS.attacks,ground:{...DEFAULT_FIGHTER_STATS.attacks.ground,heavy:{...DEFAULT_FIGHTER_STATS.attacks.ground.heavy,startup:40}}}};
+      const b=createCombatFighter("b",324,-194,"w"), d=facingVector("e");
+      const original=createCombatFighter("a",b.x-d.x*30,b.y-d.y*30,"e");
+      const stats={...DEFAULT_FIGHTER_STATS,attacks:{...DEFAULT_FIGHTER_STATS.attacks,ground:{...DEFAULT_FIGHTER_STATS.attacks.ground,heavy:{...DEFAULT_FIGHTER_STATS.attacks.ground.heavy,startup}}}};
       const a=createCombatFighter(original.id,original.x,original.y,original.facing,stats);
       const cpu=new CpuController(CPU_PRESETS[difficulty],seed);
       for(let i=0;i<2400;i++){
-        const events=stepCombat([a,b],[{...NO_INPUT,attack:i%70===0?"heavy":undefined},cpu.tick(b,a)]);
+        const events=stepCombat([a,b],[{...NO_INPUT,attack:"heavy"},cpu.tick(b,a)]);
         blocked+=events.filter(e=>e.defenderId===b.id&&e.outcome==="block").length;
         if(a.health===0||b.health===0)break;
       }
     }
     // Easy's long reaction cannot block the first heavy's active frames; can
     // establish guard during its visible recovery for a later attack.
-    expect(blocked).toBeGreaterThanOrEqual(0);
+    expect(blocked, difficulty+" startup "+startup).toBeGreaterThan(0);
+    }
+  });
+  it("CPU hold ends at its configured maximum, without rerolling one observed attack",()=>{
+    const [original,b]=pair();
+    const a=createCombatFighter("a",original.x,original.y,"e",{...DEFAULT_FIGHTER_STATS,
+      attacks:{...DEFAULT_FIGHTER_STATS.attacks,ground:{...DEFAULT_FIGHTER_STATS.attacks.ground,
+        heavy:{...DEFAULT_FIGHTER_STATS.attacks.ground.heavy,startup:100}}}});
+    const cpu=new CpuController({...CPU_PRESETS.Easy,blockChance:1,defenseReactionFrames:2,maxBlockFrames:7},1);
+    let held=0;
+    for(let tick=0;tick<24;tick++){
+      const input=cpu.tick(b,a);if(input.block)held++;
+      stepCombat([a,b],[{...NO_INPUT,attack:tick===0?"heavy":undefined},input]);
+    }
+    expect(held).toBe(7);expect(b.action.type).toBe("ready");
+  });
+  it("guard release restarts a full regeneration delay after long holds",()=>{
+    const [b]=pair();b.guard.value=20;block(b);
+    for(let i=0;i<120;i++)stepCombat([b],[hold]);
+    stepCombat([b],[NO_INPUT]);for(let i=0;i<6;i++)stepCombat([b],[NO_INPUT]);
+    for(let i=0;i<60;i++)stepCombat([b],[NO_INPUT]);
+    expect(b.guard.value).toBe(20);stepCombat([b],[NO_INPUT]);expect(b.guard.value).toBe(20.5);
+  });
+  it("hits during release recovery bypass guard and restore ordinary hitstun",()=>{
+    const [a,b]=pair();block(b);stepCombat([b],[NO_INPUT]);active(a);
+    expect(stepCombat([a,b],[NO_INPUT,hold])[0].outcome).toBe("hit");
+    expect(b.action.type).toBe("hitstun");expect(b.health).toBe(95);
   });
   it("same seed replays defense, different seeds produce distinct decisions",()=>{
     const run=(seed:number)=>{

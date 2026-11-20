@@ -71,7 +71,8 @@ export function stepDefense(f: CombatFighter, input: CombatInput, cooling: boole
     f.action = { type: "block_startup", frame: 1 };
     locked = true;
   }
-  if (f.guard.regenWait > 0) f.guard.regenWait--;
+  if (locked) f.guard.regenWait = c.regenDelay;
+  else if (f.guard.regenWait > 0) f.guard.regenWait--;
   else if (!locked && f.action.type === "ready" && f.z === 0 && f.state !== "landing" && f.guard.breakRemaining === 0)
     f.guard.value = Math.min(c.maxGuard, f.guard.value + c.regenPerTick);
   return locked;

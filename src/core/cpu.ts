@@ -111,8 +111,11 @@ export class CpuController {
     }
     // Observe only the present, published action and geometry. A new attack must
     // age through the configured reaction delay before a single seeded roll.
-    if (target.action.type !== "attack") { this.observed = undefined; this.defenseAge = 0; }
-    else if (this.observed !== target.action) {
+    if (target.action.type !== "attack") {
+      // Remember an observed threat briefly while recovering from its hit. This
+      // permits a delayed legal guard; it never buffers guard through hitstun.
+      if (++this.defenseAge > (this.config.defenseReactionFrames ?? this.config.reactionFrames) + (this.config.maxBlockFrames ?? 36)) this.observed = undefined;
+    } else if (this.observed !== target.action) {
       this.observed = target.action; this.defenseAge = 0; this.defenseDecided = false;
     } else this.defenseAge++;
     if (this.blockHeld > 0) {
@@ -121,14 +124,14 @@ export class CpuController {
       }
       this.blockHeld = 0;
     }
-    if (target.action.type === "attack" && !this.defenseDecided &&
+    if (this.observed && !this.defenseDecided && canStartBlock(self) &&
         this.defenseAge >= (this.config.defenseReactionFrames ?? this.config.reactionFrames)) {
       this.defenseDecided = true;
       const attempt = this.defenseRandom() < (this.config.blockChance ?? 0);
       const facing = facingVector(self.facing);
       const dx = target.x - self.x, dy = target.y - self.y;
       if (attempt && canStartBlock(self) && dx * facing.x + dy * facing.y >= 0 &&
-          attackOverlaps(target, self, target.action)) {
+          attackOverlaps(target, self, this.observed)) {
         this.blockHeld = (this.config.maxBlockFrames ?? 36) - 1;
         return { ...idle, block: true };
       }
