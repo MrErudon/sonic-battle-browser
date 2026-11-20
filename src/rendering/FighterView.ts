@@ -28,6 +28,17 @@ export class FighterView {
     const angle = DIRECTIONS.indexOf(f.facing) * Math.PI / 4;
     g.fillStyle(0xffffff).fillCircle(Math.cos(angle) * 6, -29 + squash + Math.sin(angle) * 3, 3);
     g.lineStyle(3, 0xffffff).lineBetween(0, -18 + squash, Math.cos(angle) * 17, -18 + squash + Math.sin(angle) * 9);
+    if (["block_startup", "blocking", "blockstun", "block_recovery"].includes(f.action.type)) {
+      const active = f.action.type === "blocking" || f.action.type === "blockstun";
+      g.lineStyle(active ? 4 : 2, this.color, active ? .95 : .35);
+      g.beginPath();
+      g.arc(0, -22, 25, angle - Math.PI / 2, angle + Math.PI / 2);
+      g.strokePath();
+    }
+    if (f.guard.breakRemaining > 0) {
+      g.lineStyle(3, 0xff657a).lineBetween(-15, -47, -3, -35);
+      g.lineBetween(-3, -35, 6, -47); g.lineBetween(6, -47, 17, -35);
+    }
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
     this.label.setVisible(debug);
     this.label.setText(debug ? `${this.name} · ${f.state} · ${action}` : this.name);

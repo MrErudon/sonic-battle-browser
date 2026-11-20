@@ -61,6 +61,49 @@ try {
     await snapshot("menu-" + width + "x" + height);
   }
   await page.setViewportSize({ width: 1280, height: 800 });
+  current = "defense through shipped keyboard";
+  await page.getByRole("button", { name: "Normal", exact: true }).click();
+  await start();
+  await page.getByRole("button", { name: "Debug", exact: true }).click();
+  await page.keyboard.down("KeyL"); await step(80);
+  check((await page.locator(".debug-readout").textContent()).includes("blocking"), "held L enters active ground defense");
+  await snapshot("blocking");
+  await page.getByRole("button", { name: "Controls / Help" }).click();
+  const guardFrozen = await page.locator("#p1-guard").getAttribute("value");
+  await step(1000);
+  check(await page.locator("#p1-guard").getAttribute("value") === guardFrozen, "help freezes guard simulation");
+  await page.keyboard.press("Escape"); await step(150);
+  check(!(await page.locator(".debug-readout").textContent()).includes("blocking"), "help invalidates held L");
+  await page.keyboard.up("KeyL"); await page.keyboard.down("KeyL"); await step(80);
+  check((await page.locator(".debug-readout").textContent()).includes("blocking"), "fresh L rearms defense");
+  await page.evaluate(() => window.dispatchEvent(new Event("blur")));
+  const blurGuard = await page.locator("#p1-guard").getAttribute("value");
+  await step(1000);
+  check(await page.locator("#p1-guard").getAttribute("value") === blurGuard, "blur freezes guard");
+  await page.evaluate(() => window.dispatchEvent(new Event("focus")));
+  await step(150);
+  check(!(await page.locator(".debug-readout").textContent()).includes("blocking"), "focus requires new block press");
+  await page.keyboard.up("KeyL"); await page.keyboard.down("KeyL");
+  let sawBlock = false, sawBreak = false;
+  for (let tick = 0; tick < 2000 && !sawBreak && await state() === "Fighting"; tick++) {
+    await step(17);
+    const status = await page.locator("#p1-guard-status").textContent();
+    const value = Number(await page.locator("#p1-guard").getAttribute("value"));
+    if (value < 100 && value > 0 && status === "BLOCK") {
+      if (!sawBlock) await snapshot("block-impact");
+      sawBlock = true;
+    }
+    if (status === "BROKEN") { sawBreak = true; await snapshot("guard-break"); }
+  }
+  check(sawBlock, "real CPU attacks chip health and deplete active guard");
+  check(Number(await health()) < 100, "blocked combat applies visible health damage");
+  check(sawBreak, "real CPU pressure exhausts guard and displays BROKEN");
+  await page.keyboard.up("KeyL");
+  await page.getByRole("button", { name: "Debug", exact: true }).click();
+  await page.getByRole("button", { name: "Menu", exact: true }).click();
+  await start();
+  check(await page.locator("#p1-guard").getAttribute("value") === "100", "new match resets guard");
+  await page.getByRole("button", { name: "Menu", exact: true }).click();
   current = "legal player combo";
   await page.getByRole("button", { name: "Easy", exact: true }).click();
   await start();

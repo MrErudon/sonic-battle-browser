@@ -1,3 +1,4 @@
+import { clearDefense } from "./defense";
 import { clearComboInput, clearComboFeedback, createCombatFighter, stepCombat, type CombatInput, type HitEvent } from "./combat";
 import { CPU_PRESETS, CpuController, type Difficulty } from "./cpu";
 import { STEP } from "./movement";
@@ -6,7 +7,7 @@ export type MatchState = "Menu" | "Countdown" | "Fighting" | "Round Over" | "Mat
 export type RoundResult = "P1" | "P2" | "Draw";
 export const COUNTDOWN_TICKS = 180;
 export const ROUND_OVER_TICKS = 120;
-export const COMBAT_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "KeyJ", "KeyK"]);
+export const COMBAT_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "KeyJ", "KeyK", "KeyL"]);
 
 /** DOM-independent edge capture. Clearing invalidates held movement as well as
  * taps. A key held across a boundary must be released before it can act again. */
@@ -33,7 +34,7 @@ export class MatchInput {
     const input = {
       x: Number(has("KeyD", "ArrowRight")) - Number(has("KeyA", "ArrowLeft")),
       y: Number(has("KeyS", "ArrowDown")) - Number(has("KeyW", "ArrowUp")),
-      jump: this.jump, attack: this.attack,
+      jump: this.jump, attack: this.attack, block: has("KeyL"),
     };
     this.jump = false; this.attack = undefined;
     return input;
@@ -74,7 +75,7 @@ export class MatchController {
   }
   private enter(state: MatchState, ticks = 0): void {
     this.currentState = state; this.remaining = ticks; this.input.clear();
-    this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); });
+    this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); clearDefense(f, true); });
   }
   private resetRound(): void {
     this.fighters = this.newFighters();
@@ -102,11 +103,11 @@ export class MatchController {
   }
   setFocused(focused: boolean): void {
     this.focused = focused; this.accumulator = 0; this.input.blur();
-    this.fighters.forEach(clearComboInput);
+    this.fighters.forEach(f => { clearComboInput(f); clearDefense(f); });
   }
   setHelp(open: boolean): void {
     this.help = open; this.accumulator = 0; this.input.clear();
-    this.fighters.forEach(clearComboInput);
+    this.fighters.forEach(f => { clearComboInput(f); clearDefense(f); });
   }
   press(code: string, repeat = false): void { this.input.press(code, repeat, this.acceptsInput); }
   release(code: string): void { this.input.release(code); }
