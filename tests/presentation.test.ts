@@ -110,6 +110,13 @@ function isolated(difficulty: Difficulty, seed: number, enabled: boolean, hz = 6
         m.setPresentation(capture);
     m.start();
     const trace: string[] = [], rng: number[][] = [], original = Math.imul, spy = vi.spyOn(Math, 'imul').mockImplementation((a, b) => { const r = original(a, b); rng.push([a, b, r]); return r; });
+    const tick=m.tick.bind(m);
+    // Observe the real host tick and CPU return values, not a reconstructed presentation trace.
+    m.tick=()=>{
+        const cpu=(m as unknown as {cpu:{tick:(...args:unknown[])=>CombatInput}}).cpu,originalTick=cpu.tick,decisions:CombatInput[]=[];
+        cpu.tick=(...args:unknown[])=>{const input=originalTick.apply(cpu,args);decisions.push({...input});return input;};
+        try{const hits=tick();trace.push(JSON.stringify([decisions,hits,m.state,m.score,m.round,m.fighters,m.combat,m.winner,m.paused],(_key,value)=>value instanceof Set?[...value]:value));return hits;}finally{cpu.tick=originalTick;}
+    };
     try {
         for (let frame = 0; frame < hz * 12; frame++) {
             // Script edges at fixed common time boundaries, independent of render frequency.
@@ -121,7 +128,6 @@ function isolated(difficulty: Difficulty, seed: number, enabled: boolean, hz = 6
                 m.setHelp(true);
             if (frame === hz * 5)
                 m.setHelp(false);
-            const before = m.combat.tick;
             m.advance(1000 / hz);
             if (frame % Math.max(1, hz / 2) === 0)
                 trace.push(JSON.stringify([m.state, m.score, m.round, m.fighters, m.combat, m.winner, m.paused]));
