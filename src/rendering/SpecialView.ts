@@ -38,5 +38,6 @@ export class SpecialView {
       g.lineBetween(tail.x,tail.y-orb.z,p.x,p.y-orb.z);
     }
   }
+  destroy():void{this.clear();this.casts.forEach(g=>g.destroy());}
   clear():void{this.casts.forEach(g=>g.clear());this.orbs.forEach(g=>g.destroy());this.orbs.clear();}
 }

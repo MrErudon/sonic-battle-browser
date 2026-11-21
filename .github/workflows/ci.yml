@@ -18,6 +18,7 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build
+      - run: npm run assets:check
       - run: npm run report:bundle
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
@@ -49,6 +50,10 @@ jobs:
       - run: npm run test:browser:production
         env:
           BROWSER: ${{ matrix.browser }}
+      - run: npm run build:fixtures
+      - run: npm run test:browser:presentation
+        env:
+          BROWSER: ${{ matrix.browser }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -64,6 +69,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node scripts/verify-legacy.mjs
+      - run: node scripts/verify-presentation-compat.mjs
       - run: npm run balance:check
       - run: node scripts/combat-balance.mjs --holdout --check
       - run: node scripts/combat-match-balance.mjs --check

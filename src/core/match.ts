@@ -1,3 +1,4 @@
+import { notify, snapshotMatch, type PresentationSink } from "../presentation/snapshot";
 import { RefinedCpuController } from "./cpu-policy";
 import { createCombatState } from "./projectiles";
 import { SPECIAL_IDS, createSpecialRuntime, type SpecialId } from "./specials";
@@ -59,6 +60,10 @@ export class MatchController {
   private focused = true;
   private help = false;
   private cpu: CpuController | RefinedCpuController;
+  private presentation?:PresentationSink;
+  setPresentation(sink?:PresentationSink):void{this.presentation=sink;if(sink){this.publishLifecycle();this.publishFrame();}}
+  private publishLifecycle():void{notify(this.presentation,{type:"lifecycle",state:this.state,resetVersion:this.resetVersion,paused:this.paused});}
+  private publishFrame():void{if(this.presentation)try{this.presentation.onFrame(snapshotMatch(this));}catch{/* presentation cannot abort combat */}}
   readonly input = new MatchInput();
   readonly combat = createCombatState();
   fighters = this.newFighters();
@@ -88,6 +93,7 @@ export class MatchController {
     this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); clearDefense(f, true); f.special=createSpecialRuntime();
       if(f.action.type==="special")f.action={type:"ready"}; });
     this.combat.projectiles=[];
+    this.publishLifecycle();
   }
   private resetRound(): void {
     this.combat.tick=0; this.combat.projectiles=[];
@@ -118,10 +124,12 @@ export class MatchController {
   setFocused(focused: boolean): void {
     this.focused = focused; this.accumulator = 0; this.input.blur();
     this.fighters.forEach(f => { clearComboInput(f); clearDefense(f); });
+    this.publishLifecycle();
   }
   setHelp(open: boolean): void {
     this.help = open; this.accumulator = 0; this.input.clear();
     this.fighters.forEach(f => { clearComboInput(f); clearDefense(f); });
+    this.publishLifecycle();
   }
   press(code: string, repeat = false): void { this.input.press(code, repeat, this.acceptsInput, !this.paused && (this.state==="Menu" || this.state==="Fighting")); }
   release(code: string): void { this.input.release(code); }
@@ -139,6 +147,9 @@ export class MatchController {
   }
   /** Exposed for deterministic simulation tests and alternate host adapters. */
   tick(): HitEvent[] {
+    const hits=this.stepTick();if(!this.paused)this.publishFrame();return hits;
+  }
+  private stepTick():HitEvent[]{
     if (this.paused) return [];
     if (this.state === "Countdown") {
       this.input.clear();
@@ -157,7 +168,7 @@ export class MatchController {
     }
     if (this.state !== "Fighting") { this.input.clear(); return []; }
     const [player, opponent] = this.fighters;
-    const hits = stepCombat(this.fighters, [this.input.consume(), this.cpu.tick(opponent, player, this.combat)], this.combat);
+    const hits = stepCombat(this.fighters, [this.input.consume(), this.cpu.tick(opponent, player, this.combat)], this.combat, undefined, this.presentation);
     if(this.cpu instanceof RefinedCpuController)this.cpu.recordOutcomes(hits);
     if (player.health === 0 || opponent.health === 0) {
       this.result = player.health === 0 && opponent.health === 0 ? "Draw" : player.health === 0 ? "P2" : "P1";

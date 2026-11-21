@@ -1,8 +1,13 @@
+import characterRegistry from "../presentation/character-registry.json";
 import { SpecialView } from "../rendering/SpecialView";
 import Phaser from "phaser";
 import { ARENA, projectArena } from "../core/arena";
 import { COMBAT_KEYS, MatchController } from "../core/match";
-import { FighterView } from "../rendering/FighterView";
+import { SpriteFighterView } from "../rendering/SpriteFighterView";
+import { CharacterAssetLoader } from "../rendering/CharacterAssetLoader";
+import { EffectRegistry } from "../rendering/EffectRegistry";
+import { PresentationCapture } from "../presentation/capture";
+import { fighterSnapshot } from "../presentation/snapshot";
 import { CombatView } from "../rendering/CombatView";
 import { MatchView } from "../rendering/MatchView";
 
@@ -10,13 +15,18 @@ export class ArenaScene extends Phaser.Scene {
   readonly match = new MatchController();
   private specialView!: SpecialView;
   private combatView!: CombatView;
-  private views!: [FighterView, FighterView];
+  private views!: [SpriteFighterView, SpriteFighterView];
+  readonly presentation=new PresentationCapture();
+  private assetLoader!:CharacterAssetLoader;
+  private effects!:EffectRegistry;
+  private alive=false;private generation=0;
   private ui!: MatchView;
   private resetVersion = -1;
   private visualTime = 0;
   constructor() { super("Arena"); }
 
   create(): void {
+    this.alive=true;const generation=++this.generation;this.presentation.clear();
     const g = this.add.graphics();
     const w = ARENA.width / 2;
     const h = ARENA.depth / 2;
@@ -36,9 +46,17 @@ export class ArenaScene extends Phaser.Scene {
     }
     this.match.menu();
     this.match.setFocused(!document.hidden);
-    this.combatView = new CombatView(this); this.specialView=new SpecialView(this);
-    this.views = [new FighterView(this, 0x55dced, "YOU"), new FighterView(this, 0xffbf69, "CPU")];
+    this.match.setPresentation(this.presentation);
+    this.effects=new EffectRegistry(this);
+    this.combatView = new CombatView(this,this.effects); this.specialView=new SpecialView(this);
+    this.views = [new SpriteFighterView(this, 0x55dced, "YOU"), new SpriteFighterView(this, 0xffbf69, "CPU")];
     this.ui = new MatchView(this.match);
+    this.assetLoader=new CharacterAssetLoader(this);
+    void this.assetLoader.loadRoster(characterRegistry).then(results=>{
+      if(!this.alive||generation!==this.generation)return;
+      this.views.forEach((view,index)=>{const result=results[index===0?'P1':'P2'];if(result.ok)view.setAsset(result.asset);});
+      this.game.canvas.dataset.characterAsset=Object.values(results).every(r=>r.ok)?'ready':'fallback';
+    });
     const keydown = (event: KeyboardEvent) => {
       if (event.code === "Escape" && !event.repeat && !this.match.helpOpen) {
         this.ui.openHelp(); return;
@@ -68,22 +86,27 @@ export class ArenaScene extends Phaser.Scene {
       document.removeEventListener("visibilitychange", visibility);
       this.game.events.off(Phaser.Core.Events.BLUR, blur);
       this.game.events.off(Phaser.Core.Events.FOCUS, focus);
-      this.match.setFocused(false);
-      this.combatView.clear(); this.specialView.clear(); this.ui.destroy();
+      this.alive=false;this.generation++;this.assetLoader.destroy();
+      this.match.setPresentation(undefined);this.match.setFocused(false);
+      this.presentation.clear();this.views.forEach(view=>view.destroy());
+      this.effects.destroy();this.combatView.destroy();this.specialView.destroy();
+      this.ui.destroy();
     });
   }
 
   update(_time: number, delta: number): void {
-    const hits = this.match.advance(delta);
+    this.match.advance(delta);
     if (this.resetVersion !== this.match.resetVersion) {
-      this.combatView.clear(); this.specialView.clear(); this.resetVersion = this.match.resetVersion; this.visualTime = 0;
+      this.combatView.clear(); this.specialView.clear();this.effects.clear(); this.resetVersion = this.match.resetVersion; this.visualTime = 0;
     }
     if (this.match.acceptsInput) this.visualTime += Math.min(delta, 100);
-    this.combatView.hit(hits);
-    this.views[0].sync(this.match.fighters[0], this.visualTime, this.ui.debug);
-    this.views[1].sync(this.match.fighters[1], this.visualTime, this.ui.debug);
+    this.effects.consume(this.presentation.drain(),this.presentation.clock);
+    this.effects.sync(this.presentation.clock);
+    this.views[0].sync(this.match.fighters[0], this.visualTime, this.ui.debug,{...this.presentation.context(fighterSnapshot(this.match.fighters[0])),matchState:this.match.state,winner:this.match.winner});
+    this.views[1].sync(this.match.fighters[1], this.visualTime, this.ui.debug,{...this.presentation.context(fighterSnapshot(this.match.fighters[1])),matchState:this.match.state,winner:this.match.winner});
     this.combatView.sync(this.match.fighters, this.match.paused ? 0 : delta);
     this.specialView.sync(this.match.fighters,this.match.combat);
     this.ui.sync();
+    this.game.canvas.dataset.animations=this.views.map(v=>v.lastPose?`${v.lastPose.clip}:${v.lastPose.phase}:${v.lastPose.frame}:${v.lastPose.mirror}`:'geometric').join('|');
   }
 }

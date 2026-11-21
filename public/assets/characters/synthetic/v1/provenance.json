@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "synthetic",
+  "creator": "Sonic Battle Browser project / Codex",
+  "method": "Original programmatic diagnostic rectangles and markers",
+  "source": "scripts/generate-synthetic-atlas.mjs",
+  "license": "CC0-1.0",
+  "thirdPartyInputs": [],
+  "generativeImageTools": false,
+  "sha256": "0b8098f1598ad785c2a30e4d2592e18e9274e38058e03549960bc4e558edb45e",
+  "purpose": "Infrastructure test fixture only. Not Trestle or Vela artwork."
+}

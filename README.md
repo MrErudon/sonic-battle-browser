@@ -136,3 +136,9 @@ Human gameplay/balance testing remains pending.
 The production match controller uses a separate observation-based CPU policy. The original `CpuController` and golden fixtures remain unchanged; use `new MatchController(seed, "legacy")` for the original policy. Fighter statistics and combat rules are unchanged.
 
 Run `npm run balance` for paired seeded duels, `npm run balance:holdout` for seeds 100–124, and `node scripts/combat-match-balance.mjs` for complete match comparisons. `npm run balance:check` verifies the committed report without requiring improvement gates to pass. See [the M02.4 findings](docs/M02.4-combat-balance.md) for failed gates, methodology and pending human testing.
+
+## M03.1 animation infrastructure
+
+The game now uses a manifest-driven sprite adapter with an original synthetic diagnostic atlas. This is infrastructure validation, not Trestle or Vela artwork. Missing or invalid art falls back to the existing geometric fighters. Combat, CPU policy and balance values are unchanged.
+
+Run `npm run assets:check` to validate manifests, PNG dimensions, provenance and reproducible fixture export. `npm run build:fixtures` enables a separate compiled `presentation-fixture.html` for renderer tests; the normal `npm run build` excludes that test entry. Run `npm run test:browser:presentation` after the fixture build, with `BROWSER=chromium`, `firefox` or `webkit`. See [M03.1 architecture, integration and validation](docs/M03.1-animation-infrastructure.md).

@@ -1,0 +1,1769 @@
+{
+  "schemaVersion": 1,
+  "id": "synthetic",
+  "version": "1.0.0",
+  "displayName": "Diagnostic training robot",
+  "frameSize": [
+    64,
+    64
+  ],
+  "pivot": [
+    32,
+    56
+  ],
+  "provenance": "provenance.json",
+  "pages": [
+    {
+      "id": "body",
+      "image": "atlas-0.png",
+      "width": 544,
+      "height": 272
+    }
+  ],
+  "frames": {
+    "synthetic/n/0": {
+      "page": "body",
+      "x": 2,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/n/1": {
+      "page": "body",
+      "x": 70,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/n/2": {
+      "page": "body",
+      "x": 138,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/n/3": {
+      "page": "body",
+      "x": 206,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/n/4": {
+      "page": "body",
+      "x": 274,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/n/5": {
+      "page": "body",
+      "x": 342,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/0": {
+      "page": "body",
+      "x": 410,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/1": {
+      "page": "body",
+      "x": 478,
+      "y": 2,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/2": {
+      "page": "body",
+      "x": 2,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/3": {
+      "page": "body",
+      "x": 70,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/4": {
+      "page": "body",
+      "x": 138,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/ne/5": {
+      "page": "body",
+      "x": 206,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/0": {
+      "page": "body",
+      "x": 274,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/1": {
+      "page": "body",
+      "x": 342,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/2": {
+      "page": "body",
+      "x": 410,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/3": {
+      "page": "body",
+      "x": 478,
+      "y": 70,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/4": {
+      "page": "body",
+      "x": 2,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/e/5": {
+      "page": "body",
+      "x": 70,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/0": {
+      "page": "body",
+      "x": 138,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/1": {
+      "page": "body",
+      "x": 206,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/2": {
+      "page": "body",
+      "x": 274,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/3": {
+      "page": "body",
+      "x": 342,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/4": {
+      "page": "body",
+      "x": 410,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/se/5": {
+      "page": "body",
+      "x": 478,
+      "y": 138,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/0": {
+      "page": "body",
+      "x": 2,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/1": {
+      "page": "body",
+      "x": 70,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/2": {
+      "page": "body",
+      "x": 138,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/3": {
+      "page": "body",
+      "x": 206,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/4": {
+      "page": "body",
+      "x": 274,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    },
+    "synthetic/s/5": {
+      "page": "body",
+      "x": 342,
+      "y": 206,
+      "width": 64,
+      "height": 64,
+      "trimmed": false,
+      "rotated": false
+    }
+  },
+  "directions": {
+    "n": {
+      "source": "n",
+      "mirror": false
+    },
+    "ne": {
+      "source": "ne",
+      "mirror": false
+    },
+    "e": {
+      "source": "e",
+      "mirror": false
+    },
+    "se": {
+      "source": "se",
+      "mirror": false
+    },
+    "s": {
+      "source": "s",
+      "mirror": false
+    },
+    "sw": {
+      "source": "se",
+      "mirror": true
+    },
+    "w": {
+      "source": "e",
+      "mirror": true
+    },
+    "nw": {
+      "source": "ne",
+      "mirror": true
+    }
+  },
+  "attachments": {
+    "hand": [
+      46,
+      34
+    ],
+    "head": [
+      32,
+      20
+    ]
+  },
+  "animations": {
+    "idle": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ]
+        }
+      }
+    },
+    "move": {
+      "ticksPerFrame": 5,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3",
+            "synthetic/n/4",
+            "synthetic/n/5"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3",
+            "synthetic/ne/4",
+            "synthetic/ne/5"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3",
+            "synthetic/e/4",
+            "synthetic/e/5"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3",
+            "synthetic/se/4",
+            "synthetic/se/5"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3",
+            "synthetic/s/4",
+            "synthetic/s/5"
+          ]
+        }
+      }
+    },
+    "jump.takeoff": {
+      "ticksPerFrame": 6,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0"
+          ]
+        }
+      }
+    },
+    "jump.ascent": {
+      "ticksPerFrame": 6,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "jump.apex": {
+      "ticksPerFrame": 6,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0"
+          ]
+        }
+      }
+    },
+    "jump.descent": {
+      "ticksPerFrame": 6,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "land": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "ground.light_1": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ],
+          "active": [
+            "synthetic/n/2"
+          ],
+          "recovery": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ],
+          "active": [
+            "synthetic/ne/2"
+          ],
+          "recovery": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ],
+          "active": [
+            "synthetic/e/2"
+          ],
+          "recovery": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ],
+          "active": [
+            "synthetic/se/2"
+          ],
+          "recovery": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ],
+          "active": [
+            "synthetic/s/2"
+          ],
+          "recovery": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ]
+        }
+      }
+    },
+    "ground.light_2": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ],
+          "active": [
+            "synthetic/n/2"
+          ],
+          "recovery": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ],
+          "active": [
+            "synthetic/ne/2"
+          ],
+          "recovery": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ],
+          "active": [
+            "synthetic/e/2"
+          ],
+          "recovery": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ],
+          "active": [
+            "synthetic/se/2"
+          ],
+          "recovery": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ],
+          "active": [
+            "synthetic/s/2"
+          ],
+          "recovery": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ]
+        }
+      }
+    },
+    "ground.light_3": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ],
+          "active": [
+            "synthetic/n/3"
+          ],
+          "recovery": [
+            "synthetic/n/4",
+            "synthetic/n/5",
+            "synthetic/n/0"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ],
+          "active": [
+            "synthetic/ne/3"
+          ],
+          "recovery": [
+            "synthetic/ne/4",
+            "synthetic/ne/5",
+            "synthetic/ne/0"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ],
+          "active": [
+            "synthetic/e/3"
+          ],
+          "recovery": [
+            "synthetic/e/4",
+            "synthetic/e/5",
+            "synthetic/e/0"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ],
+          "active": [
+            "synthetic/se/3"
+          ],
+          "recovery": [
+            "synthetic/se/4",
+            "synthetic/se/5",
+            "synthetic/se/0"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ],
+          "active": [
+            "synthetic/s/3"
+          ],
+          "recovery": [
+            "synthetic/s/4",
+            "synthetic/s/5",
+            "synthetic/s/0"
+          ]
+        }
+      }
+    },
+    "ground.heavy": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ],
+          "active": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ],
+          "recovery": [
+            "synthetic/n/5",
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ],
+          "active": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ],
+          "recovery": [
+            "synthetic/ne/5",
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ],
+          "active": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ],
+          "recovery": [
+            "synthetic/e/5",
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ],
+          "active": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ],
+          "recovery": [
+            "synthetic/se/5",
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ],
+          "active": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ],
+          "recovery": [
+            "synthetic/s/5",
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ]
+        }
+      }
+    },
+    "ground.finisher": {
+      "alias": "ground.heavy"
+    },
+    "air.light": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ],
+          "active": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ],
+          "recovery": [
+            "synthetic/n/5",
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ],
+          "active": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ],
+          "recovery": [
+            "synthetic/ne/5",
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ],
+          "active": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ],
+          "recovery": [
+            "synthetic/e/5",
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ],
+          "active": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ],
+          "recovery": [
+            "synthetic/se/5",
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ],
+          "active": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ],
+          "recovery": [
+            "synthetic/s/5",
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "air.heavy": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ],
+          "active": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ],
+          "recovery": [
+            "synthetic/n/5",
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ],
+          "active": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ],
+          "recovery": [
+            "synthetic/ne/5",
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ],
+          "active": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ],
+          "recovery": [
+            "synthetic/e/5",
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ],
+          "active": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ],
+          "recovery": [
+            "synthetic/se/5",
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ],
+          "active": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ],
+          "recovery": [
+            "synthetic/s/5",
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ]
+        }
+      }
+    },
+    "block.startup": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "block.hold": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "block.stun": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0"
+          ]
+        }
+      }
+    },
+    "block.release": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "guard.break": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "guard.recover": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "hit.react": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "hit.stun": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "knockback": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1"
+          ]
+        }
+      }
+    },
+    "special.power": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ],
+          "active": [
+            "synthetic/n/4",
+            "synthetic/n/5"
+          ],
+          "recovery": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ],
+          "active": [
+            "synthetic/ne/4",
+            "synthetic/ne/5"
+          ],
+          "recovery": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ],
+          "active": [
+            "synthetic/e/4",
+            "synthetic/e/5"
+          ],
+          "recovery": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ],
+          "active": [
+            "synthetic/se/4",
+            "synthetic/se/5"
+          ],
+          "recovery": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ],
+          "active": [
+            "synthetic/s/4",
+            "synthetic/s/5"
+          ],
+          "recovery": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ]
+        }
+      }
+    },
+    "special.dash": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ],
+          "active": [
+            "synthetic/n/3",
+            "synthetic/n/4"
+          ],
+          "recovery": [
+            "synthetic/n/5",
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ],
+          "active": [
+            "synthetic/ne/3",
+            "synthetic/ne/4"
+          ],
+          "recovery": [
+            "synthetic/ne/5",
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ],
+          "active": [
+            "synthetic/e/3",
+            "synthetic/e/4"
+          ],
+          "recovery": [
+            "synthetic/e/5",
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ],
+          "active": [
+            "synthetic/se/3",
+            "synthetic/se/4"
+          ],
+          "recovery": [
+            "synthetic/se/5",
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ],
+          "active": [
+            "synthetic/s/3",
+            "synthetic/s/4"
+          ],
+          "recovery": [
+            "synthetic/s/5",
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ]
+        }
+      }
+    },
+    "special.projectile": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "startup": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ],
+          "active": [
+            "synthetic/n/4"
+          ],
+          "recovery": [
+            "synthetic/n/5",
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2"
+          ]
+        },
+        "ne": {
+          "startup": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ],
+          "active": [
+            "synthetic/ne/4"
+          ],
+          "recovery": [
+            "synthetic/ne/5",
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2"
+          ]
+        },
+        "e": {
+          "startup": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ],
+          "active": [
+            "synthetic/e/4"
+          ],
+          "recovery": [
+            "synthetic/e/5",
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2"
+          ]
+        },
+        "se": {
+          "startup": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ],
+          "active": [
+            "synthetic/se/4"
+          ],
+          "recovery": [
+            "synthetic/se/5",
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2"
+          ]
+        },
+        "s": {
+          "startup": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ],
+          "active": [
+            "synthetic/s/4"
+          ],
+          "recovery": [
+            "synthetic/s/5",
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2"
+          ]
+        }
+      }
+    },
+    "ko": {
+      "ticksPerFrame": 10,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ]
+        }
+      }
+    },
+    "victory": {
+      "ticksPerFrame": 8,
+      "directions": {
+        "n": {
+          "loop": [
+            "synthetic/n/0",
+            "synthetic/n/1",
+            "synthetic/n/2",
+            "synthetic/n/3"
+          ]
+        },
+        "ne": {
+          "loop": [
+            "synthetic/ne/0",
+            "synthetic/ne/1",
+            "synthetic/ne/2",
+            "synthetic/ne/3"
+          ]
+        },
+        "e": {
+          "loop": [
+            "synthetic/e/0",
+            "synthetic/e/1",
+            "synthetic/e/2",
+            "synthetic/e/3"
+          ]
+        },
+        "se": {
+          "loop": [
+            "synthetic/se/0",
+            "synthetic/se/1",
+            "synthetic/se/2",
+            "synthetic/se/3"
+          ]
+        },
+        "s": {
+          "loop": [
+            "synthetic/s/0",
+            "synthetic/s/1",
+            "synthetic/s/2",
+            "synthetic/s/3"
+          ]
+        }
+      }
+    }
+  }
+}
