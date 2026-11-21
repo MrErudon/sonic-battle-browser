@@ -11,7 +11,7 @@ button.primary:hover { background: #a7f0fa; }
 [hidden] { display: none !important; }
 #shell { position: relative; width: min(100vw, 150vh); aspect-ratio: 3 / 2; margin: auto; top: max(0px, calc((100vh - 66.667vw) / 2)); }
 #game, .match-ui { position: absolute; inset: 0; }
-#game canvas { display: block; }
+#game canvas { display: block; image-rendering: pixelated; }
 .match-ui { pointer-events: none; }
 .match-ui button, .match-ui dialog, .menu-panel, .result-panel { pointer-events: auto; }
 .hud { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; padding: 28px 28px 0; }

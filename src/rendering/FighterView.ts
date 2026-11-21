@@ -12,6 +12,8 @@ export class FighterView {
     this.body = scene.add.graphics();
     this.label = scene.add.text(0, 0, name, { fontSize: "12px", color: "#e9f5ff" }).setOrigin(0.5, 1);
   }
+  setVisible(visible:boolean):void{this.body.setVisible(visible);this.shadow.setVisible(visible);this.label.setVisible(false);}
+  destroy():void{this.body.destroy();this.shadow.destroy();this.label.destroy();}
   sync(f: CombatFighter, time: number, debug = false): void {
     const p = projectFighter(f);
     this.shadow.setPosition(p.x, p.groundY).setScale(Math.max(0.55, 1 - f.z / 250));

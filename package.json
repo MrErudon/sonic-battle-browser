@@ -17,7 +17,11 @@
     "report:bundle": "node scripts/bundle-report.mjs",
     "balance": "node scripts/combat-balance.mjs",
     "balance:check": "node scripts/combat-balance.mjs --check",
-    "balance:holdout": "node scripts/combat-balance.mjs --holdout"
+    "balance:holdout": "node scripts/combat-balance.mjs --holdout",
+    "assets:generate": "node scripts/generate-synthetic-atlas.mjs",
+    "assets:check": "node scripts/generate-synthetic-atlas.mjs --check && node scripts/validate-character-assets.mjs",
+    "build:fixtures": "PRESENTATION_FIXTURES=1 npm run build",
+    "test:browser:presentation": "node scripts/browser-presentation.mjs"
   },
   "dependencies": {
     "phaser": "^3.90.0"

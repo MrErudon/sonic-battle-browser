@@ -1,3 +1,4 @@
+import { notify, type PresentationSink } from "../presentation/snapshot";
 import { specialConfig, immutableSpecials, createSpecialRuntime, tickRecharge, canSpecial, startSpecial, specialAim, specialPhase, type SpecialConfig, type SpecialRuntime, type SpecialId, type SpecialAction } from "./specials";
 import { createCombatState, spawnProjectile, stepProjectiles, type CombatState } from "./projectiles";
 import { resolveContacts, blocksIncoming, type Contact } from "./contacts";
@@ -118,9 +119,10 @@ function stageAction(f: CombatFighter, id: string, facing: Facing): AttackAction
 
 /** One fixed 60 Hz tick. Inputs are press edges consumed by the caller once.
  * Resolve all contacts before applying hits: simultaneous active attacks trade. */
-export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[], state?: CombatState, accepted?: (event:AcceptedAttack)=>void): HitEvent[] {
+export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[], state?: CombatState, accepted?: (event:AcceptedAttack)=>void, presentation?: PresentationSink): HitEvent[] {
   if(!state && inputs.some(i=>i?.special)) throw Error("Specials require persistent CombatState");
   const world=state??createCombatState(); world.tick++;
+  const accept=(event:AcceptedAttack)=>{accepted?.(event);notify(presentation,{type:"accepted",attack:event,tick:world.tick});};
   const starts=new Map(fighters.map(f=>[f.id,{x:f.x,y:f.y,z:f.z}]));
   const lockedAtStart = new Set(fighters.filter(f => f.action.type === "hitstun").map(f => f.id));
   for (const f of fighters) {
@@ -152,7 +154,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     if(input.special && !input.attack && !input.jump && !defenseLocked && !stunned && !cooling &&
         canSpecial(f,input.special,world.projectiles.some(p=>p.ownerId===f.id))){
       specialAim(f,input);startSpecial(f,input.special);
-      accepted?.(Object.freeze({ownerId:f.id,instanceId:(f.action as SpecialAction).instanceId!,kind:input.special}));
+      accept(Object.freeze({ownerId:f.id,instanceId:(f.action as SpecialAction).instanceId!,kind:input.special}));
     }
     // The final hitstun tick still locks controls and discards attack/jump presses.
     move(f, defenseLocked ? NO_INPUT : input);
@@ -164,7 +166,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
           a.buffered = { kind: input.attack, remaining: (f.stats.combo ?? DEFAULT_COMBO).bufferTicks };
         if (a.buffered && a.frame >= stage.cancel[0] && a.frame <= stage.cancel[1] && (a.confirmedTargets ?? a.hitTargets).size > 0) {
           f.action = stageAction(f, stage.next, a.facing);
-          accepted?.(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage!}));
+          accept(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage!}));
         } else if (a.buffered && --a.buffered.remaining === 0) a.buffered = undefined;
       } else a.buffered = undefined;
     }
@@ -175,7 +177,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
       f.action = { type: "attack", kind: input.attack, airborne, frame: 1, facing: f.facing,
         stats: f.stats.attacks[airborne ? "air" : "ground"][input.attack], instanceId: f.id+":"+ ++f.special.sequence, hitTargets: new Set(), confirmedTargets: new Set() };
       if (!airborne && input.attack === "light") f.action = stageAction(f, (f.stats.combo ?? DEFAULT_COMBO).stages[0].id, f.facing);
-      if(f.action.type==="attack")accepted?.(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage??(airborne?"air_":"ground_")+input.attack}));
+      if(f.action.type==="attack")accept(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage??(airborne?"air_":"ground_")+input.attack}));
     }
   }
   const contacts:Contact[]=[];
@@ -215,7 +217,11 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     const a=attacker.action;
     if(a.type==="special"){
       if(specialPhase(a)!=="active")continue;
-      if(a.id==="projectile"){spawnProjectile(world,attacker);continue;}
+      if(a.id==="projectile"){
+        const before=world.projectiles.length;spawnProjectile(world,attacker);
+        if(presentation&&world.projectiles.length>before){const p=world.projectiles[world.projectiles.length-1];notify(presentation,{type:"projectile",tick:world.tick,projectile:{id:p.id,ownerId:p.ownerId,x:p.x,y:p.y,z:p.z,dx:p.direction.x,dy:p.direction.y,bornTick:p.bornTick}});}
+        continue;
+      }
       if(a.id==="dash")continue; // travel sweep owns dash contacts
       const s=a.definition,d=facingVector(a.facing);
       for(const target of fighters){
@@ -238,6 +244,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
   }
   contacts.push(...stepProjectiles(world,fighters,starts));
   const events=resolveContacts(contacts,lockedAtStart);
+  if(presentation)for(const hit of events)notify(presentation,{type:"contact",hit:{...hit},tick:world.tick});
   if(fighters.some(f=>f.health===0))world.projectiles=[];
   return events;
 }

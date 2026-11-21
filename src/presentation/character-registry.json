@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "slots": {
+    "P1": "characters/synthetic/v1/manifest.json",
+    "P2": "characters/synthetic/v1/manifest.json"
+  }
+}

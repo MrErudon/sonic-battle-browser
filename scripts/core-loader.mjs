@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 export async function loadCore() {
     const root = await mkdtemp(join(tmpdir(), 'combat-balance-'));
     await writeFile(join(root, 'package.json'), '{"type":"module"}');
-    for (const dir of ['core', 'dev']) {
+    for (const dir of ['core', 'dev', 'presentation']) {
         await mkdir(join(root, dir), { recursive: true });
         for (const file of await readdir(resolve('src', dir))) {
             if (!file.endsWith('.ts'))

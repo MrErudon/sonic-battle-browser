@@ -7,6 +7,8 @@ export const game = new Phaser.Game({
   parent: "game",
   width: 960,
   height: 640,
+  pixelArt:true,
+  roundPixels:true,
   backgroundColor: "#10151e",
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   scene: [ArenaScene],
