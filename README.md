@@ -38,8 +38,8 @@ Tinypool), and remains compatible with Vite 7 and the pinned Node version.
 
 Implement in small feature branches and verify each stage before merging.
 
-## M02.1 - Ground combos
-Tap **J  J  J  J/K** after connected hits to perform the four-stage
+## M02.1 — Ground combos
+Tap **J → J → J → J/K** after connected hits to perform the four-stage
 ground combo. A full chain deals 34 damage. Missed or late continuations
 finish recovery normally; K from neutral and aerial attacks remain separate.
 Only fresh presses chain, with a six-tick continuation buffer. Debug shows
@@ -47,7 +47,7 @@ stage/frame information; the HUD counts consecutive connected hits.
 See [timing, tuning, CPU rules, validation and limits](docs/M02.1-combo-system.md).
 This milestone remains on an unmerged feature branch until approved.
 
-## M01.6 - Alpha deployment preparation
+## M01.6 — Alpha deployment preparation
 
 See [Cloudflare setup, authorization, private-access gates, validation and rollback](docs/M01.6-alpha-deployment.md).
 Pages configuration is prepared for `main`, `npm run build`, and `dist`.
@@ -60,7 +60,7 @@ CI retains the original Chromium regressions and adds built-asset checks in
 Chromium, Firefox and WebKit, plus desktop/mobile-sized layout checks.
 Run `npm run report:bundle` after building for raw/gzip asset sizes.
 
-## M01.5 - Playable single-player match
+## M01.5 — Playable single-player match
 
 Choose **Easy / Normal / Hard**, then **Start Game**. Control the cyan fighter
 with **WASD / arrows**, **Space** to jump, **J** for light and **K** for heavy.
@@ -78,7 +78,7 @@ This is a desktop keyboard prototype with original replaceable graphics.
 
 **Audit status (2026-11-19):** the fresh main CI run reports zero vulnerabilities; the earlier picomatch advisory findings have cleared. Full audit remains a required CI check.
 
-## M01.4 - CPU opponent (preserved)
+## M01.4 — CPU opponent (preserved)
 
 P2 pursues and attacks using the same movement and combat rules. CPU decisions
 run once per 60 Hz combat tick with deterministic seeded randomness. Difficulty
@@ -86,7 +86,7 @@ now changes only through the match menu. The anti-oscillation correction and
 all CPU regression tests are preserved unchanged.
 See [CPU architecture, parameters and validation](docs/M01.4-cpu-opponent.md).
 
-## M01.3 - Combat foundation
+## M01.3 — Combat foundation
 
 Move with **WASD / arrows**, jump with **Space**, attack with **J** (light) or
 **K** (heavy), and use **Menu** to start a new match. Face the amber target and move
@@ -104,7 +104,7 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-## M01.2 - Fighter movement
+## M01.2 — Fighter movement
 
 Move the cyan training robot with **WASD / arrow keys**; press **Space** to jump.
 The amber robot remains stationary. Movement is screen-relative, with normalized
@@ -119,12 +119,12 @@ The labels display idle/walk/jump/landing state and eight-direction facing.
 See [M01.2 implementation and validation](docs/M01.2-fighter-movement.md)
 for spec alignment, provisional values, scope limits, and manual review steps.
 
-## M02.2 - Defensive combat
+## M02.2 — Defensive combat
 
 Hold **L** for stationary frontal ground defense. Blocks take chip damage and
 consume guard; an empty guard breaks. See [timing, tuning, CPU and validation](docs/M02.2-defensive-combat.md).
 Human gameplay/balance testing remains pending.
-## M02.3 - Special attacks
+## M02.3 — Special attacks
 
 Select **1 Burst / 2 Dash / 3 Energy** and tap **I** to activate from ground neutral.
 Specials have independent recharge and a shared lockout; normal combat remains available

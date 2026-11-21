@@ -42,6 +42,6 @@ export class FighterView {
     }
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
     this.label.setVisible(debug);
-    this.label.setText(debug ? `${this.name} � ${f.state} � ${action}` : this.name);
+    this.label.setText(debug ? `${this.name} · ${f.state} · ${action}` : this.name);
   }
 }
