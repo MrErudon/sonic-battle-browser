@@ -27,7 +27,6 @@ export class SpriteFighterView {
     sync(f: CombatFighter, time: number, debug = false, context?: AnimationContext): void {
         if (this.disposed)
             return;
-        this.label.setText(`${this.name} · ${f.state} · ${f.action.type}`);
         try {
             if (!this.asset)
                 throw Error('No character asset');
@@ -47,6 +46,7 @@ export class SpriteFighterView {
             this.label.setPosition(pose.x, pose.y - 49).setDepth(pose.depth + .01).setText(`${this.name} · ${f.state} · ${f.action.type} · ${pose.clip} · ${pose.phase}`).setVisible(debug);
         }
         catch {
+            if(debug)this.label.setText(`${this.name} · ${f.state} · ${f.action.type}`);
             this.status = 'geometric';
             this.lastPose = undefined;
             this.sprite.setVisible(false);
