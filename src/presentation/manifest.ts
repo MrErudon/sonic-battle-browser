@@ -1,3 +1,4 @@
+import {deepFreeze} from "./immutable";
 import { DIRECTIONS, type Facing } from '../core/movement';
 export const CLIPS = {
     'idle': [4], 'move': [6], 'jump.takeoff': [1], 'jump.ascent': [2], 'jump.apex': [1], 'jump.descent': [2], 'land': [2],
@@ -107,11 +108,6 @@ export function validateManifest(value: unknown): Readonly<CharacterManifest> {
     // Own the validated data; callers cannot mutate a manifest while it is being rendered.
     return deepFreeze(JSON.parse(JSON.stringify(m)));
 }
-export function deepFreeze<T>(value: T): T { if (value && typeof value === 'object' && !Object.isFrozen(value)) {
-    Object.freeze(value);
-    for (const child of Object.values(value))
-        deepFreeze(child);
-} return value; }
 export function clipDefinition(m: Readonly<CharacterManifest>, id: ClipId) { let c = m.animations[id]; while (c.alias)
     c = m.animations[c.alias]; return c; }
 export function attachment(m: Readonly<CharacterManifest>, name: string, facing: Facing): [

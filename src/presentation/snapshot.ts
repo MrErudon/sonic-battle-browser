@@ -2,7 +2,7 @@ import type { CombatFighter, AcceptedAttack, HitEvent } from '../core/combat';
 import type { Facing, MovementState } from '../core/movement';
 import type { MatchState } from '../core/match';
 import type { CombatState } from '../core/projectiles';
-import { deepFreeze } from './manifest';
+import { deepFreeze } from './immutable';
 export interface FighterSnapshot {
     readonly id: string;
     readonly x: number;

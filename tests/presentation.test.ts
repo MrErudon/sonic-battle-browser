@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import manifestJson from '../public/assets/characters/synthetic/v1/manifest.json';
-import { CLIPS, validateManifest, attachment, type ClipId } from '../src/presentation/manifest';
+import { CLIPS, validateManifest, attachment, clipDefinition, type ClipId } from '../src/presentation/manifest';
 import { resolveAnimation, animationState, type AnimationContext } from '../src/presentation/resolver';
 import { PresentationCapture } from '../src/presentation/capture';
 import { fighterSnapshot, snapshotMatch, type PresentationSink } from '../src/presentation/snapshot';
@@ -67,20 +67,39 @@ describe('authoritative animation phases and transforms', () => {
             expect(p.facing).toBe('w');
             expect(p.index).toBeGreaterThanOrEqual(0);
             expect(p.frame in manifest.frames).toBe(true);
+            const frames = clipDefinition(manifest, p.clip).directions![manifest.directions[p.facing].source]![p.phase]!;
+            if (frame === 1 || frame === stats.startup + 1 || frame === stats.startup + stats.active + 1)
+                expect(p.index).toBe(0);
+            if (frame === stats.startup || frame === stats.startup + stats.active || frame === stats.startup + stats.active + stats.recovery)
+                expect(p.index).toBe(frames.length - 1);
         }
     });
-    it.each(Object.keys(CLIPS) as ClipId[])('all drawings in %s retain the same foot pivot', clip => { const def = manifest.animations[clip]; if (def.alias)
-        return; for (const direction of Object.values(def.directions!))
-        for (const frames of Object.values(direction!))
-            for (const frame of frames!) {
-                expect(manifest.frames[frame]).toMatchObject({ width: 64, height: 64, trimmed: false, rotated: false });
-            } expect(manifest.pivot).toEqual([32, 56]); });
+    it.each(Object.keys(CLIPS) as ClipId[])('all drawings in %s retain the same foot pivot', clip => {
+        const def = manifest.animations[clip];
+        if (def.alias)
+            return;
+        for (const direction of Object.values(def.directions!))
+            for (const frames of Object.values(direction!))
+                for (const frame of frames!) {
+                    expect(manifest.frames[frame]).toMatchObject({ width: 64, height: 64, trimmed: false, rotated: false });
+                }
+        expect(manifest.pivot).toEqual([32, 56]);
+    });
     it('projects body elevation independently of grounded shadow and ground depth', () => { const f = createCombatFighter('P1', 20, 50, 'e'), ground = pose(f); f.z = 80; const air = pose(f); expect(air.y).toBe(ground.y - 80); expect(air.groundY).toBe(ground.groundY); expect(air.depth).toBe(ground.depth); expect(air.shadowScale).toBeLessThan(ground.shadowScale); });
     it('sorts jumping fighters by ground position rather than elevated body', () => { const a = createCombatFighter('P1', 0, 0), b = createCombatFighter('P2', 60, 60); b.z = 150; expect(pose(b).y).toBeLessThan(pose(a).y); expect(pose(b).depth).toBeGreaterThan(pose(a).depth); });
-    it('does not invent a jump startup delay and uses ascent/apex/descent/landing', () => { const f = createCombatFighter('P1', 0, 0); stepCombat([f], [{ ...NO_INPUT, jump: true }]); expect(f.z).toBeGreaterThan(0); expect(pose(f, { ...context, airAge: 0 }).clip).toBe('jump.takeoff'); for (const [vz, clip] of [[100, 'jump.ascent'], [0, 'jump.apex'], [-100, 'jump.descent']] as const) {
-        f.vz = vz;
-        expect(pose(f).clip).toBe(clip);
-    } f.state = 'landing'; f.landingRemaining = 1; expect(pose(f)).toMatchObject({ clip: 'land', index: 1 }); });
+    it('does not invent a jump startup delay and uses ascent/apex/descent/landing', () => {
+        const f = createCombatFighter('P1', 0, 0);
+        stepCombat([f], [{ ...NO_INPUT, jump: true }]);
+        expect(f.z).toBeGreaterThan(0);
+        expect(pose(f, { ...context, airAge: 0 }).clip).toBe('jump.takeoff');
+        for (const [vz, clip] of [[100, 'jump.ascent'], [0, 'jump.apex'], [-100, 'jump.descent']] as const) {
+            f.vz = vz;
+            expect(pose(f).clip).toBe(clip);
+        }
+        f.state = 'landing';
+        f.landingRemaining = 1;
+        expect(pose(f)).toMatchObject({ clip: 'land', index: 1 });
+    });
     it('interrupts attacks immediately, distinguishes break recovery and plays winner victory over frozen actions', () => { const f = createCombatFighter('P1', 0, 0); f.action = { type: 'hitstun', remaining: 12 }; expect(pose(f).clip).toBe('hit.react'); expect(pose(f, { ...context, hitAge: 4 }).clip).toBe('hit.stun'); f.action = { type: 'guard_break' }; f.guard.breakRemaining = 36; expect(pose(f).clip).toBe('guard.break'); f.guard.breakRemaining = 4; expect(pose(f).clip).toBe('guard.recover'); expect(pose(f, { ...context, matchState: 'Match Over', winner: 'P1' }).clip).toBe('victory'); f.health = 0; expect(pose(f, { ...context, matchState: 'Match Over', winner: 'P1' }).clip).toBe('ko'); });
     it.each(['block_startup', 'blocking', 'blockstun', 'block_recovery'] as const)('maps %s without extending legal defense', type => { const f = createCombatFighter('P1', 0, 0); f.action = type === 'block_startup' ? { type, frame: 3 } : type === 'blocking' ? { type } : { type, remaining: 1 }; expect(pose(f).clip).toBe({ 'block_startup': 'block.startup', blocking: 'block.hold', blockstun: 'block.stun', block_recovery: 'block.release' }[type]); });
 });
@@ -116,23 +135,63 @@ function isolated(difficulty: Difficulty, seed: number, enabled: boolean, hz = 6
     }
 }
 describe('observer isolation and passive capture', () => {
-    it.each(['Easy', 'Normal', 'Hard'] as const)('%s preserves full combat/CPU/RNG/match traces on/off', difficulty => { for (const policy of ['legacy', 'refined'] as const)
-        for (const seed of [0, 1, 5, 42, 255]) {
-            const on = isolated(difficulty, seed, true, 60, policy), off = isolated(difficulty, seed, false, 60, policy);
-            expect(on.rng.length).toBeGreaterThan(0);
-            expect(on).toEqual(off);
-        } });
-    it('throwing or mutating observers cannot change combat state', () => { const a = new MatchController(42), b = new MatchController(42); a.setPresentation({ onFrame: s => { (s.fighters[0] as any).x = 999; }, onEvent: () => { throw Error('Consumer failure'); } }); a.start(); b.start(); for (let i = 0; i < 1000; i++) {
-        expect(a.tick()).toEqual(b.tick());
-        expect([a.fighters, a.combat, a.score, a.state]).toEqual([b.fighters, b.combat, b.score, b.state]);
-    } });
-    it('captures accepted action, same-tick projectile spawn/contact, immutable DTOs and no phantom live orb', () => { const d = facingVector('e'), a = createCombatFighter('P1', 0, 0, 'e'), b = createCombatFighter('P2', d.x * 10, d.y * 10, 'w'), world = createCombatState(), capture = new PresentationCapture(); for (let i = 0; i < 19; i++)
-        stepCombat([a, b], [i === 0 ? { ...NO_INPUT, special: 'projectile' } : NO_INPUT, NO_INPUT], world, undefined, capture); const events = capture.drain().map(q => q.event); expect(events.map(e => e.type)).toEqual(['accepted', 'projectile', 'contact']); expect(events[1]).toMatchObject({ tick: 19, projectile: { bornTick: 19 } }); expect(events[2]).toMatchObject({ tick: 19, hit: { specialId: 'projectile', damage: 10 } }); expect(world.projectiles).toHaveLength(0); expect(Object.isFrozen(events[1])).toBe(true); expect(Object.isFrozen(events[2].type === 'contact' ? events[2].hit : {})).toBe(true); });
-    it('pauses clocks, captures zero-tick lifecycle, resets epochs and clears rematch state', () => { const m = new MatchController(), c = new PresentationCapture(); m.setPresentation(c); m.start(); for (let i = 0; i < COUNTDOWN_TICKS; i++)
-        m.tick(); const old = c.epoch; m.setHelp(true); const clock = c.clock; for (let i = 0; i < 30; i++)
-        m.advance(100); expect(c.clock).toBe(clock); expect(c.drain().some(q => q.event.type === 'lifecycle' && q.event.paused)).toBe(true); m.menu(); expect(c.epoch).toBeGreaterThan(old); expect(c.drain().every(q => q.epoch === c.epoch)).toBe(true); c.clear(); expect(c.snapshot).toBeUndefined(); expect(c.drain()).toHaveLength(0); });
-    it('bounds abandoned event queues', () => { const c = new PresentationCapture(); for (let i = 0; i < 600; i++)
-        c.onEvent({ type: 'lifecycle', state: 'Menu', resetVersion: 1, paused: false }); expect(c.drain()).toHaveLength(512); expect(c.dropped).toBe(88); });
+    it.each(['Easy', 'Normal', 'Hard'] as const)('%s preserves full combat/CPU/RNG/match traces on/off', difficulty => {
+        for (const policy of ['legacy', 'refined'] as const)
+            for (const seed of [0, 1, 5, 42, 255]) {
+                const on = isolated(difficulty, seed, true, 60, policy), off = isolated(difficulty, seed, false, 60, policy);
+                expect(on.rng.length).toBeGreaterThan(0);
+                expect(on).toEqual(off);
+            }
+    });
+    it('throwing or mutating observers cannot change combat state', () => {
+        const a = new MatchController(42), b = new MatchController(42);
+        a.setPresentation({ onFrame: s => { (s.fighters[0] as any).x = 999; }, onEvent: () => { throw Error('Consumer failure'); } });
+        a.start();
+        b.start();
+        for (let i = 0; i < 1000; i++) {
+            expect(a.tick()).toEqual(b.tick());
+            expect([a.fighters, a.combat, a.score, a.state]).toEqual([b.fighters, b.combat, b.score, b.state]);
+        }
+    });
+    it('captures accepted action, same-tick projectile spawn/contact, immutable DTOs and no phantom live orb', () => {
+        const d = facingVector('e'), a = createCombatFighter('P1', 0, 0, 'e'), b = createCombatFighter('P2', d.x * 10, d.y * 10, 'w'), world = createCombatState(), capture = new PresentationCapture();
+        for (let i = 0; i < 19; i++)
+            stepCombat([a, b], [i === 0 ? { ...NO_INPUT, special: 'projectile' } : NO_INPUT, NO_INPUT], world, undefined, capture);
+        const events = capture.drain().map(q => q.event);
+        expect(events.map(e => e.type)).toEqual(['accepted', 'projectile', 'contact']);
+        expect(events[1]).toMatchObject({ tick: 19, projectile: { bornTick: 19 } });
+        expect(events[2]).toMatchObject({ tick: 19, hit: { specialId: 'projectile', damage: 10 } });
+        expect(world.projectiles).toHaveLength(0);
+        expect(Object.isFrozen(events[1])).toBe(true);
+        expect(Object.isFrozen(events[2].type === 'contact' ? events[2].hit : {})).toBe(true);
+    });
+    it('pauses clocks, captures zero-tick lifecycle, resets epochs and clears rematch state', () => {
+        const m = new MatchController(), c = new PresentationCapture();
+        m.setPresentation(c);
+        m.start();
+        for (let i = 0; i < COUNTDOWN_TICKS; i++)
+            m.tick();
+        const old = c.epoch;
+        m.setHelp(true);
+        const clock = c.clock;
+        for (let i = 0; i < 30; i++)
+            m.advance(100);
+        expect(c.clock).toBe(clock);
+        expect(c.drain().some(q => q.event.type === 'lifecycle' && q.event.paused)).toBe(true);
+        m.menu();
+        expect(c.epoch).toBeGreaterThan(old);
+        expect(c.drain().every(q => q.epoch === c.epoch)).toBe(true);
+        c.clear();
+        expect(c.snapshot).toBeUndefined();
+        expect(c.drain()).toHaveLength(0);
+    });
+    it('bounds abandoned event queues', () => {
+        const c = new PresentationCapture();
+        for (let i = 0; i < 600; i++)
+            c.onEvent({ type: 'lifecycle', state: 'Menu', resetVersion: 1, paused: false });
+        expect(c.drain()).toHaveLength(512);
+        expect(c.dropped).toBe(88);
+    });
     it.each([10, 30, 60, 144, 240])('%i Hz produces the same final simulation with capture enabled', hz => { expect(isolated('Hard', 42, true, hz).final).toBe(isolated('Hard', 42, true, 60).final); });
 });
 describe('bounded effect registry policy', () => {
@@ -140,14 +199,21 @@ describe('bounded effect registry policy', () => {
     it('deduplicates, evicts oldest, expires and clears', () => { const pool = new EffectPool(2), base = { id: 'impact.light' as const, born: 0, x: 0, y: 0, z: 0 }; expect(pool.add({ ...base, key: 'a' }, 0)).toBe(true); expect(pool.add({ ...base, key: 'a' }, 0)).toBe(false); pool.add({ ...base, key: 'b' }, 0); pool.add({ ...base, key: 'c' }, 0); expect(pool.active.map(e => e.key)).toEqual(['b', 'c']); pool.advance(EFFECTS['impact.light'].ticks); expect(pool.active).toHaveLength(0); expect(pool.add({ ...base, key: 'expired' }, 60)).toBe(false); pool.clear(); expect(pool.add({ ...base, key: 'a', born: 61 }, 61)).toBe(true); });
 });
 describe('presentation event cadence and results lifecycle', () => {
-    function cadence(hz: number) { const m = new MatchController(42), c = new PresentationCapture(), frames: string[] = [], events: string[] = []; const sink: PresentationSink = { onEvent: e => { c.onEvent(e); events.push(JSON.stringify(e)); }, onFrame: s => { c.onFrame(s); frames.push(JSON.stringify(s.fighters.map(f => resolveAnimation(f, c.context(f), manifest)))); } }; m.setPresentation(sink); m.start(); for (let render = 0; render < hz * 12; render++) {
-        if (render % hz === 0) {
-            m.press('KeyJ');
-            m.release('KeyJ');
+    function cadence(hz: number) {
+        const m = new MatchController(42), c = new PresentationCapture(), frames: string[] = [], events: string[] = [];
+        const sink: PresentationSink = { onEvent: e => { c.onEvent(e); events.push(JSON.stringify(e)); }, onFrame: s => { c.onFrame(s); frames.push(JSON.stringify(s.fighters.map(f => resolveAnimation(f, c.context(f), manifest)))); } };
+        m.setPresentation(sink);
+        m.start();
+        for (let render = 0; render < hz * 12; render++) {
+            if (render % hz === 0) {
+                m.press('KeyJ');
+                m.release('KeyJ');
+            }
+            m.advance(1000 / hz);
+            c.drain();
         }
-        m.advance(1000 / hz);
-        c.drain();
-    } return { frames, events }; }
+        return { frames, events };
+    }
     it.each([10, 30, 60, 144, 240])('%i Hz captures every authoritative pose/event including phases skipped by renders', hz => { expect(cadence(hz)).toEqual(cadence(60)); });
     it.each(['single', 'double'] as const)('captures %s KO, freezes positions, then resets cleanly', kind => {
         const m = new MatchController(), c = new PresentationCapture();
@@ -200,3 +266,4 @@ describe('presentation event cadence and results lifecycle', () => {
         expect(c.context(fighterSnapshot(f)).hitAge).toBe(0);
     });
 });
+it('standalone ground light presentation remains compatible with actions without combo metadata', () => { const f = createCombatFighter('P1', 0, 0); f.action = { type: 'attack', kind: 'light', airborne: false, frame: 1, facing: 'e', stats: f.stats.attacks.ground.light, hitTargets: new Set() }; expect(pose(f).clip).toBe('ground.light_1'); });

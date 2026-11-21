@@ -48,7 +48,7 @@ export class ArenaScene extends Phaser.Scene {
     this.match.setFocused(!document.hidden);
     this.match.setPresentation(this.presentation);
     this.effects=new EffectRegistry(this);
-    this.combatView = new CombatView(this); this.specialView=new SpecialView(this);
+    this.combatView = new CombatView(this,this.effects); this.specialView=new SpecialView(this);
     this.views = [new SpriteFighterView(this, 0x55dced, "YOU"), new SpriteFighterView(this, 0xffbf69, "CPU")];
     this.ui = new MatchView(this.match);
     this.assetLoader=new CharacterAssetLoader(this);

@@ -29,7 +29,7 @@ export function animationState(f: FighterSnapshot, c: AnimationContext): {
     if (a.type === 'attack' || a.type === 'special') {
         const frame = a.frame!, startup = a.startup!, active = a.active!, recovery = a.recovery!;
         const phase: Phase = frame <= startup ? 'startup' : frame <= startup + active ? 'active' : 'recovery';
-        const clip: ClipId = a.type === 'special' ? `special.${a.kind}` as ClipId : a.airborne ? `air.${a.kind}` as ClipId : a.comboStage ? `ground.${a.comboStage}` as ClipId : 'ground.heavy';
+        const clip: ClipId = a.type === 'special' ? `special.${a.kind}` as ClipId : a.airborne ? `air.${a.kind}` as ClipId : a.comboStage ? `ground.${a.comboStage}` as ClipId : a.kind === 'light' ? 'ground.light_1' : 'ground.heavy';
         return { clip, phase, offset: frame - 1 - (phase === 'startup' ? 0 : phase === 'active' ? startup : startup + active), duration: phase === 'startup' ? startup : phase === 'active' ? active : recovery };
     }
     if (a.type === 'block_startup')

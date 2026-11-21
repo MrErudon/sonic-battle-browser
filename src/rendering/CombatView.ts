@@ -1,10 +1,12 @@
+import type { EffectRegistry } from "./EffectRegistry";
 import Phaser from "phaser";
 import { projectArena } from "../core/arena";
 import { attackPhase, facingVector, type CombatFighter } from "../core/combat";
 /** Original procedural trails and impact spokes; never drives simulation. */
 export class CombatView {
     private trails: Phaser.GameObjects.Graphics[];
-    constructor(private scene: Phaser.Scene) {
+    get sparks() { return this.effects ? [...this.effects.pool.active] : []; }
+    constructor(private scene: Phaser.Scene, private effects?: EffectRegistry) {
         this.trails = [scene.add.graphics(), scene.add.graphics()];
     }
     sync(fighters: readonly CombatFighter[], delta: number): void {
