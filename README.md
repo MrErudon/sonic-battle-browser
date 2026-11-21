@@ -124,3 +124,9 @@ for spec alignment, provisional values, scope limits, and manual review steps.
 Hold **L** for stationary frontal ground defense. Blocks take chip damage and
 consume guard; an empty guard breaks. See [timing, tuning, CPU and validation](docs/M02.2-defensive-combat.md).
 Human gameplay/balance testing remains pending.
+## M02.3 — Special attacks
+
+Select **1 Burst / 2 Dash / 3 Energy** and tap **I** to activate from ground neutral.
+Specials have independent recharge and a shared lockout; normal combat remains available
+after action recovery. See [timing, collision, CPU and validation](docs/M02.3-special-attacks.md).
+Human gameplay/balance testing remains pending.

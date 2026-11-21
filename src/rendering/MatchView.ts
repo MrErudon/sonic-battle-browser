@@ -1,3 +1,4 @@
+import { SPECIAL_IDS } from "../core/specials";
 import { MatchController } from "../core/match";
 import type { Difficulty } from "../core/cpu";
 
@@ -34,11 +35,18 @@ export class MatchView {
       <section class="result-panel" aria-labelledby="result-title" hidden><h2 id="result-title"></h2><p id="result-detail"></p><button class="primary" id="rematch">Rematch</button><button id="result-menu">Return to menu</button></section>
       <div class="pause-message" role="status" hidden>Paused <span>Return to the game to continue</span></div>
       <p class="keyboard-notice">Keyboard required · Touch controls are not available in this alpha.</p>
+      <div class="special-controls" aria-label="Special attacks">
+        <button id="select-power" aria-pressed="true">1 · Burst <span id="special-power-status">READY</span></button>
+        <button id="select-dash" aria-pressed="false">2 · Dash <span id="special-dash-status">READY</span></button>
+        <button id="select-projectile" aria-pressed="false">3 · Energy <span id="special-projectile-status">READY</span></button>
+        <output id="special-lockout">I · ACTIVATE</output>
+      </div>
       <footer><span class="play-hint">WASD / arrows · Space jump · J light · K heavy · L block</span><div><button id="help">Controls / Help</button><button id="menu">Menu</button><button id="debug" aria-pressed="false">Debug</button></div></footer>
       <pre class="debug-readout" hidden></pre>
-      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — light; tap again after a hit to chain</dd><dt>Heavy attack</dt><dd>K — heavy; J or K after Light 3 finishes the combo</dd><dt>Ground block</dt><dd>Hold L — face your rival first; release to recover. Blocks take chip damage and consume guard. An empty guard breaks.</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
+      <dialog aria-labelledby="help-title"><h2 id="help-title">Make your move.</h2><dl><dt>Move & face</dt><dd>WASD or arrow keys</dd><dt>Jump</dt><dd>Space</dd><dt>Light attack</dt><dd>J — light; tap again after a hit to chain</dd><dt>Heavy attack</dt><dd>K — heavy; J or K after Light 3 finishes the combo</dd><dt>Ground block</dt><dd>Hold L — face your rival first; release to recover. Blocks take chip damage and consume guard. An empty guard breaks.</dd><dt>Special attacks</dt><dd>1 Burst / 2 Dash / 3 Energy · I activates the selected ground special. Tap I; recharge and a shared lockout apply. No special cancels or air specials.</dd></dl><p>Face your rival and close the gap. Tap attacks; holding a button does not repeat them. Jump and attack together for an aerial strike.</p><p>First to two round wins takes the match. A double KO replays the round with no points. Health resets each round.</p><p>Help and switching away pause the match. Release and press your keys again after a countdown or pause. Choose difficulty from the menu.</p><button class="primary" id="close-help">Back to game</button></dialog>`;
     document.querySelector("#shell")!.append(this.root);
     this.dialog = this.root.querySelector("dialog")!;
+    SPECIAL_IDS.forEach(id=>this.on("select-"+id,()=>{match.selectSpecial(id);this.sync();}));
     this.on("start-game", () => match.start());
     this.on("rematch", () => match.start());
     this.on("menu", () => match.menu());
@@ -97,6 +105,16 @@ export class MatchView {
         fighter.action.type === "block_startup" ? "RAISING" : fighter.action.type === "block_recovery" ? "RECOVER" : String(Math.ceil(fighter.guard.value)));
       this.text(`#p${id}-rounds`, `${m.score[index]} / 2 rounds won`);
     });
+    const player=m.fighters[0];
+    for(const id of SPECIAL_IDS){
+      const button=this.root.querySelector("#select-"+id) as HTMLButtonElement;
+      button.setAttribute("aria-pressed",String(m.input.selectedSpecial===id));
+      button.disabled=m.paused || (m.state!=="Menu" && m.state!=="Fighting");
+      const ticks=player.special.recharge[id],active=id==="projectile"&&m.combat.projectiles.some(p=>p.ownerId===player.id);
+      this.text("#special-"+id+"-status",active?"ACTIVE":ticks>0?(ticks/60).toFixed(1)+"s":"READY");
+    }
+    this.text("#special-lockout",player.special.shared>0?"SHARED "+(player.special.shared/60).toFixed(1)+"s":"I · ACTIVATE");
+    this.visible(".special-controls",m.state==="Menu"||m.state==="Fighting");
     this.text("#round-label", `ROUND ${m.round}`); this.text("#cpu-label", `${m.difficulty} CPU`);
     const message = m.state === "Countdown" || m.state === "Round Over";
     this.visible(".round-message", message && !m.paused);
@@ -112,7 +130,7 @@ export class MatchView {
     this.visible(".pause-message", m.paused && !m.helpOpen && !menu && !over);
     this.visible(".debug-readout", this.debug);
     this.root.querySelector("#debug")!.setAttribute("aria-pressed", String(this.debug));
-    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type} | guard=${f.guard.value} break=${f.guard.breakRemaining}${f.action.type === "attack" ? ` ${f.action.comboStage ?? (f.action.airborne ? "air" : "standalone")} frame=${f.action.frame}` : ""}`).join("\n"));
+    if (this.debug) this.text(".debug-readout", `${m.state} | seed ${m.seed} | ${m.difficulty}\n` + m.fighters.map(f => `${f.id}: ${f.x.toFixed(1)}, ${f.y.toFixed(1)}, z ${f.z.toFixed(1)} | ${f.facing} | ${f.state} | ${f.action.type} | guard=${f.guard.value} break=${f.guard.breakRemaining}${f.action.type === "special" ? ` ${f.action.id} frame=${f.action.frame}` : f.action.type === "attack" ? ` ${f.action.comboStage ?? (f.action.airborne ? "air" : "standalone")} frame=${f.action.frame}` : ""}`).join("\n") + `\nPROJECTILES ${m.combat.projectiles.map(p=>`${p.id}@${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(";")} | special=${m.input.selectedSpecial} | shared=${m.fighters[0].special.shared}`);
     if (this.previousState !== m.state) {
       if (menu || over) (this.root.querySelector(menu ? "#start-game" : "#rematch") as HTMLElement).focus({ preventScroll: true });
       else if (document.activeElement instanceof HTMLElement) document.activeElement.blur();

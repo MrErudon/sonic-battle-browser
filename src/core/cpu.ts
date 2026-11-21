@@ -1,9 +1,12 @@
+import { canSpecial, specialConfig, type SpecialAction, type SpecialId } from "./specials";
+import type { CombatState, Projectile } from "./projectiles";
 import { canStartBlock } from "./defense";
 import { comboStage, attackOverlaps, facingVector, type AttackAction, type AttackKind, type CombatFighter, type CombatInput } from "./combat";
 import { DIRECTIONS, NO_INPUT, stepFighter } from "./movement";
 
 export interface CpuConfig {
   comboChance?: number;
+  specialChance?: number; specialReactionFrames?: number;
   blockChance?: number; defenseReactionFrames?: number; maxBlockFrames?: number;
   reactionFrames: number;
   attackInterval: number;
@@ -17,9 +20,9 @@ export interface CpuConfig {
 export type Difficulty = "Easy" | "Normal" | "Hard";
 /** Provisional tuning; difficulty changes decisions, never fighter statistics. */
 export const CPU_PRESETS: Readonly<Record<Difficulty, Readonly<CpuConfig>>> = {
-  Easy: { blockChance: .20, defenseReactionFrames: 24, maxBlockFrames: 24, comboChance: .25, reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
-  Normal: { blockChance: .45, defenseReactionFrames: 12, maxBlockFrames: 36, comboChance: .60, reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
-  Hard: { blockChance: .70, defenseReactionFrames: 8, maxBlockFrames: 48, comboChance: .85, reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
+  Easy: { specialChance: .10, specialReactionFrames: 24, blockChance: .20, defenseReactionFrames: 24, maxBlockFrames: 24, comboChance: .25, reactionFrames: 24, attackInterval: 70, pauseChance: 0.45, pauseFrames: 45, heavyChance: 0.1, aerialChance: 0.02, spacing: 44, spacingSlack: 12 },
+  Normal: { specialChance: .25, specialReactionFrames: 12, blockChance: .45, defenseReactionFrames: 12, maxBlockFrames: 36, comboChance: .60, reactionFrames: 12, attackInterval: 40, pauseChance: 0.2, pauseFrames: 24, heavyChance: 0.35, aerialChance: 0.08, spacing: 44, spacingSlack: 10 },
+  Hard: { specialChance: .40, specialReactionFrames: 8, blockChance: .70, defenseReactionFrames: 8, maxBlockFrames: 48, comboChance: .85, reactionFrames: 5, attackInterval: 24, pauseChance: 0.05, pauseFrames: 12, heavyChance: 0.5, aerialChance: 0.15, spacing: 44, spacingSlack: 8 },
 };
 
 /** Mulberry32: local state, including a valid zero seed; no global randomness. */
@@ -67,7 +70,9 @@ function inRange(self: CombatFighter, target: CombatFighter, kind: AttackKind, h
 export class CpuController {
   private random: () => number;
   private defenseRandom: () => number;
-  private observed?: AttackAction;
+  private observed?: AttackAction | SpecialAction | Projectile;
+  private specialRandom: () => number;
+  private specialAge=0; private specialWait=0; private specialCandidate?:SpecialId;
   private defenseAge = 0;
   private defenseDecided = false;
   private blockHeld = 0;
@@ -85,19 +90,21 @@ export class CpuController {
     for (const key of ["reactionFrames", "attackInterval", "pauseFrames"] as const) {
       if (!Number.isInteger(config[key]) || config[key] < 1) throw new Error(`Invalid CPU frame count: ${key}`);
     }
-    for (const key of ["pauseChance", "heavyChance", "aerialChance", "comboChance", "blockChance"] as const) {
+    for (const key of ["pauseChance", "heavyChance", "aerialChance", "comboChance", "blockChance", "specialChance"] as const) {
       if ((config[key] ?? 0) > 1) throw new Error(`Invalid CPU probability: ${key}`);
     }
-    for (const key of ["defenseReactionFrames", "maxBlockFrames"] as const)
+    for (const key of ["defenseReactionFrames", "maxBlockFrames", "specialReactionFrames"] as const)
       if (config[key] !== undefined && (!Number.isInteger(config[key]) || config[key]! < 1)) throw Error("Invalid defensive CPU duration");
+    this.specialRandom = seededRandom(seed ^ 0xbb67ae85);
     this.defenseRandom = seededRandom(seed ^ 0x6a09e667);
     this.config = Object.freeze({ ...config });
     this.random = seededRandom(seed);
     this.wait = config.reactionFrames;
   }
 
-  tick(self: CombatFighter, target: CombatFighter): CombatInput {
+  tick(self: CombatFighter, target: CombatFighter, world?:Readonly<CombatState>): CombatInput {
     const idle = { ...NO_INPUT };
+    if(this.specialWait>0)this.specialWait--;
     if (this.interval > 0) this.interval--;
     if (self.health <= 0 || target.health <= 0) return idle;
     if (self.action.type === "attack") {
@@ -111,12 +118,15 @@ export class CpuController {
     }
     // Observe only the present, published action and geometry. A new attack must
     // age through the configured reaction delay before a single seeded roll.
-    if (target.action.type !== "attack") {
+    const incoming=world?.projectiles.filter(p=>p.ownerId!==self.id).sort((a,b)=>Math.hypot(a.x-self.x,a.y-self.y)-Math.hypot(b.x-self.x,b.y-self.y)||a.id.localeCompare(b.id,"en"))[0];
+    const threat:AttackAction|SpecialAction|Projectile|undefined = incoming ??
+      (target.action.type==="attack"||target.action.type==="special" ? target.action : undefined);
+    if (!threat) {
       // Remember an observed threat briefly while recovering from its hit. This
       // permits a delayed legal guard; it never buffers guard through hitstun.
       if (++this.defenseAge > (this.config.defenseReactionFrames ?? this.config.reactionFrames) + (this.config.maxBlockFrames ?? 36)) this.observed = undefined;
-    } else if (this.observed !== target.action) {
-      this.observed = target.action; this.defenseAge = 0; this.defenseDecided = false;
+    } else if (this.observed !== threat) {
+      this.observed = threat; this.defenseAge = 0; this.defenseDecided = false;
     } else this.defenseAge++;
     if (this.blockHeld > 0) {
       if (["block_startup", "blocking", "blockstun"].includes(self.action.type)) {
@@ -129,11 +139,24 @@ export class CpuController {
       this.defenseDecided = true;
       const attempt = this.defenseRandom() < (this.config.blockChance ?? 0);
       const facing = facingVector(self.facing);
-      const dx = target.x - self.x, dy = target.y - self.y;
+      const dx = "ownerId" in this.observed ? -this.observed.direction.x : target.x - self.x;
+      const dy = "ownerId" in this.observed ? -this.observed.direction.y : target.y - self.y;
       if (attempt && canStartBlock(self) && dx * facing.x + dy * facing.y >= 0 &&
-          attackOverlaps(target, self, this.observed)) {
+          this.defensiveReach(self,target,this.observed)) {
         this.blockHeld = (this.config.maxBlockFrames ?? 36) - 1;
         return { ...idle, block: true };
+      }
+    }
+    if(world){
+      const candidate=this.specialChoice(self,target,world);
+      if(candidate!==this.specialCandidate){this.specialCandidate=candidate;this.specialAge=0;}
+      else if(candidate)this.specialAge++;
+      if(candidate && this.specialAge >= (this.config.specialReactionFrames??this.config.reactionFrames) &&
+          this.specialWait===0 && this.interval===0){
+        this.specialAge=0;this.specialWait=this.config.attackInterval;
+        if(this.specialRandom()<(this.config.specialChance??0)){
+          this.interval=this.config.attackInterval;return {...idle,special:candidate};
+        }
       }
     }
     if (self.action.type !== "ready" || self.cooldown > 0 || self.state === "landing") {
@@ -174,5 +197,26 @@ export class CpuController {
     // Jump+attack is the same legal edge combination available to P1. Startup
     // and changing height can still cause misses; the CPU cannot guarantee hits.
     return { ...idle, attack: kind, jump: self.z === 0 && this.random() < this.config.aerialChance };
+  }
+
+  private specialChoice(self:CombatFighter,target:CombatFighter,world:Readonly<CombatState>):SpecialId|undefined{
+    const d=facingVector(self.facing),dx=target.x-self.x,dy=target.y-self.y,forward=dx*d.x+dy*d.y,side=Math.abs(-dx*d.y+dy*d.x);
+    const id:SpecialId|undefined=forward>=0&&forward<=70?"power":forward>70&&forward<=140?"dash":forward>140&&forward<=280?"projectile":undefined;
+    if(!id||!canSpecial(self,id,world.projectiles.some(p=>p.ownerId===self.id)))return;
+    const s=specialConfig(self).definitions[id];
+    if(side>(id==="projectile"?s.projectileRadius:s.width/2)+target.stats.hurtRadius||
+      target.z>s.bottom+s.height||target.z+target.stats.hurtHeight<s.bottom)return;
+    return id;
+  }
+  private defensiveReach(self:CombatFighter,target:CombatFighter,threat:AttackAction|SpecialAction|Projectile):boolean{
+    if("ownerId" in threat){
+      const dx=self.x-threat.x,dy=self.y-threat.y,d=threat.direction;
+      return dx*d.x+dy*d.y>=0&&Math.abs(-dx*d.y+dy*d.x)<=self.stats.hurtRadius+threat.definition.projectileRadius&&
+        Math.hypot(dx,dy)<=threat.remainingDistance+self.stats.hurtRadius;
+    }
+    if(threat.type==="attack")return attackOverlaps(target,self,threat);
+    const s=threat.definition;
+    return attackOverlaps(target,self,{type:"attack",kind:"heavy",airborne:false,frame:1,facing:threat.facing,
+      hitTargets:new Set(),stats:{...s,cooldown:0,reach:s.reach+s.travel}});
   }
 }
