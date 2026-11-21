@@ -130,3 +130,9 @@ Select **1 Burst / 2 Dash / 3 Energy** and tap **I** to activate from ground neu
 Specials have independent recharge and a shared lockout; normal combat remains available
 after action recovery. See [timing, collision, CPU and validation](docs/M02.3-special-attacks.md).
 Human gameplay/balance testing remains pending.
+
+## M02.4 CPU refinement and deterministic evaluation
+
+The production match controller uses a separate observation-based CPU policy. The original `CpuController` and golden fixtures remain unchanged; use `new MatchController(seed, "legacy")` for the original policy. Fighter statistics and combat rules are unchanged.
+
+Run `npm run balance` for paired seeded duels, `npm run balance:holdout` for seeds 100–124, and `node scripts/combat-match-balance.mjs` for complete match comparisons. `npm run balance:check` verifies the committed report without requiring improvement gates to pass. See [the M02.4 findings](docs/M02.4-combat-balance.md) for failed gates, methodology and pending human testing.

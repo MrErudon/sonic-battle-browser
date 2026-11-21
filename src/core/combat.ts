@@ -50,7 +50,9 @@ export interface CombatFighter extends Fighter {
   cooldown: number; knockbackX: number; knockbackY: number;
 }
 export interface CombatInput extends MovementInput { attack?: AttackKind; block?: boolean; special?: SpecialId }
-export interface HitEvent { attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number; comboStage?: string; comboCount?: number; outcome?: "hit" | "block" | "guard_break"; guardDamage?: number; specialId?: SpecialId; instanceId?: string; source?: "special"|"projectile" }
+/** Scalar diagnostic event; consumers cannot mutate simulation objects. */
+export interface AcceptedAttack { readonly ownerId:string; readonly instanceId:string; readonly kind:string }
+export interface HitEvent { attackKind?: string; attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number; comboStage?: string; comboCount?: number; outcome?: "hit" | "block" | "guard_break"; guardDamage?: number; specialId?: SpecialId; instanceId?: string; source?: "special"|"projectile" }
 export function createCombatFighter(id: string, x: number, y: number, facing: Facing = "s", stats = DEFAULT_FIGHTER_STATS): CombatFighter {
   validateCombo(stats.combo ?? DEFAULT_COMBO, stats.attacks.ground);
   validateDefense(stats.defense ?? DEFAULT_DEFENSE);
@@ -116,7 +118,7 @@ function stageAction(f: CombatFighter, id: string, facing: Facing): AttackAction
 
 /** One fixed 60 Hz tick. Inputs are press edges consumed by the caller once.
  * Resolve all contacts before applying hits: simultaneous active attacks trade. */
-export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[], state?: CombatState): HitEvent[] {
+export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[], state?: CombatState, accepted?: (event:AcceptedAttack)=>void): HitEvent[] {
   if(!state && inputs.some(i=>i?.special)) throw Error("Specials require persistent CombatState");
   const world=state??createCombatState(); world.tick++;
   const starts=new Map(fighters.map(f=>[f.id,{x:f.x,y:f.y,z:f.z}]));
@@ -150,6 +152,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     if(input.special && !input.attack && !input.jump && !defenseLocked && !stunned && !cooling &&
         canSpecial(f,input.special,world.projectiles.some(p=>p.ownerId===f.id))){
       specialAim(f,input);startSpecial(f,input.special);
+      accepted?.(Object.freeze({ownerId:f.id,instanceId:(f.action as SpecialAction).instanceId!,kind:input.special}));
     }
     // The final hitstun tick still locks controls and discards attack/jump presses.
     move(f, defenseLocked ? NO_INPUT : input);
@@ -161,6 +164,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
           a.buffered = { kind: input.attack, remaining: (f.stats.combo ?? DEFAULT_COMBO).bufferTicks };
         if (a.buffered && a.frame >= stage.cancel[0] && a.frame <= stage.cancel[1] && (a.confirmedTargets ?? a.hitTargets).size > 0) {
           f.action = stageAction(f, stage.next, a.facing);
+          accepted?.(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage!}));
         } else if (a.buffered && --a.buffered.remaining === 0) a.buffered = undefined;
       } else a.buffered = undefined;
     }
@@ -171,6 +175,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
       f.action = { type: "attack", kind: input.attack, airborne, frame: 1, facing: f.facing,
         stats: f.stats.attacks[airborne ? "air" : "ground"][input.attack], instanceId: f.id+":"+ ++f.special.sequence, hitTargets: new Set(), confirmedTargets: new Set() };
       if (!airborne && input.attack === "light") f.action = stageAction(f, (f.stats.combo ?? DEFAULT_COMBO).stages[0].id, f.facing);
+      if(f.action.type==="attack")accepted?.(Object.freeze({ownerId:f.id,instanceId:f.action.instanceId!,kind:f.action.comboStage??(airborne?"air_":"ground_")+input.attack}));
     }
   }
   const contacts:Contact[]=[];
