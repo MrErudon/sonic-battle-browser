@@ -1,3 +1,7 @@
+import { specialConfig, immutableSpecials, createSpecialRuntime, tickRecharge, canSpecial, startSpecial, specialAim, specialPhase, type SpecialConfig, type SpecialRuntime, type SpecialId, type SpecialAction } from "./specials";
+import { createCombatState, spawnProjectile, stepProjectiles, type CombatState } from "./projectiles";
+import { resolveContacts, blocksIncoming, type Contact } from "./contacts";
+import { boundaryFraction, lerpPoint, sweepAttack, type Point3 } from "./collision";
 import { DEFAULT_DEFENSE, blocksContact, defenseConfig, guardCost, stepDefense, validateDefense, type DefenseAction, type DefenseConfig, type GuardState } from "./defense";
 import { DEFAULT_COMBO, validateCombo, type ComboConfig } from "./combos";
 import { ARENA } from "./arena";
@@ -11,6 +15,7 @@ export interface AttackStats {
 }
 export interface FighterStats {
   combo?: ComboConfig;
+  specials?: Readonly<SpecialConfig>;
   defense?: Readonly<DefenseConfig>;
   maxHealth: number; hurtRadius: number; hurtHeight: number; knockbackDrag: number;
   movement: Readonly<MovementConfig>;
@@ -31,23 +36,26 @@ export interface AttackAction {
   type: "attack"; kind: AttackKind; airborne: boolean; frame: number;
   facing: Facing; stats: Readonly<AttackStats>; hitTargets: Set<string>;
   comboStage?: string;
+  instanceId?: string;
   /** Contacts are consumed once; only unblocked damage confirms a continuation. */
   confirmedTargets?: Set<string>;
   buffered?: { kind: AttackKind; remaining: number };
 }
-export type Action = { type: "ready" } | AttackAction | { type: "hitstun"; remaining: number } | { type: "ko" } | DefenseAction;
+export type Action = { type: "ready" } | AttackAction | { type: "hitstun"; remaining: number } | { type: "ko" } | DefenseAction | SpecialAction;
 export interface CombatFighter extends Fighter {
   guard: GuardState;
+  special: SpecialRuntime;
   id: string; health: number; stats: Readonly<FighterStats>; action: Action;
   comboHits: { count: number; damage: number; targetId?: string; remaining: number; active: boolean };
   cooldown: number; knockbackX: number; knockbackY: number;
 }
-export interface CombatInput extends MovementInput { attack?: AttackKind; block?: boolean }
-export interface HitEvent { attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number; comboStage?: string; comboCount?: number; outcome?: "hit" | "block" | "guard_break"; guardDamage?: number }
+export interface CombatInput extends MovementInput { attack?: AttackKind; block?: boolean; special?: SpecialId }
+export interface HitEvent { attackerId: string; defenderId: string; damage: number; x: number; y: number; z: number; comboStage?: string; comboCount?: number; outcome?: "hit" | "block" | "guard_break"; guardDamage?: number; specialId?: SpecialId; instanceId?: string; source?: "special"|"projectile" }
 export function createCombatFighter(id: string, x: number, y: number, facing: Facing = "s", stats = DEFAULT_FIGHTER_STATS): CombatFighter {
   validateCombo(stats.combo ?? DEFAULT_COMBO, stats.attacks.ground);
   validateDefense(stats.defense ?? DEFAULT_DEFENSE);
-  return { ...createFighter(x, y, facing), id, stats, guard: { value: (stats.defense ?? DEFAULT_DEFENSE).maxGuard, regenWait: 0, breakRemaining: 0 }, comboHits: { count: 0, damage: 0, remaining: 0, active: false }, health: stats.maxHealth, action: { type: "ready" }, cooldown: 0, knockbackX: 0, knockbackY: 0 };
+  const immutableStats=stats.specials?{...stats,specials:immutableSpecials(stats.specials)}:stats;
+  return { ...createFighter(x, y, facing), id, stats:immutableStats, special: createSpecialRuntime(), guard: { value: (stats.defense ?? DEFAULT_DEFENSE).maxGuard, regenWait: 0, breakRemaining: 0 }, comboHits: { count: 0, damage: 0, remaining: 0, active: false }, health: stats.maxHealth, action: { type: "ready" }, cooldown: 0, knockbackX: 0, knockbackY: 0 };
 }
 export function attackPhase(a: AttackAction): "startup" | "active" | "recovery" {
   return a.frame <= a.stats.startup ? "startup" : a.frame <= a.stats.startup + a.stats.active ? "active" : "recovery";
@@ -103,12 +111,15 @@ export function comboStage(f: CombatFighter) {
 function stageAction(f: CombatFighter, id: string, facing: Facing): AttackAction {
   const stage = (f.stats.combo ?? DEFAULT_COMBO).stages.find(s => s.id === id)!;
   return { type: "attack", kind: stage.kind, airborne: false, frame: 1, facing,
-    stats: { ...f.stats.attacks.ground[stage.kind], ...stage.overrides }, hitTargets: new Set(), confirmedTargets: new Set(), comboStage: id };
+    stats: { ...f.stats.attacks.ground[stage.kind], ...stage.overrides }, instanceId: f.id+":"+ ++f.special.sequence, hitTargets: new Set(), confirmedTargets: new Set(), comboStage: id };
 }
 
 /** One fixed 60 Hz tick. Inputs are press edges consumed by the caller once.
  * Resolve all contacts before applying hits: simultaneous active attacks trade. */
-export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[]): HitEvent[] {
+export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly CombatInput[], state?: CombatState): HitEvent[] {
+  if(!state && inputs.some(i=>i?.special)) throw Error("Specials require persistent CombatState");
+  const world=state??createCombatState(); world.tick++;
+  const starts=new Map(fighters.map(f=>[f.id,{x:f.x,y:f.y,z:f.z}]));
   const lockedAtStart = new Set(fighters.filter(f => f.action.type === "hitstun").map(f => f.id));
   for (const f of fighters) {
     if (f.comboHits.remaining > 0 && --f.comboHits.remaining === 0) clearComboFeedback(f);
@@ -116,6 +127,7 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
   }
   for (let i = 0; i < fighters.length; i++) {
     const f = fighters[i], input = inputs[i] ?? NO_INPUT;
+    tickRecharge(f);
     const cooling = f.cooldown > 0;
     if (cooling) f.cooldown--;
     const stunned = f.action.type === "hitstun";
@@ -128,6 +140,16 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
         f.cooldown = a.stats.cooldown;
         f.action = { type: "ready" };
       }
+    }
+    if(f.action.type==="special"){
+      const a=f.action;a.frame++;
+      if(a.frame>a.definition.startup+a.definition.active+a.definition.recovery){
+        f.cooldown=specialConfig(f).generalCooldown;f.action={type:"ready"};
+      }
+    }
+    if(input.special && !input.attack && !input.jump && !defenseLocked && !stunned && !cooling &&
+        canSpecial(f,input.special,world.projectiles.some(p=>p.ownerId===f.id))){
+      specialAim(f,input);startSpecial(f,input.special);
     }
     // The final hitstun tick still locks controls and discards attack/jump presses.
     move(f, defenseLocked ? NO_INPUT : input);
@@ -147,68 +169,70 @@ export function stepCombat(fighters: readonly CombatFighter[], inputs: readonly 
     if (input.attack && f.action.type === "ready" && !defenseLocked && !stunned && !cooling && f.cooldown === 0 && f.state !== "landing") {
       const airborne = f.state === "jump";
       f.action = { type: "attack", kind: input.attack, airborne, frame: 1, facing: f.facing,
-        stats: f.stats.attacks[airborne ? "air" : "ground"][input.attack], hitTargets: new Set(), confirmedTargets: new Set() };
+        stats: f.stats.attacks[airborne ? "air" : "ground"][input.attack], instanceId: f.id+":"+ ++f.special.sequence, hitTargets: new Set(), confirmedTargets: new Set() };
       if (!airborne && input.attack === "light") f.action = stageAction(f, (f.stats.combo ?? DEFAULT_COMBO).stages[0].id, f.facing);
     }
   }
-  const contacts: { attacker: CombatFighter; target: CombatFighter; attack: AttackAction; blocked: boolean }[] = [];
-  for (const attacker of fighters) {
-    const a = attacker.action;
-    if (a.type !== "attack" || attackPhase(a) !== "active") continue;
-    for (const target of fighters) {
-      if (target === attacker || target.health === 0 || a.hitTargets.has(target.id) || !attackOverlaps(attacker, target, a)) continue;
-      a.hitTargets.add(target.id);
-      contacts.push({ attacker, target, attack: a, blocked: blocksContact(target, attacker) });
+  const contacts:Contact[]=[];
+  // Plan both dash paths before collecting swept contacts. A hit clips travel
+  // at time of impact; normals/projectiles subsequently see the clipped endpoint.
+  const dashPlans=new Map<CombatFighter,{from:Point3;to:Point3;wall:number}>();
+  for(const f of fighters){
+    const a=f.action;
+    if(a.type!=="special"||specialPhase(a)!=="active"||a.id!=="dash"||a.travelStopped)continue;
+    const d=facingVector(a.facing),distance=Math.min(a.definition.travel/a.definition.active,a.travelRemaining);
+    const from={x:f.x,y:f.y,z:f.z},desired={x:f.x+d.x*distance,y:f.y+d.y*distance,z:f.z};
+    const wall=boundaryFraction(from,desired,f.stats.movement.radius);
+    dashPlans.set(f,{from,to:lerpPoint(from,desired,wall),wall});
+  }
+  for(const [f,plan] of dashPlans){
+    const a=f.action as SpecialAction,d=facingVector(a.facing),s=a.definition;
+    let first:{target:CombatFighter;t:number;from:Point3;to:Point3}|undefined;
+    for(const target of [...fighters].sort((a,b)=>a.id.localeCompare(b.id,"en"))){
+      if(target===f||target.health<=0||a.hitTargets.has(target.id))continue;
+      const targetFrom=starts.get(target.id)!,targetTo=dashPlans.get(target)?.to??target;
+      const t=sweepAttack(plan.from,plan.to,targetFrom,targetTo,d,s.reach,s.width,s.bottom,s.height,target.stats.hurtRadius,target.stats.hurtHeight);
+      if(t!==undefined&&(!first||t<first.t-1e-10))first={target,t,from:targetFrom,to:targetTo};
+    }
+    const t=first?.t??1,at=lerpPoint(plan.from,plan.to,t);
+    f.x=at.x;f.y=at.y;
+    a.travelRemaining=Math.max(0,a.travelRemaining-Math.hypot(at.x-plan.from.x,at.y-plan.from.y));
+    if(first){
+      const targetAt=lerpPoint(first.from,first.to,first.t);
+      a.hitTargets.add(first.target.id);a.travelStopped=true;
+      contacts.push({id:a.instanceId,attacker:f,target:first.target,payload:s,direction:d,
+        blocked:blocksIncoming({...first.target,...targetAt},{x:at.x-targetAt.x,y:at.y-targetAt.y}),
+        x:targetAt.x,y:targetAt.y,z:targetAt.z+first.target.stats.hurtHeight/2,specialId:"dash",source:"special"});
+    }
+    if(plan.wall<1||a.travelRemaining<=1e-9)a.travelStopped=true;
+  }
+  for(const attacker of fighters){
+    const a=attacker.action;
+    if(a.type==="special"){
+      if(specialPhase(a)!=="active")continue;
+      if(a.id==="projectile"){spawnProjectile(world,attacker);continue;}
+      if(a.id==="dash")continue; // travel sweep owns dash contacts
+      const s=a.definition,d=facingVector(a.facing);
+      for(const target of fighters){
+        if(target===attacker||target.health<=0||a.hitTargets.has(target.id))continue;
+        if(sweepAttack(attacker,attacker,target,target,d,s.reach,s.width,s.bottom,s.height,target.stats.hurtRadius,target.stats.hurtHeight)===undefined)continue;
+        a.hitTargets.add(target.id);
+        contacts.push({id:a.instanceId,attacker,target,payload:s,direction:d,blocked:blocksContact(target,attacker),
+          x:target.x,y:target.y,z:target.z+target.stats.hurtHeight/2,specialId:"power",source:"special"});
+      }
+    }else if(a.type==="attack"&&attackPhase(a)==="active"){
+      for(const target of fighters){
+        if(target===attacker||target.health===0||a.hitTargets.has(target.id)||!attackOverlaps(attacker,target,a))continue;
+        a.hitTargets.add(target.id);
+        contacts.push({id:a.instanceId??attacker.id+":legacy",attacker,target,normal:a,
+          payload:{...a.stats,guardDamage:guardCost(target,a),blockstun:defenseConfig(target).blockstun[a.kind]},
+          direction:facingVector(a.facing),blocked:blocksContact(target,attacker),
+          x:target.x,y:target.y,z:target.z+target.stats.hurtHeight/2});
+      }
     }
   }
-  const events = contacts.map(({ attacker, target, attack, blocked }) => {
-    const defense = defenseConfig(target);
-    target.guard.regenWait = defense.regenDelay;
-    if (blocked) {
-      // hitTargets includes blocked contacts, confirmedTargets deliberately does not.
-      attack.confirmedTargets ??= new Set();
-      const cost = Math.min(target.guard.value, guardCost(target, attack));
-      target.guard.value -= cost;
-      const broken = target.guard.value === 0;
-      const damage = Math.min(target.health, Math.ceil(attack.stats.damage * defense.chipRatio));
-      target.health -= damage;
-      clearComboFeedback(attacker);
-      clearComboFeedback(target);
-      if (target.health === 0) {
-        target.action = { type: "ko" }; target.guard.breakRemaining = 0;
-      } else if (broken) {
-        target.guard.breakRemaining = defense.breakTicks;
-        target.action = { type: "guard_break" };
-      } else target.action = { type: "blockstun", remaining: defense.blockstun[attack.kind] };
-      const d = facingVector(attack.facing);
-      target.knockbackX = d.x * attack.stats.knockback * defense.knockbackRatio;
-      target.knockbackY = d.y * attack.stats.knockback * defense.knockbackRatio;
-      return { attackerId: attacker.id, defenderId: target.id, damage, x: target.x, y: target.y,
-        z: target.z + target.stats.hurtHeight / 2, comboStage: attack.comboStage,
-        outcome: broken ? "guard_break" as const : "block" as const, guardDamage: cost };
-    }
-    (attack.confirmedTargets ??= new Set()).add(target.id);
-    const damage = Math.min(target.health, attack.stats.damage);
-    const counter = attacker.comboHits;
-    const consecutive = counter.active && counter.targetId === target.id && lockedAtStart.has(target.id);
-    counter.count = consecutive ? counter.count + 1 : 1;
-    counter.damage = consecutive ? counter.damage + damage : damage;
-    counter.targetId = target.id; counter.remaining = 45; counter.active = true;
-    clearComboFeedback(target);
-    target.health -= damage;
-    target.action = target.health === 0 ? { type: "ko" } : { type: "hitstun", remaining: attack.stats.hitstun };
-    if (target.health === 0) target.guard.breakRemaining = 0;
-    target.cooldown = Math.max(target.cooldown, attack.stats.hitstun);
-    const d = facingVector(attack.facing);
-    target.knockbackX = d.x * attack.stats.knockback;
-    target.knockbackY = d.y * attack.stats.knockback;
-    if (attack.stats.launch > 0) {
-      target.vz = attack.stats.launch;
-      target.state = "jump";
-      target.landingRemaining = 0;
-    }
-    return { attackerId: attacker.id, defenderId: target.id, damage, x: target.x, y: target.y, z: target.z + target.stats.hurtHeight / 2, comboStage: attack.comboStage, comboCount: attacker.comboHits.count, outcome: "hit" as const };
-  });
-  for (const { target } of contacts) clearComboFeedback(target);
+  contacts.push(...stepProjectiles(world,fighters,starts));
+  const events=resolveContacts(contacts,lockedAtStart);
+  if(fighters.some(f=>f.health===0))world.projectiles=[];
   return events;
 }

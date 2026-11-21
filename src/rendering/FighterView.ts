@@ -1,3 +1,4 @@
+import { specialPhase } from "../core/specials";
 import Phaser from "phaser";
 import { DIRECTIONS, projectFighter } from "../core/movement";
 import { attackPhase, type CombatFighter } from "../core/combat";
@@ -19,7 +20,7 @@ export class FighterView {
     const stride = f.state === "walk" ? Math.sin(time / 75) * 4 : 0;
     const squash = f.state === "landing" ? 7 : 0;
     g.fillStyle(0x10151e).fillRoundedRect(-15, -43 + squash, 30, 39 - squash, 7);
-    const action = f.action.type === "attack" ? attackPhase(f.action) : f.action.type;
+    const action = f.action.type === "attack" ? attackPhase(f.action) : f.action.type === "special" ? specialPhase(f.action) : f.action.type;
     const color = action === "hitstun" ? 0xffffff : action === "ko" ? 0x647080 : action === "recovery" ? 0x8398ab : this.color;
     g.fillStyle(color).fillRoundedRect(-12, -40 + squash, 24, 33 - squash, 6);
     g.fillStyle(0xe9f5ff).fillRoundedRect(-16, -8 + stride, 13, 7, 2);
@@ -41,6 +42,6 @@ export class FighterView {
     }
     this.label.setPosition(p.x, p.y - 49 + squash).setDepth(p.depth + 0.01);
     this.label.setVisible(debug);
-    this.label.setText(debug ? `${this.name} · ${f.state} · ${action}` : this.name);
+    this.label.setText(debug ? `${this.name} � ${f.state} � ${action}` : this.name);
   }
 }

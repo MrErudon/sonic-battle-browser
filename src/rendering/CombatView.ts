@@ -30,9 +30,9 @@ export class CombatView {
       s.age += Math.min(delta, 100);
       if (s.age >= 180) { s.graphic.destroy(); return false; }
       const blocked = s.hit.outcome === "block", broken = s.hit.outcome === "guard_break";
-      const finisher = s.hit.comboStage === "finisher" && !blocked;
+      const finisher = (s.hit.comboStage === "finisher" || s.hit.specialId === "power") && !blocked;
       const p = projectArena(s.hit.x, s.hit.y), radius = (finisher ? 10 : 5) + s.age / (finisher ? 6 : 9);
-      const g = s.graphic; g.clear().setDepth(p.y + 0.1).lineStyle(finisher ? 5 : 3, broken ? 0xff657a : blocked ? 0x9aafff : finisher ? 0xffbf69 : s.hit.comboStage === "light_3" ? 0x55dced : 0xffffff, 1 - s.age / 180);
+      const g = s.graphic; g.clear().setDepth(p.y + 0.1).lineStyle(finisher ? 5 : 3, broken ? 0xff657a : blocked ? 0x9aafff : finisher ? 0xffbf69 : s.hit.specialId === "projectile" ? 0xb6a2ff : s.hit.specialId === "dash" || s.hit.comboStage === "light_3" ? 0x55dced : 0xffffff, 1 - s.age / 180);
       for (let i = 0; i < 8; i++) {
         const a = i * Math.PI / 4;
         g.lineBetween(p.x + Math.cos(a) * radius * 0.4, p.y - s.hit.z + Math.sin(a) * radius * 0.4,

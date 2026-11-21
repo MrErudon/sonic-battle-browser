@@ -148,3 +148,11 @@ dialog button { width: 100%; margin-top: 12px; }
 .guard-row output { min-width: 3.8rem; text-align: right; font-size: .7rem; }
 .guard-row progress::-webkit-progress-value { background: #9aafff; }
 .guard-row progress::-moz-progress-bar { background: #9aafff; }
+.special-controls { position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; width: min(94%, 39rem); }
+.special-controls button { min-height: 2.5rem; padding: .4rem .65rem; font-size: .85rem; }
+.special-controls button[aria-pressed="true"] { border-color: #55dced; background: #214455; color: var(--ink); }
+.special-controls span { display: inline-block; min-width: 3rem; margin-left: .25rem; font-size: .75rem; }
+.special-controls output { align-self: center; min-width: 6rem; text-align: center; color: #d8e7f0; font-size: .8rem; }
+.debug-readout { bottom: 8rem; }
+@media(max-width: 600px) { .special-controls { bottom: 6rem; } .special-controls button { font-size: .75rem; padding: .3rem; } }
+@media(max-width: 600px) { .debug-readout { bottom: 12rem; } }

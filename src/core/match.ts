@@ -1,3 +1,5 @@
+import { createCombatState } from "./projectiles";
+import { SPECIAL_IDS, createSpecialRuntime, type SpecialId } from "./specials";
 import { clearDefense } from "./defense";
 import { clearComboInput, clearComboFeedback, createCombatFighter, stepCombat, type CombatInput, type HitEvent } from "./combat";
 import { CPU_PRESETS, CpuController, type Difficulty } from "./cpu";
@@ -7,7 +9,7 @@ export type MatchState = "Menu" | "Countdown" | "Fighting" | "Round Over" | "Mat
 export type RoundResult = "P1" | "P2" | "Draw";
 export const COUNTDOWN_TICKS = 180;
 export const ROUND_OVER_TICKS = 120;
-export const COMBAT_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "KeyJ", "KeyK", "KeyL"]);
+export const COMBAT_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "KeyJ", "KeyK", "KeyL", "KeyI", "Digit1", "Digit2", "Digit3"]);
 
 /** DOM-independent edge capture. Clearing invalidates held movement as well as
  * taps. A key held across a boundary must be released before it can act again. */
@@ -16,27 +18,31 @@ export class MatchInput {
   private active = new Set<string>();
   private jump = false;
   private attack?: CombatInput["attack"];
+  private special?: SpecialId;
+  selectedSpecial: SpecialId = "power";
 
-  press(code: string, repeat: boolean, enabled: boolean): void {
+  press(code: string, repeat: boolean, enabled: boolean, selectionEnabled = enabled): void {
     if (!COMBAT_KEYS.has(code) || repeat || this.down.has(code)) return;
     this.down.add(code);
+    if (selectionEnabled && ["Digit1","Digit2","Digit3"].includes(code)) this.selectedSpecial=SPECIAL_IDS[Number(code.slice(-1))-1];
     if (!enabled) return;
     this.active.add(code);
     if (code === "Space") this.jump = true;
     if (code === "KeyJ") this.attack ??= "light";
     if (code === "KeyK") this.attack ??= "heavy";
+    if (code === "KeyI") this.special ??= this.selectedSpecial;
   }
   release(code: string): void { this.down.delete(code); this.active.delete(code); }
-  clear(): void { this.active.clear(); this.jump = false; this.attack = undefined; }
+  clear(): void { this.active.clear(); this.jump = false; this.attack = undefined; this.special = undefined; }
   blur(): void { this.clear(); this.down.clear(); }
   consume(): CombatInput {
     const has = (...codes: string[]) => codes.some(code => this.active.has(code));
     const input = {
       x: Number(has("KeyD", "ArrowRight")) - Number(has("KeyA", "ArrowLeft")),
       y: Number(has("KeyS", "ArrowDown")) - Number(has("KeyW", "ArrowUp")),
-      jump: this.jump, attack: this.attack, block: has("KeyL"),
+      jump: this.jump, attack: this.attack, block: has("KeyL"), special: this.special,
     };
-    this.jump = false; this.attack = undefined;
+    this.jump = false; this.attack = undefined; this.special = undefined;
     return input;
   }
 }
@@ -53,6 +59,7 @@ export class MatchController {
   private help = false;
   private cpu: CpuController;
   readonly input = new MatchInput();
+  readonly combat = createCombatState();
   fighters = this.newFighters();
   score: [number, number] = [0, 0];
   round = 1;
@@ -68,6 +75,7 @@ export class MatchController {
   get helpOpen(): boolean { return this.help; }
   get paused(): boolean { return !this.focused || this.help; }
   get acceptsInput(): boolean { return this.state === "Fighting" && !this.paused; }
+  selectSpecial(id: SpecialId): void { if(!this.paused&&(this.state==="Menu"||this.state==="Fighting"))this.input.selectedSpecial=id; }
   get winner(): "P1" | "P2" | undefined { return this.score[0] === 2 ? "P1" : this.score[1] === 2 ? "P2" : undefined; }
 
   private newFighters() {
@@ -75,9 +83,12 @@ export class MatchController {
   }
   private enter(state: MatchState, ticks = 0): void {
     this.currentState = state; this.remaining = ticks; this.input.clear();
-    this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); clearDefense(f, true); });
+    this.fighters.forEach(f => { clearComboInput(f); clearComboFeedback(f); clearDefense(f, true); f.special=createSpecialRuntime();
+      if(f.action.type==="special")f.action={type:"ready"}; });
+    this.combat.projectiles=[];
   }
   private resetRound(): void {
+    this.combat.tick=0; this.combat.projectiles=[];
     this.fighters = this.newFighters();
     this.cpu = new CpuController(CPU_PRESETS[this.difficulty], this.seed);
     this.result = undefined;
@@ -97,6 +108,7 @@ export class MatchController {
     this.resetRound();
   }
   menu(): void {
+    this.input.selectedSpecial="power";
     this.score = [0, 0]; this.round = 1; this.accumulator = 0; this.help = false;
     this.resetRound();
     this.enter("Menu");
@@ -109,7 +121,7 @@ export class MatchController {
     this.help = open; this.accumulator = 0; this.input.clear();
     this.fighters.forEach(f => { clearComboInput(f); clearDefense(f); });
   }
-  press(code: string, repeat = false): void { this.input.press(code, repeat, this.acceptsInput); }
+  press(code: string, repeat = false): void { this.input.press(code, repeat, this.acceptsInput, !this.paused && (this.state==="Menu" || this.state==="Fighting")); }
   release(code: string): void { this.input.release(code); }
 
   /** At most six ticks after a stall; paused time is never caught up. */
@@ -143,7 +155,7 @@ export class MatchController {
     }
     if (this.state !== "Fighting") { this.input.clear(); return []; }
     const [player, opponent] = this.fighters;
-    const hits = stepCombat(this.fighters, [this.input.consume(), this.cpu.tick(opponent, player)]);
+    const hits = stepCombat(this.fighters, [this.input.consume(), this.cpu.tick(opponent, player, this.combat)], this.combat);
     if (player.health === 0 || opponent.health === 0) {
       this.result = player.health === 0 && opponent.health === 0 ? "Draw" : player.health === 0 ? "P2" : "P1";
       if (this.result !== "Draw") this.score[this.result === "P1" ? 0 : 1]++;

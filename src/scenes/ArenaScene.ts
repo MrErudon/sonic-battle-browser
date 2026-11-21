@@ -1,3 +1,4 @@
+import { SpecialView } from "../rendering/SpecialView";
 import Phaser from "phaser";
 import { ARENA, projectArena } from "../core/arena";
 import { COMBAT_KEYS, MatchController } from "../core/match";
@@ -7,6 +8,7 @@ import { MatchView } from "../rendering/MatchView";
 
 export class ArenaScene extends Phaser.Scene {
   readonly match = new MatchController();
+  private specialView!: SpecialView;
   private combatView!: CombatView;
   private views!: [FighterView, FighterView];
   private ui!: MatchView;
@@ -34,7 +36,7 @@ export class ArenaScene extends Phaser.Scene {
     }
     this.match.menu();
     this.match.setFocused(!document.hidden);
-    this.combatView = new CombatView(this);
+    this.combatView = new CombatView(this); this.specialView=new SpecialView(this);
     this.views = [new FighterView(this, 0x55dced, "YOU"), new FighterView(this, 0xffbf69, "CPU")];
     this.ui = new MatchView(this.match);
     const keydown = (event: KeyboardEvent) => {
@@ -67,20 +69,21 @@ export class ArenaScene extends Phaser.Scene {
       this.game.events.off(Phaser.Core.Events.BLUR, blur);
       this.game.events.off(Phaser.Core.Events.FOCUS, focus);
       this.match.setFocused(false);
-      this.combatView.clear(); this.ui.destroy();
+      this.combatView.clear(); this.specialView.clear(); this.ui.destroy();
     });
   }
 
   update(_time: number, delta: number): void {
     const hits = this.match.advance(delta);
     if (this.resetVersion !== this.match.resetVersion) {
-      this.combatView.clear(); this.resetVersion = this.match.resetVersion; this.visualTime = 0;
+      this.combatView.clear(); this.specialView.clear(); this.resetVersion = this.match.resetVersion; this.visualTime = 0;
     }
     if (this.match.acceptsInput) this.visualTime += Math.min(delta, 100);
     this.combatView.hit(hits);
     this.views[0].sync(this.match.fighters[0], this.visualTime, this.ui.debug);
     this.views[1].sync(this.match.fighters[1], this.visualTime, this.ui.debug);
     this.combatView.sync(this.match.fighters, this.match.paused ? 0 : delta);
+    this.specialView.sync(this.match.fighters,this.match.combat);
     this.ui.sync();
   }
 }

@@ -61,6 +61,72 @@ try {
     await snapshot("menu-" + width + "x" + height);
   }
   await page.setViewportSize({ width: 1280, height: 800 });
+  current = "special activation and real contacts";
+  for (const [digit,id,damage,maxDistance,minDistance] of [
+    ["Digit1","power",20,65,0],["Digit2","dash",12,80,0],["Digit3","projectile",10,120,50],
+  ]) {
+    await page.getByRole("button", { name: "Easy", exact: true }).click();
+    await start();
+    await page.getByRole("button", { name: "Debug", exact: true }).click();
+    await page.keyboard.press(digit);
+    await step(17);
+    check(await page.locator("#select-"+id).getAttribute("aria-pressed")==="true", id+" selected by keyboard");
+    const held = new Set();
+    let cast=false,connected=false,sawProjectile=false;
+    const originalHealth=Number(await page.locator("#p2-bar").getAttribute("value"));
+    for(let tick=0;tick<600&&!connected&&await state()==="Fighting";tick++){
+      const debug=await page.locator(".debug-readout").textContent();
+      const positions=[...debug.matchAll(/P[12]: (-?[\d.]+), (-?[\d.]+), z (-?[\d.]+)/g)].map(m=>m.slice(1).map(Number));
+      if(positions.length!==2)throw Error("Missing public special positions");
+      const [p,q]=positions,dx=q[0]-p[0],dy=q[1]-p[1],distance=Math.hypot(dx,dy);
+      const sx=.65*(dx-dy),sy=.32*(dx+dy),angle=Math.round(Math.atan2(sy,sx)/(Math.PI/4))*Math.PI/4;
+      const x=Math.round(Math.cos(angle)),y=Math.round(Math.sin(angle));
+      const ax=x/.65+y/.32,ay=y/.32-x/.65,len=Math.hypot(ax,ay),forward=(dx*ax+dy*ay)/len,side=Math.abs((-dx*ay+dy*ax)/len);
+      const next=new Set();
+      if(!cast && (distance>maxDistance||side>(id==="projectile"?18:25))){
+        if(x)next.add(x>0?"ArrowRight":"ArrowLeft");if(y)next.add(y>0?"ArrowDown":"ArrowUp");
+      } else if(!cast && distance<minDistance){
+        if(x)next.add(x>0?"ArrowLeft":"ArrowRight");if(y)next.add(y>0?"ArrowUp":"ArrowDown");
+      }
+      for(const code of held)if(!next.has(code)){await page.keyboard.up(code);held.delete(code);}
+      for(const code of next)if(!held.has(code)){await page.keyboard.down(code);held.add(code);}
+      if(!cast && debug.split("\n")[1].includes("| ready") && p[2]===0 &&
+          distance<=maxDistance && distance>=minDistance && forward>0 && side<=(id==="projectile"?18:25)){
+        // Direction+I uses the shipped input contract; no direct facing writes.
+        const aim=[];
+        if(x)aim.push(x>0?"ArrowRight":"ArrowLeft");if(y)aim.push(y>0?"ArrowDown":"ArrowUp");
+        for(const code of aim)await page.keyboard.down(code);
+        await page.keyboard.press("KeyI"); await step(17);
+        for(const code of aim)await page.keyboard.up(code);
+        const after=await page.locator(".debug-readout").textContent();
+        cast=after.split("\n")[1].includes("| special") && after.split("\n")[1].includes(id+" frame=");
+        if(cast){
+          check(await page.locator("#special-"+id+"-status").textContent()!=="READY",id+" activation starts visible recharge");
+          await snapshot("special-"+id+"-startup");
+        }
+      }else await step(17);
+      const readout=await page.locator(".debug-readout").textContent();
+      sawProjectile ||= /PROJECTILES [^ |]/.test(readout);
+      const hp=Number(await page.locator("#p2-bar").getAttribute("value"));
+      if(cast && hp<originalHealth){
+        const delta=originalHealth-hp;
+        check(delta===damage||delta===Math.ceil(damage*.25),id+" real contact applies full or blocked chip damage");
+        connected=true;await snapshot("special-"+id+"-impact");
+      }
+    }
+    for(const code of held)await page.keyboard.up(code);
+    if(!cast||!connected){await snapshot("special-"+id+"-failure");console.error("Special diagnostics",id,JSON.stringify({cast,connected,debug:await page.locator(".debug-readout").textContent()}));}
+    check(cast&&connected,id+" completes a legal keyboard special hit");
+    if(id==="projectile")check(sawProjectile,"projectile has a visible simulation lifetime before impact");
+    await page.getByRole("button", { name: "Controls / Help" }).click();
+    const frozenRecharge=await page.locator("#special-"+id+"-status").textContent();
+    await step(1000);
+    check(await page.locator("#special-"+id+"-status").textContent()===frozenRecharge,id+" recharge freezes in help");
+    await page.keyboard.press("Escape");
+    await page.getByRole("button", { name: "Debug", exact: true }).click();
+    await page.getByRole("button", { name: "Menu", exact: true }).click();
+    check(await page.locator("#special-"+id+"-status").textContent()==="READY",id+" menu resets recharge");
+  }
   current = "defense through shipped keyboard";
   await page.getByRole("button", { name: "Normal", exact: true }).click();
   await start();
