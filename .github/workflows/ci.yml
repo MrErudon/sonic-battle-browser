@@ -54,3 +54,21 @@ jobs:
         with:
           name: production-${{ matrix.browser }}
           path: artifacts/
+  balance-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: node scripts/verify-legacy.mjs
+      - run: npm run balance:check
+      - run: node scripts/combat-balance.mjs --holdout --check
+      - run: node scripts/combat-match-balance.mjs --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deterministic-balance-results
+          path: artifacts/balance/

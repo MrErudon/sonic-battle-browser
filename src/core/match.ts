@@ -1,3 +1,4 @@
+import { RefinedCpuController } from "./cpu-policy";
 import { createCombatState } from "./projectiles";
 import { SPECIAL_IDS, createSpecialRuntime, type SpecialId } from "./specials";
 import { clearDefense } from "./defense";
@@ -57,7 +58,7 @@ export class MatchController {
   private accumulator = 0;
   private focused = true;
   private help = false;
-  private cpu: CpuController;
+  private cpu: CpuController | RefinedCpuController;
   readonly input = new MatchInput();
   readonly combat = createCombatState();
   fighters = this.newFighters();
@@ -67,7 +68,8 @@ export class MatchController {
   /** Render adapters clear effects when this changes, including zero-tick commands. */
   resetVersion = 0;
 
-  constructor(readonly seed = 1) { this.cpu = new CpuController(CPU_PRESETS.Normal, seed); }
+  constructor(readonly seed = 1, readonly cpuPolicy: "legacy"|"refined" = "refined") { this.cpu = this.makeCpu("Normal"); }
+  private makeCpu(difficulty:Difficulty) { return this.cpuPolicy === "legacy" ? new CpuController(CPU_PRESETS[difficulty],this.seed) : new RefinedCpuController(CPU_PRESETS[difficulty],this.seed,difficulty); }
   get state(): MatchState { return this.currentState; }
   get difficulty(): Difficulty { return this.selectedDifficulty; }
   get cpuConfig() { return this.cpu.config; }
@@ -90,7 +92,7 @@ export class MatchController {
   private resetRound(): void {
     this.combat.tick=0; this.combat.projectiles=[];
     this.fighters = this.newFighters();
-    this.cpu = new CpuController(CPU_PRESETS[this.difficulty], this.seed);
+    this.cpu = this.makeCpu(this.difficulty);
     this.result = undefined;
     this.resetVersion++;
     this.enter("Countdown", COUNTDOWN_TICKS);
@@ -98,7 +100,7 @@ export class MatchController {
   selectDifficulty(difficulty: Difficulty): void {
     if (this.state !== "Menu") return;
     this.selectedDifficulty = difficulty;
-    this.cpu = new CpuController(CPU_PRESETS[difficulty], this.seed);
+    this.cpu = this.makeCpu(difficulty);
     this.input.clear();
   }
   start(): void {
@@ -156,6 +158,7 @@ export class MatchController {
     if (this.state !== "Fighting") { this.input.clear(); return []; }
     const [player, opponent] = this.fighters;
     const hits = stepCombat(this.fighters, [this.input.consume(), this.cpu.tick(opponent, player, this.combat)], this.combat);
+    if(this.cpu instanceof RefinedCpuController)this.cpu.recordOutcomes(hits);
     if (player.health === 0 || opponent.health === 0) {
       this.result = player.health === 0 && opponent.health === 0 ? "Draw" : player.health === 0 ? "P2" : "P1";
       if (this.result !== "Draw") this.score[this.result === "P1" ? 0 : 1]++;

@@ -1,0 +1,1266 @@
+{
+  "schema": 1,
+  "cap": 72000,
+  "rows": [
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 4886,
+      "fightingTicks": 4286,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1284,
+      "fightingTicks": 684,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 4886,
+      "fightingTicks": 4286,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 2486,
+      "fightingTicks": 1886,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1284,
+      "fightingTicks": 684,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 2486,
+      "fightingTicks": 1886,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 4222,
+      "fightingTicks": 3622,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1284,
+      "fightingTicks": 684,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 4222,
+      "fightingTicks": 3622,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 4024,
+      "fightingTicks": 3424,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1284,
+      "fightingTicks": 684,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 4290,
+      "fightingTicks": 3690,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 4694,
+      "fightingTicks": 4094,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1284,
+      "fightingTicks": 684,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 4694,
+      "fightingTicks": 4094,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 1932,
+      "fightingTicks": 1332,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1304,
+      "fightingTicks": 704,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 1964,
+      "fightingTicks": 1364,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 1606,
+      "fightingTicks": 1006,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1424,
+      "fightingTicks": 824,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 1606,
+      "fightingTicks": 1006,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 1866,
+      "fightingTicks": 1266,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1320,
+      "fightingTicks": 720,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 1866,
+      "fightingTicks": 1266,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 2090,
+      "fightingTicks": 1490,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1320,
+      "fightingTicks": 720,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 2336,
+      "fightingTicks": 1736,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 1510,
+      "fightingTicks": 910,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1320,
+      "fightingTicks": 720,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 1510,
+      "fightingTicks": 910,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 1460,
+      "fightingTicks": 860,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1210,
+      "fightingTicks": 610,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 1478,
+      "fightingTicks": 878,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 1402,
+      "fightingTicks": 802,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1210,
+      "fightingTicks": 610,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 1402,
+      "fightingTicks": 802,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 1394,
+      "fightingTicks": 794,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1210,
+      "fightingTicks": 610,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 1394,
+      "fightingTicks": 794,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 1506,
+      "fightingTicks": 906,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1258,
+      "fightingTicks": 658,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 1552,
+      "fightingTicks": 952,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 1512,
+      "fightingTicks": 912,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1210,
+      "fightingTicks": 610,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "legacy",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 1512,
+      "fightingTicks": 912,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 4034,
+      "fightingTicks": 3434,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1192,
+      "fightingTicks": 592,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 3116,
+      "fightingTicks": 2516,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 2384,
+      "fightingTicks": 1784,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1192,
+      "fightingTicks": 592,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 2384,
+      "fightingTicks": 1784,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 2914,
+      "fightingTicks": 2314,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1192,
+      "fightingTicks": 592,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 3730,
+      "fightingTicks": 3130,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 3228,
+      "fightingTicks": 2628,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1192,
+      "fightingTicks": 592,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 3548,
+      "fightingTicks": 2948,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 3934,
+      "fightingTicks": 3334,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1192,
+      "fightingTicks": 592,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Easy",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 3032,
+      "fightingTicks": 2432,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 1620,
+      "fightingTicks": 1020,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 1658,
+      "fightingTicks": 1058,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 1470,
+      "fightingTicks": 870,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 1574,
+      "fightingTicks": 974,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 1634,
+      "fightingTicks": 1034,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 1698,
+      "fightingTicks": 1098,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 1588,
+      "fightingTicks": 988,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 1730,
+      "fightingTicks": 1130,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 1600,
+      "fightingTicks": 1000,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Normal",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 1694,
+      "fightingTicks": 1094,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "idle",
+      "totalTicks": 1390,
+      "fightingTicks": 790,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "pressure",
+      "totalTicks": 1236,
+      "fightingTicks": 636,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 0,
+      "scenario": "projectiles",
+      "totalTicks": 1390,
+      "fightingTicks": 790,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "idle",
+      "totalTicks": 1410,
+      "fightingTicks": 810,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "pressure",
+      "totalTicks": 1232,
+      "fightingTicks": 632,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 1,
+      "scenario": "projectiles",
+      "totalTicks": 1410,
+      "fightingTicks": 810,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "idle",
+      "totalTicks": 1304,
+      "fightingTicks": 704,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 5,
+      "scenario": "projectiles",
+      "totalTicks": 1294,
+      "fightingTicks": 694,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "idle",
+      "totalTicks": 1450,
+      "fightingTicks": 850,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "pressure",
+      "totalTicks": 1230,
+      "fightingTicks": 630,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 42,
+      "scenario": "projectiles",
+      "totalTicks": 1450,
+      "fightingTicks": 850,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "idle",
+      "totalTicks": 1406,
+      "fightingTicks": 806,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "pressure",
+      "totalTicks": 1146,
+      "fightingTicks": 546,
+      "state": "Match Over",
+      "score": [
+        2,
+        0
+      ],
+      "winner": "P1"
+    },
+    {
+      "policy": "refined",
+      "difficulty": "Hard",
+      "seed": 255,
+      "scenario": "projectiles",
+      "totalTicks": 1324,
+      "fightingTicks": 724,
+      "state": "Match Over",
+      "score": [
+        0,
+        2
+      ],
+      "winner": "P2"
+    }
+  ]
+}

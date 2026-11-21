@@ -14,7 +14,10 @@
     "test": "vitest run",
     "test:browser": "node scripts/browser-smoke.mjs",
     "test:browser:production": "node scripts/browser-production.mjs",
-    "report:bundle": "node scripts/bundle-report.mjs"
+    "report:bundle": "node scripts/bundle-report.mjs",
+    "balance": "node scripts/combat-balance.mjs",
+    "balance:check": "node scripts/combat-balance.mjs --check",
+    "balance:holdout": "node scripts/combat-balance.mjs --holdout"
   },
   "dependencies": {
     "phaser": "^3.90.0"

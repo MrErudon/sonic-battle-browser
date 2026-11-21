@@ -1,0 +1,28 @@
+{
+  "baseline": "f7ccb1d430be31216811392df9c57345e9a3f309",
+  "sha256": {
+    "scripts/browser-production.mjs": "aabf79e988285ee5dd0518a3188a7ea2a7d23c8ac904f7ff8f031d06f6285912",
+    "scripts/browser-smoke.mjs": "5cc3f3bddceed975a5c0c45ce14a435ab626e43b759b9b19e682b5760513d431",
+    "src/core/arena.ts": "759580078f0b2821cf18c2ae82fc454ac014094a66ddad6c3e7d3a2e526e9f1c",
+    "src/core/combos.ts": "d28afed9d23a12ad143cc63d9e3909ed441fa8f654f07953e8b57e4742a25789",
+    "src/core/cpu.ts": "b824c283853929e87827c9c9a439bb428303a8617aa763dbfc9e4c2e4ba3b593",
+    "src/core/defense.ts": "d3b12ceca8ad8b12a817fcda0144926c436609f30050833cb107d45585195169",
+    "src/core/movement.ts": "503f1919eb64ffe2660d668f2b815b8cd1f6a527e6fefd6180364c9e0daa049c",
+    "src/core/projectiles.ts": "98f807bf271a46a3f685f6be077f8e4b4df734906e386093679c9999e3f6a111",
+    "src/core/specials.ts": "ad56ce3b3068b5b11a80045274b9a228a937182d07cb0f02d960fd367efa60e8",
+    "tests/arena.test.ts": "cdaa21022cd3c64491d6bd811e32e80c610797d9bf8209d80d211ff343c15f17",
+    "tests/combat.test.ts": "4d7603936f0511f61c03874a74adabeab18f5fc1bd46cd3699f1f73e647a1614",
+    "tests/combos.test.ts": "b0e5950cece6f43e8b451cc5e4dab42befd54d5459e8e2f7bde4e41f96656c0a",
+    "tests/cpu.test.ts": "aedbcf77b3b90d50c5089ad81707e3321429587d60447061e16116e4c455cd70",
+    "tests/defense.test.ts": "cf8839b21cc50441d114047ddb3a8dbc78370776fc9a2e15d1c14fbec39bd696",
+    "tests/jump-input.test.ts": "38251381aabeee10b81e2b1bb6d6a3ace44745f8fa25f5e75d731d53605f6e8b",
+    "tests/match.test.ts": "cc8aa91eb1f43a7adf8f17ffd10d481f53a79b4adb050466248ce028c2f2dcff",
+    "tests/movement.test.ts": "16edf51efd6b848f608058f117451d5028ae18726f13314d89971444947401c8",
+    "tests/normal-traces.test.ts": "2bd07e52bf74622694ce781f0cafff56ad44f07f8ca2b937280ec2b4ad954371",
+    "tests/special-interactions.test.ts": "140364874cff53bbd906734bfcb241a041fbf9eb5351324483979159162f2640",
+    "tests/specials.test.ts": "010da12201d0e7534804d19981d06ea973cdfb6016821302a7aa171ed8f805ec",
+    "src/core/collision.ts": "069b1dd1327dea7a1fce48fafc09c9266325ed2870fc72048caf17723dcfcb9d"
+  },
+  "recordedBaselineSha256": "6b4efd761558ce0516d5cba7370a6d968b24fdc01232c546b7811ec675e8a0cc",
+  "fighterStatsSourceSha256": "ef590e5be6f00a72d2f69edb14911d2b321e3334a3066fe7e8f33cc1130b5d39"
+}

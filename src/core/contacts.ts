@@ -29,8 +29,9 @@ export function resolveContacts(contacts: readonly Contact[], lockedAtStart: Rea
       health-=damage;
       const event:HitEvent={attackerId:c.attacker.id,defenderId:target.id,damage,x:c.x,y:c.y,z:c.z,
         comboStage:c.normal?.comboStage,outcome:breaks?"guard_break":c.blocked?"block":"hit"};
+      event.instanceId=c.id;event.attackKind=c.specialId??c.normal?.comboStage??(c.normal?(c.normal.airborne?"air_":"ground_")+c.normal.kind:"unknown");
       if(c.blocked)event.guardDamage=guardDamage;
-      if(c.specialId){event.specialId=c.specialId;event.instanceId=c.id;event.source=c.source;}
+      if(c.specialId){event.specialId=c.specialId;event.source=c.source;}
       events.set(c,event);
     }
     target.health=health;target.guard.value=guard;target.guard.regenWait=cfg.regenDelay;
