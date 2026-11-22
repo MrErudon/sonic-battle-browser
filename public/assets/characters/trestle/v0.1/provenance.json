@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "rightsHolder": "Project original Trestle design; AI-generated artwork",
+  "source": "Original image generation from approved Trestle specification; no third-party sprite references",
+  "permissionBasis": "Generated for owner project; legal exclusivity not assessed",
+  "redistribution": "original-fixture",
+  "production": "Native raster prep: nearest-neighbor from 2172x724 15x5 source, alpha threshold160, explicit20-color palette. Normalizer does not rescale/recolor.",
+  "scope": "Only idle/move/ground.light_1 have dedicated artwork; all other states explicitly approximate.",
+  "sourceHashes": {
+    "trestle-native.png": "d00ad2613f2171e31cda4e46a362915dd2c545a89d414c28b43069378457ff29"
+  },
+  "recipeSha256": "2f3cf60222326059680dfe11e3deabbe2ab6b2a6885c5db20fd7413afb2b6352",
+  "normalizer": "deterministic root translation; no scale/clip/recolor",
+  "authorization": "Owner declaration; not independently verified by tooling"
+}

@@ -1,0 +1,7437 @@
+{
+  "schemaVersion": 1,
+  "status": "normalized",
+  "frames": [
+    {
+      "id": "e-0",
+      "rect": [
+        0,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        19,
+        12,
+        47,
+        56
+      ],
+      "normalizedBounds": [
+        19,
+        11,
+        47,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-1",
+      "rect": [
+        64,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        20,
+        12,
+        48,
+        56
+      ],
+      "normalizedBounds": [
+        20,
+        11,
+        48,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-10",
+      "rect": [
+        640,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        19,
+        15,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        19,
+        14,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-11",
+      "rect": [
+        704,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        19,
+        13,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        19,
+        12,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-12",
+      "rect": [
+        768,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        17,
+        13,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        17,
+        12,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-13",
+      "rect": [
+        832,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        19,
+        13,
+        48,
+        56
+      ],
+      "normalizedBounds": [
+        19,
+        12,
+        48,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-14",
+      "rect": [
+        896,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        19,
+        13,
+        48,
+        56
+      ],
+      "normalizedBounds": [
+        19,
+        12,
+        48,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-2",
+      "rect": [
+        128,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        21,
+        12,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        21,
+        11,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-3",
+      "rect": [
+        192,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        20,
+        12,
+        48,
+        56
+      ],
+      "normalizedBounds": [
+        20,
+        11,
+        48,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-4",
+      "rect": [
+        256,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        21,
+        13,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        21,
+        12,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-5",
+      "rect": [
+        320,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        20,
+        13,
+        51,
+        56
+      ],
+      "normalizedBounds": [
+        20,
+        12,
+        51,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-6",
+      "rect": [
+        384,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        20,
+        12,
+        52,
+        56
+      ],
+      "normalizedBounds": [
+        20,
+        11,
+        52,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-7",
+      "rect": [
+        448,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        21,
+        13,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        21,
+        12,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-8",
+      "rect": [
+        512,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        21,
+        13,
+        49,
+        56
+      ],
+      "normalizedBounds": [
+        21,
+        12,
+        49,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "e-9",
+      "rect": [
+        576,
+        128,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        21,
+        12,
+        48,
+        56
+      ],
+      "normalizedBounds": [
+        21,
+        11,
+        48,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-0",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        10,
+        15,
+        59,
+        56
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-1",
+      "rect": [
+        64,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-10",
+      "rect": [
+        640,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        16,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        15,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-11",
+      "rect": [
+        704,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        10,
+        15,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-12",
+      "rect": [
+        768,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        9,
+        15,
+        62,
+        56
+      ],
+      "normalizedBounds": [
+        9,
+        14,
+        62,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-13",
+      "rect": [
+        832,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        10,
+        15,
+        59,
+        56
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-14",
+      "rect": [
+        896,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        10,
+        15,
+        59,
+        56
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-2",
+      "rect": [
+        128,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-3",
+      "rect": [
+        192,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-4",
+      "rect": [
+        256,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        12,
+        14,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        12,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-5",
+      "rect": [
+        320,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        59,
+        57
+      ],
+      "normalizedBounds": [
+        11,
+        13,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-6",
+      "rect": [
+        384,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        10,
+        15,
+        59,
+        56
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-7",
+      "rect": [
+        448,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        12,
+        15,
+        60,
+        57
+      ],
+      "normalizedBounds": [
+        12,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-8",
+      "rect": [
+        512,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        10,
+        14,
+        62,
+        57
+      ],
+      "normalizedBounds": [
+        10,
+        12,
+        62,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "n-9",
+      "rect": [
+        576,
+        0,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        60,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-0",
+      "rect": [
+        0,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        13,
+        13,
+        56,
+        56
+      ],
+      "normalizedBounds": [
+        13,
+        12,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-1",
+      "rect": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        15,
+        12,
+        58,
+        56
+      ],
+      "normalizedBounds": [
+        15,
+        11,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-10",
+      "rect": [
+        640,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        14,
+        15,
+        58,
+        57
+      ],
+      "normalizedBounds": [
+        14,
+        13,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-11",
+      "rect": [
+        704,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        13,
+        14,
+        62,
+        57
+      ],
+      "normalizedBounds": [
+        13,
+        12,
+        62,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-12",
+      "rect": [
+        768,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        11,
+        15,
+        63,
+        57
+      ],
+      "normalizedBounds": [
+        11,
+        13,
+        63,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-13",
+      "rect": [
+        832,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        0,
+        14,
+        58,
+        57
+      ],
+      "normalizedBounds": [
+        0,
+        12,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-14",
+      "rect": [
+        896,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        14,
+        14,
+        57,
+        57
+      ],
+      "normalizedBounds": [
+        14,
+        12,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-2",
+      "rect": [
+        128,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        15,
+        12,
+        58,
+        56
+      ],
+      "normalizedBounds": [
+        15,
+        11,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-3",
+      "rect": [
+        192,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        15,
+        12,
+        58,
+        56
+      ],
+      "normalizedBounds": [
+        15,
+        11,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-4",
+      "rect": [
+        256,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        16,
+        13,
+        56,
+        57
+      ],
+      "normalizedBounds": [
+        16,
+        11,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-5",
+      "rect": [
+        320,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        15,
+        13,
+        58,
+        57
+      ],
+      "normalizedBounds": [
+        15,
+        11,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-6",
+      "rect": [
+        384,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        14,
+        13,
+        59,
+        57
+      ],
+      "normalizedBounds": [
+        14,
+        11,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-7",
+      "rect": [
+        448,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        13,
+        14,
+        59,
+        57
+      ],
+      "normalizedBounds": [
+        13,
+        12,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-8",
+      "rect": [
+        512,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        14,
+        14,
+        60,
+        57
+      ],
+      "normalizedBounds": [
+        14,
+        12,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "ne-9",
+      "rect": [
+        576,
+        64,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        58
+      ],
+      "opaqueBounds": [
+        15,
+        12,
+        57,
+        57
+      ],
+      "normalizedBounds": [
+        15,
+        10,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-0",
+      "rect": [
+        0,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        10,
+        12,
+        59,
+        54
+      ],
+      "normalizedBounds": [
+        10,
+        13,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-1",
+      "rect": [
+        64,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-10",
+      "rect": [
+        640,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        16,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        17,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-11",
+      "rect": [
+        704,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        14,
+        62,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        15,
+        62,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-12",
+      "rect": [
+        768,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        9,
+        14,
+        61,
+        54
+      ],
+      "normalizedBounds": [
+        9,
+        15,
+        61,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-13",
+      "rect": [
+        832,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        10,
+        13,
+        59,
+        54
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-14",
+      "rect": [
+        896,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        10,
+        13,
+        59,
+        54
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-2",
+      "rect": [
+        128,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-3",
+      "rect": [
+        192,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-4",
+      "rect": [
+        256,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        12,
+        13,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-5",
+      "rect": [
+        320,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        13,
+        59,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-6",
+      "rect": [
+        384,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        10,
+        13,
+        59,
+        54
+      ],
+      "normalizedBounds": [
+        10,
+        14,
+        59,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-7",
+      "rect": [
+        448,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        13,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-8",
+      "rect": [
+        512,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        10,
+        12,
+        62,
+        54
+      ],
+      "normalizedBounds": [
+        10,
+        13,
+        62,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "s-9",
+      "rect": [
+        576,
+        256,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        55
+      ],
+      "opaqueBounds": [
+        11,
+        13,
+        60,
+        54
+      ],
+      "normalizedBounds": [
+        11,
+        14,
+        60,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-0",
+      "rect": [
+        0,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        14,
+        12,
+        56,
+        56
+      ],
+      "normalizedBounds": [
+        14,
+        11,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-1",
+      "rect": [
+        64,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        13,
+        12,
+        57,
+        55
+      ],
+      "normalizedBounds": [
+        13,
+        12,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-10",
+      "rect": [
+        640,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        12,
+        15,
+        57,
+        56
+      ],
+      "normalizedBounds": [
+        12,
+        14,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-11",
+      "rect": [
+        704,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        57,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        11,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-12",
+      "rect": [
+        768,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        9,
+        12,
+        61,
+        56
+      ],
+      "normalizedBounds": [
+        9,
+        11,
+        61,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-13",
+      "rect": [
+        832,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        56,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        11,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-14",
+      "rect": [
+        896,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        56,
+        55
+      ],
+      "normalizedBounds": [
+        12,
+        12,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-2",
+      "rect": [
+        128,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        13,
+        12,
+        58,
+        55
+      ],
+      "normalizedBounds": [
+        13,
+        12,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-3",
+      "rect": [
+        192,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        14,
+        12,
+        58,
+        55
+      ],
+      "normalizedBounds": [
+        14,
+        12,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-4",
+      "rect": [
+        256,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        14,
+        12,
+        57,
+        56
+      ],
+      "normalizedBounds": [
+        14,
+        11,
+        57,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-5",
+      "rect": [
+        320,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        56,
+        55
+      ],
+      "normalizedBounds": [
+        12,
+        12,
+        56,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-6",
+      "rect": [
+        384,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        54,
+        56
+      ],
+      "normalizedBounds": [
+        12,
+        11,
+        54,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-7",
+      "rect": [
+        448,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        56
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        55,
+        55
+      ],
+      "normalizedBounds": [
+        12,
+        12,
+        55,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-8",
+      "rect": [
+        512,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        12,
+        12,
+        58,
+        56
+      ],
+      "normalizedBounds": [
+        12,
+        11,
+        58,
+        55
+      ],
+      "fits": true
+    },
+    {
+      "id": "se-9",
+      "rect": [
+        576,
+        192,
+        64,
+        64
+      ],
+      "root": [
+        32,
+        57
+      ],
+      "opaqueBounds": [
+        11,
+        12,
+        57,
+        56
+      ],
+      "normalizedBounds": [
+        11,
+        11,
+        57,
+        55
+      ],
+      "fits": true
+    }
+  ],
+  "sourceFrames": 75,
+  "uniqueFrames": 75,
+  "decodedBytes": 1387200,
+  "coverage": {
+    "idle": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      }
+    },
+    "move": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "e-4",
+            "e-5",
+            "e-6",
+            "e-7",
+            "e-8",
+            "e-9"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "se-4",
+            "se-5",
+            "se-6",
+            "se-7",
+            "se-8",
+            "se-9"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "s-4",
+            "s-5",
+            "s-6",
+            "s-7",
+            "s-8",
+            "s-9"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "se-4",
+            "se-5",
+            "se-6",
+            "se-7",
+            "se-8",
+            "se-9"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "e-4",
+            "e-5",
+            "e-6",
+            "e-7",
+            "e-8",
+            "e-9"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "ne-4",
+            "ne-5",
+            "ne-6",
+            "ne-7",
+            "ne-8",
+            "ne-9"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "n-4",
+            "n-5",
+            "n-6",
+            "n-7",
+            "n-8",
+            "n-9"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 6
+        },
+        "sequences": {
+          "loop": [
+            "ne-4",
+            "ne-5",
+            "ne-6",
+            "ne-7",
+            "ne-8",
+            "ne-9"
+          ]
+        },
+        "kinds": [
+          "direct"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      }
+    },
+    "jump.takeoff": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "jump.ascent": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "jump.apex": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "jump.descent": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "land": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "ground.light_1": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held"
+        ],
+        "verified": false,
+        "note": "Original generated Trestle slice; visual review pending"
+      }
+    },
+    "ground.light_2": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "ground.light_3": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "ground.heavy": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "ground.finisher": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "air.light": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "air.heavy": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "block.startup": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "block.hold": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "block.stun": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "block.release": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "guard.break": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "guard.recover": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "hit.react": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "hit.stun": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "knockback": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "special.power": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "special.dash": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "special.projectile": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "s-10",
+            "s-11"
+          ],
+          "active": [
+            "s-12"
+          ],
+          "recovery": [
+            "s-13",
+            "s-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "se-10",
+            "se-11"
+          ],
+          "active": [
+            "se-12"
+          ],
+          "recovery": [
+            "se-13",
+            "se-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "e-10",
+            "e-11"
+          ],
+          "active": [
+            "e-12"
+          ],
+          "recovery": [
+            "e-13",
+            "e-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "n-10",
+            "n-11"
+          ],
+          "active": [
+            "n-12"
+          ],
+          "recovery": [
+            "n-13",
+            "n-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "startup": 2,
+          "active": 1,
+          "recovery": 2
+        },
+        "sequences": {
+          "startup": [
+            "ne-10",
+            "ne-11"
+          ],
+          "active": [
+            "ne-12"
+          ],
+          "recovery": [
+            "ne-13",
+            "ne-14"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "held",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary first-punch substitution; dedicated artwork NOT produced"
+      }
+    },
+    "ko": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    },
+    "victory": {
+      "e": {
+        "source": "e",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "se": {
+        "source": "se",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "s": {
+        "source": "s",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "s-0",
+            "s-1",
+            "s-2",
+            "s-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "sw": {
+        "source": "se",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "se-0",
+            "se-1",
+            "se-2",
+            "se-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "w": {
+        "source": "e",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "e-0",
+            "e-1",
+            "e-2",
+            "e-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "nw": {
+        "source": "ne",
+        "mirror": true,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "mirrored",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "n": {
+        "source": "n",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "n-0",
+            "n-1",
+            "n-2",
+            "n-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      },
+      "ne": {
+        "source": "ne",
+        "mirror": false,
+        "frameCounts": {
+          "loop": 4
+        },
+        "sequences": {
+          "loop": [
+            "ne-0",
+            "ne-1",
+            "ne-2",
+            "ne-3"
+          ]
+        },
+        "kinds": [
+          "direct",
+          "approximate"
+        ],
+        "verified": false,
+        "note": "Temporary idle substitution; dedicated artwork NOT produced"
+      }
+    }
+  }
+}
