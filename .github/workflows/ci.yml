@@ -1,1 +1,86 @@
-)^≤⁄‚û	bùÌböö+µ∂¨{Æ)jÿeâ∫kä{[j«∫·æ∏zw(uÍZ∂blˆ≠Ü≠ÜÊˇ¬ä‰~Z0≥˜" ikyß[ ◊¨uÁ(u‰≤û÷±∫ËÆ)ÔjXù≥)Ìk
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm run assets:check
+      - run: npm run report:bundle
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: node scripts/browser-trestle.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-and-bundle-results
+          path: artifacts/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alpha-dist
+          path: dist/
+      - run: npm audit
+  production-browsers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run test:browser:production
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - run: npm run build:fixtures
+      - run: npm run test:browser:presentation
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - run: npm run test:browser:local-import
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - run: npm run release:check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-${{ matrix.browser }}
+          path: artifacts/
+  balance-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: node scripts/verify-legacy.mjs
+      - run: node scripts/verify-presentation-compat.mjs
+      - run: node scripts/verify-m03-2.mjs
+      - run: npm run balance:check
+      - run: node scripts/combat-balance.mjs --holdout --check
+      - run: node scripts/combat-match-balance.mjs --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deterministic-balance-results
+          path: artifacts/balance/
