@@ -7,10 +7,10 @@ import { pathToFileURL } from 'node:url';
 export async function loadCore() {
     const root = await mkdtemp(join(tmpdir(), 'combat-balance-'));
     await writeFile(join(root, 'package.json'), '{"type":"module"}');
-    for (const dir of ['core', 'dev', 'presentation']) {
+    for (const dir of ['core', 'dev', 'presentation', 'local-assets']) {
         await mkdir(join(root, dir), { recursive: true });
         for (const file of await readdir(resolve('src', dir))) {
-            if (!file.endsWith('.ts'))
+            if (!file.endsWith('.ts')||file.endsWith('.d.ts'))
                 continue;
             let output = ts.transpileModule(await readFile(resolve('src', dir, file), 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
             output = output.replace(/(from\s*["'])(\.{1,2}\/[^"']+)(["'])/g, (_, a, p, b) => a + p + '.js' + b);

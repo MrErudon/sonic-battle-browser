@@ -1,7 +1,7 @@
 import { projectArena } from '../core/arena';
 import type { Facing } from '../core/movement';
 import type { FighterSnapshot } from './snapshot';
-import { attachment, clipDefinition, type CharacterManifest, type ClipId, type Phase } from './manifest';
+import { attachment, clipDefinition, directionFor, type CharacterManifest, type ClipId, type Phase } from './manifest';
 export interface AnimationContext {
     clock: number;
     age: number;
@@ -49,9 +49,9 @@ export function animationState(f: FighterSnapshot, c: AnimationContext): {
     return { clip: f.state === 'walk' ? 'move' : 'idle', phase: 'loop', offset: c.age, loop: true };
 }
 export function resolveAnimation(f: FighterSnapshot, c: AnimationContext, m: Readonly<CharacterManifest>) {
-    const state = animationState(f, c), facing: Facing = f.action.facing ?? f.facing, direction = m.directions[facing], clip = clipDefinition(m, state.clip);
+    const state = animationState(f, c), facing: Facing = f.action.facing ?? f.facing, direction = directionFor(m,state.clip,facing), clip = clipDefinition(m, state.clip);
     const frames = clip.directions![direction.source]![state.phase]!;
     const index = state.loop ? Math.floor(Math.max(0, state.offset) / clip.ticksPerFrame!) % frames.length : Math.min(frames.length - 1, Math.floor(Math.max(0, state.offset) * frames.length / Math.max(1, state.duration ?? 1)));
     const ground = projectArena(f.x, f.y);
-    return { ...state, facing, mirror: direction.mirror, frame: frames[index], index, x: Math.round(ground.x), y: Math.round(ground.y - f.z), groundY: Math.round(ground.y), depth: ground.y, originX: m.pivot[0] / 64, originY: m.pivot[1] / 64, shadowScale: Math.max(.55, 1 - f.z / 250), hand: attachment(m, 'hand', facing) };
+    return { ...state, facing, mirror: direction.mirror, frame: frames[index], index, x: Math.round(ground.x), y: Math.round(ground.y - f.z), groundY: Math.round(ground.y), depth: ground.y, originX: m.pivot[0] / 64, originY: m.pivot[1] / 64, shadowScale: Math.max(.55, 1 - f.z / 250), hand: attachment(m, 'hand', facing,state.clip,frames[index]) };
 }

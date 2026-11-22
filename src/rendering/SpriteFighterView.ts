@@ -12,6 +12,11 @@ export class SpriteFighterView {
     private label: Phaser.GameObjects.Text;
     private asset?: CharacterAsset;
     private disposed = false;
+    private defaultAsset?: CharacterAsset;
+    setDefaultAsset(asset?: CharacterAsset): void { const wasDefault = !this.asset || this.asset === this.defaultAsset; this.defaultAsset = asset; if (wasDefault)
+        this.setAsset(asset); }
+    useDefaultAsset(): void { this.setAsset(this.defaultAsset); }
+    usesAsset(asset: CharacterAsset): boolean { return this.asset === asset; }
     status = 'geometric';
     lastPose?: ReturnType<typeof resolveAnimation>;
     constructor(private scene: Phaser.Scene, private color: number, private name: string) {
@@ -20,10 +25,12 @@ export class SpriteFighterView {
         this.shadow = scene.add.ellipse(0, 0, 30, 12, 0, 0.35).setDepth(1).setVisible(false);
         this.label = scene.add.text(0, 0, name, { fontSize: '12px', color: '#e9f5ff' }).setOrigin(.5, 1).setVisible(false);
     }
-    setAsset(asset?: CharacterAsset): void { if (!this.disposed) {
-        this.asset = asset;
-        this.status = asset ? 'sprite' : 'geometric';
-    } }
+    setAsset(asset?: CharacterAsset): void {
+        if (!this.disposed) {
+            this.asset = asset;
+            this.status = asset ? 'sprite' : 'geometric';
+        }
+    }
     sync(f: CombatFighter, time: number, debug = false, context?: AnimationContext): void {
         if (this.disposed)
             return;
@@ -41,12 +48,18 @@ export class SpriteFighterView {
             if (f.action.type === 'hitstun' && (context?.hitAge ?? 2) < 2)
                 this.sprite.setTintFill(0xffffff);
             else
-                this.sprite.setTint(this.color);
+                this.sprite.setTint(this.asset.manifest.palette === 'native' ? 0xffffff : this.color);
             this.shadow.setPosition(pose.x, pose.groundY).setScale(pose.shadowScale).setVisible(true);
             this.label.setPosition(pose.x, pose.y - 49).setDepth(pose.depth + .01).setText(`${this.name} · ${f.state} · ${f.action.type} · ${pose.clip} · ${pose.phase}`).setVisible(debug);
         }
         catch {
-            if(debug)this.label.setText(`${this.name} · ${f.state} · ${f.action.type}`);
+            if (this.defaultAsset && this.asset !== this.defaultAsset) {
+                this.asset = this.defaultAsset;
+                this.sync(f, time, debug, context);
+                return;
+            }
+            if (debug)
+                this.label.setText(`${this.name} · ${f.state} · ${f.action.type}`);
             this.status = 'geometric';
             this.lastPose = undefined;
             this.sprite.setVisible(false);
@@ -57,7 +70,16 @@ export class SpriteFighterView {
         }
     }
     textureKey(): string | undefined { const p = this.lastPose; return p && this.asset ? this.asset.textures[this.asset.manifest.frames[p.frame].page] : undefined; }
-    diagnostics() { return { status: this.status, pose: this.lastPose, body: { x: this.sprite.x, y: this.sprite.y, originX: this.sprite.originX, originY: this.sprite.originY, flipX: this.sprite.flipX, visible: this.sprite.visible }, shadow: { x: this.shadow.x, y: this.shadow.y, scale: this.shadow.scaleX, visible: this.shadow.visible } }; }
-    destroy(): void { if (this.disposed)
-        return; this.disposed = true; this.fallback.destroy(); this.sprite.destroy(); this.shadow.destroy(); this.label.destroy(); this.asset = undefined; }
+    diagnostics() { return { status: this.status, pose: this.lastPose, body: { x: this.sprite.x, y: this.sprite.y, originX: this.sprite.originX, originY: this.sprite.originY, flipX: this.sprite.flipX, visible: this.sprite.visible, tint: this.sprite.tintTopLeft }, shadow: { x: this.shadow.x, y: this.shadow.y, scale: this.shadow.scaleX, visible: this.shadow.visible } }; }
+    destroy(): void {
+        if (this.disposed)
+            return;
+        this.disposed = true;
+        this.fallback.destroy();
+        this.sprite.destroy();
+        this.shadow.destroy();
+        this.label.destroy();
+        this.asset = undefined;
+        this.defaultAsset = undefined;
+    }
 }

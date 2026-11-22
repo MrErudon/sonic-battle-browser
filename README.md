@@ -142,3 +142,9 @@ Run `npm run balance` for paired seeded duels, `npm run balance:holdout` for see
 The game now uses a manifest-driven sprite adapter with an original synthetic diagnostic atlas. This is infrastructure validation, not Trestle or Vela artwork. Missing or invalid art falls back to the existing geometric fighters. Combat, CPU policy and balance values are unchanged.
 
 Run `npm run assets:check` to validate manifests, PNG dimensions, provenance and reproducible fixture export. `npm run build:fixtures` enables a separate compiled `presentation-fixture.html` for renderer tests; the normal `npm run build` excludes that test entry. Run `npm run test:browser:presentation` after the fixture build, with `BROWSER=chromium`, `firefox` or `webkit`. See [M03.1 architecture, integration and validation](docs/M03.1-animation-infrastructure.md).
+
+## M03.2 optional local sprite compatibility
+
+Manifest v2 adds direction overrides, frame attachments, native palettes and explicit coverage while preserving v1. The public default remains the original synthetic package. No Sega artwork is included.
+
+Use `npm run dev:local-sprites` for the opt-in loopback-only file importer. Private package files and normalization outputs must remain outside the checkout. `npm run sprites:normalize -- --source-dir /external/source --recipe /external/recipe.json --out /external/output` exports deterministic padded frames without changing source files. Normal builds exclude the private UI and enforce an approved public-asset inventory. See [M03.2 workflow, schema and limitations](docs/M03.2-sprite-compatibility.md). Actual Sonic source coverage remains unverified.

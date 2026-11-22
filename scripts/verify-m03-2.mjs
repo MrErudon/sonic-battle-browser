@@ -1,0 +1,2 @@
+import {readFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+const m=JSON.parse(await readFile('reports/M03.2-preserved-files.json','utf8'));for(const [path,hash] of Object.entries(m.sha256))if(createHash('sha256').update(await readFile(path)).digest('hex')!==hash)throw Error('M03.2 compatibility baseline changed: '+path);console.log(Object.keys(m.sha256).length+' simulation/test/report baseline files unchanged');

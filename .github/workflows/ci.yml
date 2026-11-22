@@ -54,6 +54,10 @@ jobs:
       - run: npm run test:browser:presentation
         env:
           BROWSER: ${{ matrix.browser }}
+      - run: npm run test:browser:local-import
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - run: npm run release:check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -70,6 +74,7 @@ jobs:
       - run: npm ci
       - run: node scripts/verify-legacy.mjs
       - run: node scripts/verify-presentation-compat.mjs
+      - run: node scripts/verify-m03-2.mjs
       - run: npm run balance:check
       - run: node scripts/combat-balance.mjs --holdout --check
       - run: node scripts/combat-match-balance.mjs --check
