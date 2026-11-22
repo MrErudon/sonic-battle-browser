@@ -1,6 +1,6 @@
 {
   "id": "trestle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "Trestle · initial artwork slice",
   "provenance": "provenance.json",
   "directions": {
@@ -3636,8 +3636,8 @@
       "rotated": false,
       "attachments": {
         "hand": [
-          52,
-          34
+          59,
+          26
         ]
       }
     },
@@ -3861,8 +3861,8 @@
       "rotated": false,
       "attachments": {
         "hand": [
-          52,
-          34
+          60,
+          25
         ]
       }
     },
@@ -4086,8 +4086,8 @@
       "rotated": false,
       "attachments": {
         "hand": [
-          52,
-          33
+          61,
+          23
         ]
       }
     },
@@ -4311,8 +4311,8 @@
       "rotated": false,
       "attachments": {
         "hand": [
-          52,
-          36
+          60,
+          30
         ]
       }
     },
@@ -4536,8 +4536,8 @@
       "rotated": false,
       "attachments": {
         "hand": [
-          52,
-          34
+          60,
+          26
         ]
       }
     },

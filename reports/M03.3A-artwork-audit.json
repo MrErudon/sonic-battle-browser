@@ -1,0 +1,36 @@
+{
+  "changedPixelFrames": {
+    "ne-13": 9
+  },
+  "frameCount": 75,
+  "opaqueBottomExclusive": [
+    56
+  ],
+  "activeHandAnchors": {
+    "n": [
+      60,
+      25
+    ],
+    "ne": [
+      61,
+      23
+    ],
+    "e": [
+      59,
+      26
+    ],
+    "se": [
+      60,
+      26
+    ],
+    "s": [
+      60,
+      30
+    ]
+  },
+  "atlasPngBefore": 53190,
+  "atlasPngAfter": 53171,
+  "packageBefore": 291018,
+  "packageAfter": 291276,
+  "decodedBeforeAfter": 1387200
+}

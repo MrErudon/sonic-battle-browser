@@ -6,12 +6,12 @@
     "public/assets/characters/synthetic/v1/manifest.json": "01e20bc657345df6a6a60aa4a2084b06ab1fba4a276c9eda41fcf65f9c747a61",
     "public/assets/characters/synthetic/v1/provenance.json": "fc391f77fa275fb275625e7222c4b1c70dd11dc9b9308d5b717b38509a739c69",
     "public/robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
-    "public/assets/characters/trestle/v0.1/manifest.json": "5998f849bb72f2a6e1dbf6840046d69880a5bfc66ac7f5b23c5a29cb55132379",
-    "public/assets/characters/trestle/v0.1/atlas-0.png": "fd9bce652507df423a0dfa89e06d9f6d069627d10674dfc2ec2bddfc8b7df55a",
-    "public/assets/characters/trestle/v0.1/provenance.json": "ba41b8cad275303347b7f4a634e6a5c810633e15171f9c2824e71b45f11bfad0",
+    "public/assets/characters/trestle/v0.1/manifest.json": "7e32d0e642c17b2df7b6d72d8d79bb249d3e38aa872d5c7905e73efe65883398",
+    "public/assets/characters/trestle/v0.1/atlas-0.png": "62c48969fb50edb71a611ab3981851aef32d7f02dbaaed07e84f27b40caa9781",
+    "public/assets/characters/trestle/v0.1/provenance.json": "6f3772953218f6cc95087300fb67c893c0b0a2d3fdda2bf07ff781446a42c721",
     "public/assets/characters/trestle/v0.1/native-source.png": "d00ad2613f2171e31cda4e46a362915dd2c545a89d414c28b43069378457ff29",
-    "public/assets/characters/trestle/v0.1/conversion-recipe.json": "2f3cf60222326059680dfe11e3deabbe2ab6b2a6885c5db20fd7413afb2b6352",
-    "public/assets/characters/trestle/v0.1/coverage-report.json": "9202d69b57ca6e43fa1671cd37c029a65895c7e6b663ec78147613302af88fdd"
+    "public/assets/characters/trestle/v0.1/conversion-recipe.json": "41e946fde564a9d85a1dd615c3c390c89cdee1cf9eb56b9a9822cc9244d86df6",
+    "public/assets/characters/trestle/v0.1/coverage-report.json": "df970ccec4576fb37632e0f6624e7bd38a848d0e760d187921d45b2d20f2f951"
   },
   "registrySha256": "43652fd0aa4e80e0af097c8d534eaa58c7088195d506f47a025a260f31bd7891",
   "approvedOriginalArt": "M03.3 Trestle initial75-frame artwork slice; public registry unchanged"
