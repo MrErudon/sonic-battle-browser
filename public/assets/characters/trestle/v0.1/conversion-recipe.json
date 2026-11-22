@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "character": {
     "id": "trestle",
-    "version": "0.1.0",
-    "displayName": "Trestle · initial artwork slice",
+    "version": "0.1.1",
+    "displayName": "Trestle \u00b7 initial artwork slice",
     "provenance": "provenance.json",
     "directions": {
       "n": {
@@ -3802,8 +3802,8 @@
       ],
       "attachments": {
         "hand": [
-          52,
-          35
+          60,
+          26
         ]
       }
     },
@@ -4087,26 +4087,26 @@
       ],
       "attachments": {
         "hand": [
-          52,
-          35
+          61,
+          25
         ]
       }
     },
     "ne-13": {
       "source": "trestle-native.png",
       "rect": [
-        832,
+        833,
         64,
-        64,
+        63,
         64
       ],
       "root": [
-        32,
+        31,
         58
       ],
       "attachments": {
         "hand": [
-          44,
+          43,
           35
         ]
       }
@@ -4372,8 +4372,8 @@
       ],
       "attachments": {
         "hand": [
-          52,
-          35
+          59,
+          27
         ]
       }
     },
@@ -4657,8 +4657,8 @@
       ],
       "attachments": {
         "hand": [
-          52,
-          35
+          60,
+          27
         ]
       }
     },
@@ -4942,8 +4942,8 @@
       ],
       "attachments": {
         "hand": [
-          52,
-          35
+          60,
+          29
         ]
       }
     },
@@ -4992,6 +4992,7 @@
     "permissionBasis": "Generated for owner project; legal exclusivity not assessed",
     "redistribution": "original-fixture",
     "production": "Native raster prep: nearest-neighbor from 2172x724 15x5 source, alpha threshold160, explicit20-color palette. Normalizer does not rescale/recolor.",
-    "scope": "Only idle/move/ground.light_1 have dedicated artwork; all other states explicitly approximate."
+    "scope": "Only idle/move/ground.light_1 have dedicated artwork; all other states explicitly approximate.",
+    "revision": "M03.3A: exclude 9 detached neighboring pixels in NE recovery13 by explicit source rectangle; all original body pixels and runtime positions preserved. Active-frame hand anchors moved to measured opaque distal gauntlet pixels in all five authored directions."
   }
 }

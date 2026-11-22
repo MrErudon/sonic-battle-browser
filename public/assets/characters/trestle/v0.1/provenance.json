@@ -6,10 +6,11 @@
   "redistribution": "original-fixture",
   "production": "Native raster prep: nearest-neighbor from 2172x724 15x5 source, alpha threshold160, explicit20-color palette. Normalizer does not rescale/recolor.",
   "scope": "Only idle/move/ground.light_1 have dedicated artwork; all other states explicitly approximate.",
+  "revision": "M03.3A: exclude 9 detached neighboring pixels in NE recovery13 by explicit source rectangle; all original body pixels and runtime positions preserved. Active-frame hand anchors moved to measured opaque distal gauntlet pixels in all five authored directions.",
   "sourceHashes": {
     "trestle-native.png": "d00ad2613f2171e31cda4e46a362915dd2c545a89d414c28b43069378457ff29"
   },
-  "recipeSha256": "2f3cf60222326059680dfe11e3deabbe2ab6b2a6885c5db20fd7413afb2b6352",
+  "recipeSha256": "41e946fde564a9d85a1dd615c3c390c89cdee1cf9eb56b9a9822cc9244d86df6",
   "normalizer": "deterministic root translation; no scale/clip/recolor",
   "authorization": "Owner declaration; not independently verified by tooling"
 }
