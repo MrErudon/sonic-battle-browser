@@ -1,3 +1,4 @@
+import type {LocalImportUi} from "../dev/local-import-ui";
 import characterRegistry from "../presentation/character-registry.json";
 import { SpecialView } from "../rendering/SpecialView";
 import Phaser from "phaser";
@@ -19,6 +20,7 @@ export class ArenaScene extends Phaser.Scene {
   readonly presentation=new PresentationCapture();
   private assetLoader!:CharacterAssetLoader;
   private effects!:EffectRegistry;
+  private localUi?:LocalImportUi;
   private alive=false;private generation=0;
   private ui!: MatchView;
   private resetVersion = -1;
@@ -54,9 +56,10 @@ export class ArenaScene extends Phaser.Scene {
     this.assetLoader=new CharacterAssetLoader(this);
     void this.assetLoader.loadRoster(characterRegistry).then(results=>{
       if(!this.alive||generation!==this.generation)return;
-      this.views.forEach((view,index)=>{const result=results[index===0?'P1':'P2'];if(result.ok)view.setAsset(result.asset);});
+      this.views.forEach((view,index)=>{const result=results[index===0?'P1':'P2'];if(result.ok)view.setDefaultAsset(result.asset);});
       this.game.canvas.dataset.characterAsset=Object.values(results).every(r=>r.ok)?'ready':'fallback';
     });
+    if(import.meta.env.DEV&&__LOCAL_SPRITES__)void import('../dev/local-import-ui').then(module=>{if(this.alive&&generation===this.generation)this.localUi=module.attachLocalImport(this,this.views[0]);});
     const keydown = (event: KeyboardEvent) => {
       if (event.code === "Escape" && !event.repeat && !this.match.helpOpen) {
         this.ui.openHelp(); return;
@@ -86,6 +89,7 @@ export class ArenaScene extends Phaser.Scene {
       document.removeEventListener("visibilitychange", visibility);
       this.game.events.off(Phaser.Core.Events.BLUR, blur);
       this.game.events.off(Phaser.Core.Events.FOCUS, focus);
+      this.localUi?.destroy();this.localUi=undefined;
       this.alive=false;this.generation++;this.assetLoader.destroy();
       this.match.setPresentation(undefined);this.match.setFocused(false);
       this.presentation.clear();this.views.forEach(view=>view.destroy());
@@ -106,6 +110,7 @@ export class ArenaScene extends Phaser.Scene {
     this.views[1].sync(this.match.fighters[1], this.visualTime, this.ui.debug,{...this.presentation.context(fighterSnapshot(this.match.fighters[1])),matchState:this.match.state,winner:this.match.winner});
     this.combatView.sync(this.match.fighters, this.match.paused ? 0 : delta);
     this.specialView.sync(this.match.fighters,this.match.combat);
+    this.localUi?.refresh(this.match.state);
     this.ui.sync();
     this.game.canvas.dataset.animations=this.views.map(v=>v.lastPose?`${v.lastPose.clip}:${v.lastPose.phase}:${v.lastPose.frame}:${v.lastPose.mirror}`:'geometric').join('|');
   }

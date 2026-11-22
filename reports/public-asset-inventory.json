@@ -1,0 +1,11 @@
+{
+  "baseline": "13d28e8e4929a5d1e3b6894440588b9d42091172",
+  "files": {
+    "public/_headers": "6a699d7d5bb524b65ef1628ef22be73c587bc2e8528ef7c0473498be08dc5031",
+    "public/assets/characters/synthetic/v1/atlas-0.png": "0b8098f1598ad785c2a30e4d2592e18e9274e38058e03549960bc4e558edb45e",
+    "public/assets/characters/synthetic/v1/manifest.json": "01e20bc657345df6a6a60aa4a2084b06ab1fba4a276c9eda41fcf65f9c747a61",
+    "public/assets/characters/synthetic/v1/provenance.json": "fc391f77fa275fb275625e7222c4b1c70dd11dc9b9308d5b717b38509a739c69",
+    "public/robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+  },
+  "registrySha256": "43652fd0aa4e80e0af097c8d534eaa58c7088195d506f47a025a260f31bd7891"
+}

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node scripts/release-inventory.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -21,7 +21,11 @@
     "assets:generate": "node scripts/generate-synthetic-atlas.mjs",
     "assets:check": "node scripts/generate-synthetic-atlas.mjs --check && node scripts/validate-character-assets.mjs",
     "build:fixtures": "PRESENTATION_FIXTURES=1 npm run build",
-    "test:browser:presentation": "node scripts/browser-presentation.mjs"
+    "test:browser:presentation": "node scripts/browser-presentation.mjs",
+    "dev:local-sprites": "node scripts/dev-local-sprites.mjs",
+    "sprites:normalize": "node scripts/normalize-sprites.mjs",
+    "release:check": "node scripts/release-inventory.mjs",
+    "test:browser:local-import": "node scripts/browser-local-import.mjs"
   },
   "dependencies": {
     "phaser": "^3.90.0"

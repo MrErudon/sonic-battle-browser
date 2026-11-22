@@ -1,0 +1,2222 @@
+{
+  "schemaVersion": 1,
+  "target": "Sonic / Sonic Battle GBA",
+  "status": "unverified",
+  "sourcePackage": null,
+  "permissionBasis": null,
+  "sourceFrameMeasurements": null,
+  "states": {
+    "idle": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "move": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "jump.takeoff": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "jump.ascent": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "jump.apex": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "jump.descent": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "land": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ground.light_1": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ground.light_2": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ground.light_3": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ground.heavy": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ground.finisher": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "air.light": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "air.heavy": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "block.startup": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "block.hold": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "block.stun": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "block.release": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "guard.break": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "guard.recover": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "hit.react": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "hit.stun": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "knockback": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "special.power": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "special.dash": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "special.projectile": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "ko": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    },
+    "victory": {
+      "sourceSequence": [],
+      "sourceOrderVerified": false,
+      "semanticRootsVerified": false,
+      "baselineDirections": {
+        "n": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "ne": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "e": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "se": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        },
+        "s": {
+          "status": "unverified",
+          "sourceFrames": [],
+          "bounds": null,
+          "root": null
+        }
+      },
+      "logicalDirections": {
+        "n": {
+          "plannedSource": "n",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "ne": {
+          "plannedSource": "ne",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "e": {
+          "plannedSource": "e",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "se": {
+          "plannedSource": "se",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "s": {
+          "plannedSource": "s",
+          "plannedMirror": false,
+          "status": "unverified"
+        },
+        "sw": {
+          "plannedSource": "se",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "w": {
+          "plannedSource": "e",
+          "plannedMirror": true,
+          "status": "unverified"
+        },
+        "nw": {
+          "plannedSource": "ne",
+          "plannedMirror": true,
+          "status": "unverified"
+        }
+      }
+    }
+  }
+}
